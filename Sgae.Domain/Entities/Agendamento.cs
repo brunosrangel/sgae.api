@@ -1,0 +1,99 @@
+using System;
+using Sgae.Domain.Common;
+using Sgae.Domain.Enums;
+
+namespace Sgae.Domain.Entities;
+
+/// <summary>
+/// Entidade representando o Agendamento de uma consulta espiritual associada a um Lead/Consulente.
+/// </summary>
+public class Agendamento : BaseEntity
+{
+    private Agendamento() { }
+
+    public Agendamento(
+        Guid leadId,
+        DateTime dataHora, 
+        ModalidadeAtendimento modalidade, 
+        decimal valor)
+    {
+        if (leadId == Guid.Empty)
+            throw new ArgumentException("O agendamento deve estar associado a um consulente (LeadId) válido.");
+
+        if (dataHora < DateTime.UtcNow)
+            throw new ArgumentException("A data do agendamento não pode ser retroativa.");
+
+        if (valor < 0)
+            throw new ArgumentException("O valor do agendamento não pode ser negativo.");
+
+        LeadId = leadId;
+        DataHora = dataHora;
+        Modalidade = modalidade;
+        Valor = valor;
+        Status = StatusAgendamento.Pendente;
+        MotivoCancelamento = null;
+    }
+
+    public Guid LeadId { get; private set; }
+    public virtual Lead Lead { get; private set; } = null!;
+
+    public DateTime DataHora { get; private set; }
+    public ModalidadeAtendimento Modalidade { get; private set; }
+    public decimal Valor { get; private set; }
+    public StatusAgendamento Status { get; private set; }
+    public string? MotivoCancelamento { get; private set; }
+
+    // Métodos de Regras de Negócio (Status State Transitions)
+    public void ConfirmarAgendamento()
+    {
+        if (Status != StatusAgendamento.Pendente)
+            throw new InvalidOperationException($"Não é possível confirmar um agendamento com status atual: {Status}");
+
+        Status = StatusAgendamento.Confirmado;
+        RegisterUpdate();
+    }
+
+    public void RealizarAgendamento()
+    {
+        if (Status != StatusAgendamento.Confirmado)
+            throw new InvalidOperationException("Apenas agendamentos Confirmados podem ser marcados como Realizados.");
+
+        Status = StatusAgendamento.Realizado;
+        RegisterUpdate();
+    }
+
+    public void CancelarAgendamento(string motivo)
+    {
+        if (Status == StatusAgendamento.Realizado)
+            throw new InvalidOperationException("Não é possível cancelar um agendamento que já foi realizado.");
+
+        if (string.IsNullOrWhiteSpace(motivo))
+            throw new ArgumentException("O motivo do cancelamento deve ser obrigatoriamente justificado.");
+
+        Status = StatusAgendamento.Cancelado;
+        MotivoCancelamento = motivo.Trim();
+        RegisterUpdate();
+    }
+
+    public void MarcarComoAusente()
+    {
+        if (Status != StatusAgendamento.Confirmado)
+            throw new InvalidOperationException("Apenas agendamentos Confirmados podem registrar ausência (no-show).");
+
+        Status = StatusAgendamento.Ausente;
+        RegisterUpdate();
+    }
+
+    public void Reagendar(DateTime novaDataHora)
+    {
+        if (novaDataHora < DateTime.UtcNow)
+            throw new ArgumentException("Nova data de reagendamento não pode ser menor que a data/hora atual.");
+
+        if (Status == StatusAgendamento.Realizado || Status == StatusAgendamento.Cancelado)
+            throw new InvalidOperationException("Não é possível reagendar atendimentos concluídos ou cancelados.");
+
+        DataHora = novaDataHora;
+        Status = StatusAgendamento.Pendente; // Volta a requerer confirmação
+        RegisterUpdate();
+    }
+}
