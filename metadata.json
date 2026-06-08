@@ -1,6 +1,0 @@
-{
-  "name": "SGAE .NET 8 Architecture Suite",
-  "description": "Visualizador e assistente interativo de Clean Architecture para o Sistema de Gestão de Atendimentos e Acompanhamento Espiritual.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

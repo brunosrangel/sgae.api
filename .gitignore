@@ -6,3 +6,48 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# === Ignore AI Studio Web Preview / TypeScript / React runtime files for a pure C# Git Repo ===
+package.json
+package-lock.json
+tsconfig.json
+vite.config.ts
+server.ts
+src/
+assets/
+metadata.json
+index.html
+
+# === .NET 8 / Clean Architecture Gitignore Tailores ===
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# IDE Directories
+.vs/
+.vscode/
+.idea/
+*.sln.iml
+
+# Build and compilation artifacts
+[Db]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Package files
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.assets.json
+packages/
+
+# User Secrets and local settings
+secrets.json
+appsettings.Development.json
+*.local.json
