@@ -1,10 +1,10 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Sgae.Application.Abstractions;
 using Sgae.Application.Common.CQRS;
 using Sgae.Domain.Entities;
+using Sgae.Domain.Repositories;
 
 namespace Sgae.Application.Agendamentos.Commands.CreateAgendamento;
 
@@ -13,22 +13,26 @@ namespace Sgae.Application.Agendamentos.Commands.CreateAgendamento;
 /// </summary>
 public class CreateAgendamentoCommandHandler : ICommandHandler<CreateAgendamentoCommand, Guid>
 {
-    private readonly IAppDbContext _context;
+    private readonly IAgendamentoRepository _agendamentoRepository;
+    private readonly ILeadRepository _leadRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateAgendamentoCommandHandler(IAppDbContext context, IUnitOfWork unitOfWork)
+    public CreateAgendamentoCommandHandler(
+        IAgendamentoRepository agendamentoRepository,
+        ILeadRepository leadRepository,
+        IUnitOfWork unitOfWork)
     {
-        _context = context;
+        _agendamentoRepository = agendamentoRepository;
+        _leadRepository = leadRepository;
         _unitOfWork = unitOfWork;
     }
 
     public async Task<Guid> Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken)
     {
         // 1. Garante a integridade lógica: Consulente deve existir previamente na base
-        var leadExists = await _context.Leads
-            .AnyAsync(l => l.Id == request.LeadId, cancellationToken);
+        var leadExists = await _leadRepository.GetByIdAsync(request.LeadId, cancellationToken);
 
-        if (!leadExists)
+        if (leadExists == null)
         {
             throw new ArgumentException($"O consulente de ID '{request.LeadId}' não foi localizado no sistema.");
         }
@@ -41,7 +45,7 @@ public class CreateAgendamentoCommandHandler : ICommandHandler<CreateAgendamento
             request.Valor
         );
 
-        await _context.Agendamentos.AddAsync(agendamento, cancellationToken);
+        await _agendamentoRepository.AddAsync(agendamento, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return agendamento.Id;

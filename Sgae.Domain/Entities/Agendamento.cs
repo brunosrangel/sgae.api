@@ -43,6 +43,9 @@ public class Agendamento : BaseEntity
     public StatusAgendamento Status { get; private set; }
     public string? MotivoCancelamento { get; private set; }
 
+    // Etapa 4 - Relacionamento 1-para-1 com AtendimentoEspiritual
+    public virtual AtendimentoEspiritual? Atendimento { get; private set; }
+
     // Métodos de Regras de Negócio (Status State Transitions)
     public void ConfirmarAgendamento()
     {

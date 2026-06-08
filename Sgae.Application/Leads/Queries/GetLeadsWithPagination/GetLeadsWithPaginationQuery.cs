@@ -5,7 +5,7 @@ using Sgae.Application.Leads.DTOs;
 
 namespace Sgae.Application.Leads.Queries.GetLeadsWithPagination;
 
-public record GetLeadsWithPaginationQuery : IQuery<PaginatedList<LeadDto>>
+public record GetLeadsWithPaginationQuery : IQuery<PagedResult<LeadDto>>
 {
     public int PageNumber { get; init; } = 1;
     public int PageSize { get; init; } = 10;

@@ -4,20 +4,21 @@ using System.Threading.Tasks;
 using Sgae.Application.Abstractions;
 using Sgae.Application.Common.CQRS;
 using Sgae.Domain.Entities;
+using Sgae.Domain.Repositories;
 
 namespace Sgae.Application.Leads.Commands.CreateLead;
 
 /// <summary>
-/// Manipulador que recebe o comando, cria a entidade rica e persiste via Unit of Work.
+/// Manipulador que recebe o comando, cria a entidade rica e persiste via repositório e Unit of Work.
 /// </summary>
 public class CreateLeadCommandHandler : ICommandHandler<CreateLeadCommand, Guid>
 {
-    private readonly IAppDbContext _context;
+    private readonly ILeadRepository _leadRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateLeadCommandHandler(IAppDbContext context, IUnitOfWork unitOfWork)
+    public CreateLeadCommandHandler(ILeadRepository leadRepository, IUnitOfWork unitOfWork)
     {
-        _context = context;
+        _leadRepository = leadRepository;
         _unitOfWork = unitOfWork;
     }
 
@@ -34,7 +35,7 @@ public class CreateLeadCommandHandler : ICommandHandler<CreateLeadCommand, Guid>
             request.ProblemaPrincipal
         );
 
-        await _context.Leads.AddAsync(lead, cancellationToken);
+        await _leadRepository.AddAsync(lead, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return lead.Id;

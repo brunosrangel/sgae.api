@@ -16,6 +16,7 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Lead> Leads => Set<Lead>();
     public DbSet<Agendamento> Agendamentos => Set<Agendamento>();
     public DbSet<PerfilConsulente> PerfisConsulentes => Set<PerfilConsulente>();
+    public DbSet<AtendimentoEspiritual> AtendimentosEspirituais => Set<AtendimentoEspiritual>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -141,6 +142,38 @@ public class AppDbContext : DbContext, IAppDbContext
                 .OnDelete(DeleteBehavior.Cascade); // Se o Lead for removido, o perfil também é
 
             builder.HasQueryFilter(p => !p.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade AtendimentoEspiritual (Etapa 4)
+        modelBuilder.Entity<AtendimentoEspiritual>(builder =>
+        {
+            builder.ToTable("AtendimentosEspirituais");
+
+            builder.HasKey(a => a.Id);
+
+            builder.Property(a => a.TempoDuracaoMinutos)
+                .IsRequired();
+
+            builder.Property(a => a.TemasAbordados)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            builder.Property(a => a.Observacoes)
+                .HasMaxLength(2000)
+                .IsRequired();
+
+            builder.Property(a => a.Tipo)
+                .HasConversion<string>()
+                .HasMaxLength(50)
+                .IsRequired();
+
+            // Relacionamento 1-para-1 entre Agendamento e AtendimentoEspiritual
+            builder.HasOne(a => a.Agendamento)
+                .WithOne(ag => ag.Atendimento)
+                .HasForeignKey<AtendimentoEspiritual>(a => a.AgendamentoId)
+                .OnDelete(DeleteBehavior.Cascade); // Se o agendamento for cancelado/expurgado de forma física
+
+            builder.HasQueryFilter(a => !a.IsDeleted);
         });
     }
 }

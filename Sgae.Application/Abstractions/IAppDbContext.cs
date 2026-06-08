@@ -10,5 +10,6 @@ public interface IAppDbContext
     DbSet<Lead> Leads { get; }
     DbSet<Agendamento> Agendamentos { get; }
     DbSet<PerfilConsulente> PerfisConsulentes { get; }
+    DbSet<AtendimentoEspiritual> AtendimentosEspirituais { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

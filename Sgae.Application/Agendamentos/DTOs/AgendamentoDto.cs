@@ -12,4 +12,5 @@ public class AgendamentoDto
     public string Modalidade { get; set; } = string.Empty;
     public string Status { get; set; } = string.Empty;
     public decimal Valor { get; set; }
+    public AtendimentoEspiritualDto? Atendimento { get; set; }
 }

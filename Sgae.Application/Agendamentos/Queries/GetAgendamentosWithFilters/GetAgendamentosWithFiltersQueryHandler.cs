@@ -28,6 +28,7 @@ public class GetAgendamentosWithFiltersQueryHandler : IQueryHandler<GetAgendamen
         // Carrega as entidades de forma otimizada com Includes e projeta diretamente
         var query = _context.Agendamentos
             .Include(a => a.Lead) // Garante o carregamento dos dados do Consulente para mapeamento legal
+            .Include(a => a.Atendimento) // Inclui o atendimento espiritual para Etapa 4
             .AsNoTracking();
 
         // Aplicando os filtros inteligentes

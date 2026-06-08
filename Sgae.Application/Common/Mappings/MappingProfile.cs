@@ -1,6 +1,7 @@
 using AutoMapper;
 using Sgae.Application.Leads.DTOs;
 using Sgae.Application.Agendamentos.DTOs;
+using Sgae.Application.Perfis.DTOs;
 using Sgae.Domain.Entities;
 
 namespace Sgae.Application.Common.Mappings;
@@ -9,6 +10,13 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        // Mapeamento de PerfilConsulente para PerfilConsulenteDto
+        CreateMap<PerfilConsulente, PerfilConsulenteDto>();
+
+        // Mapeamento de AtendimentoEspiritual para AtendimentoEspiritualDto
+        CreateMap<AtendimentoEspiritual, AtendimentoEspiritualDto>()
+            .ForMember(dest => dest.Tipo, opt => opt.MapFrom(src => src.Tipo.ToString()));
+
         // Mapeamento bidirecional ou unidirecional de Lead para LeadDto
         CreateMap<Lead, LeadDto>()
             .ForMember(dest => dest.Origem, opt => opt.MapFrom(src => src.Origem.ToString()));
@@ -18,6 +26,7 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.LeadNome, opt => opt.MapFrom(src => src.Lead != null ? src.Lead.Nome : string.Empty))
             .ForMember(dest => dest.LeadTelefone, opt => opt.MapFrom(src => src.Lead != null ? src.Lead.Telefone : string.Empty))
             .ForMember(dest => dest.Modalidade, opt => opt.MapFrom(src => src.Modalidade.ToString()))
-            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+            .ForMember(dest => dest.Atendimento, opt => opt.MapFrom(src => src.Atendimento));
     }
 }

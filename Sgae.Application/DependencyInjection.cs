@@ -26,7 +26,7 @@ public static class DependencyInjection
 
             // Acopla os Behaviors na Pipeline de execução do MediatR
             config.AddOpenBehavior(typeof(LoggingBehavior<,>));
-            config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+            config.AddOpenBehavior(typeof(FluentValidationBehavior<,>));
         });
 
         return services;

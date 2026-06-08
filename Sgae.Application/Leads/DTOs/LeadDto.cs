@@ -1,4 +1,5 @@
 using System;
+using Sgae.Application.Perfis.DTOs;
 
 namespace Sgae.Application.Leads.DTOs;
 
@@ -13,4 +14,5 @@ public class LeadDto
     public string Origem { get; set; } = string.Empty;
     public string ProblemaPrincipal { get; set; } = string.Empty;
     public DateTime DataCaptacao { get; set; }
+    public PerfilConsulenteDto? Perfil { get; set; }
 }

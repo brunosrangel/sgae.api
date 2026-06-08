@@ -12,7 +12,7 @@ using Sgae.Application.Leads.DTOs;
 
 namespace Sgae.Application.Leads.Queries.GetLeadsWithPagination;
 
-public class GetLeadsWithPaginationQueryHandler : IQueryHandler<GetLeadsWithPaginationQuery, PaginatedList<LeadDto>>
+public class GetLeadsWithPaginationQueryHandler : IQueryHandler<GetLeadsWithPaginationQuery, PagedResult<LeadDto>>
 {
     private readonly IAppDbContext _context;
     private readonly IMapper _mapper;
@@ -23,7 +23,7 @@ public class GetLeadsWithPaginationQueryHandler : IQueryHandler<GetLeadsWithPagi
         _mapper = mapper;
     }
 
-    public async Task<PaginatedList<LeadDto>> Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken)
+    public async Task<PagedResult<LeadDto>> Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken)
     {
         var query = _context.Leads.AsNoTracking();
 
@@ -49,12 +49,12 @@ public class GetLeadsWithPaginationQueryHandler : IQueryHandler<GetLeadsWithPagi
         // 2. Ordenação padrão por data de captação decrescente
         query = query.OrderByDescending(l => l.DataCaptacao);
 
-        // 3. Projeta diretamente em DTO usando AutoMapper para otimização de Select (QueryableExtensions)
-        return await PaginatedList<LeadDto>.CreateAsync(
-            query.ProjectTo<LeadDto>(_mapper.ConfigurationProvider),
-            request.PageNumber,
-            request.PageSize,
-            cancellationToken
-        );
+        // 3. Projeta diretamente em DTO usando AutoMapper para otimização de Select (QueryableExtensions) e pagina usando o helper
+        return await query.ProjectTo<LeadDto>(_mapper.ConfigurationProvider)
+            .ToPagedResultAsync(
+                request.PageNumber,
+                request.PageSize,
+                cancellationToken
+            );
     }
 }
