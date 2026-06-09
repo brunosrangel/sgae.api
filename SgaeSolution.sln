@@ -12,3 +12,5 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.API", "Sgae.API\Sgae.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Domain.Tests", "Sgae.Domain.Tests\Sgae.Domain.Tests.csproj", "{T1C1B1A9-6C22-4D33-8E44-9F55A66BCC55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Application.Tests", "Sgae.Application.Tests\Sgae.Application.Tests.csproj", "{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC99}"
+EndProject

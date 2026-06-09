@@ -2,6 +2,8 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using MediatR;
+using Sgae.Application.Abstractions;
+using Sgae.Application.Common;
 using Sgae.Application.Common.Behaviors;
 
 namespace Sgae.Application;
@@ -13,6 +15,9 @@ public static class DependencyInjection
     /// </summary>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        // Registra o Provedor de Correlation ID
+        services.AddScoped<ICorrelationIdProvider, CorrelationIdProvider>();
+
         // Registra o AutoMapper escaneando os profiles de mapeamento do Assembly
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

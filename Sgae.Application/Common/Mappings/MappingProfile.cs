@@ -15,7 +15,11 @@ public class MappingProfile : Profile
 
         // Mapeamento de AtendimentoEspiritual para AtendimentoEspiritualDto
         CreateMap<AtendimentoEspiritual, AtendimentoEspiritualDto>()
-            .ForMember(dest => dest.Tipo, opt => opt.MapFrom(src => src.Tipo.ToString()));
+            .ForMember(dest => dest.Tipo, opt => opt.MapFrom(src => src.Tipo))
+            .ForMember(dest => dest.TipoDescricao, opt => opt.MapFrom(src => src.Tipo.ToString()));
+
+        // Mapeamento de Acompanhamento para AcompanhamentoDto
+        CreateMap<Acompanhamento, AcompanhamentoDto>();
 
         // Mapeamento bidirecional ou unidirecional de Lead para LeadDto
         CreateMap<Lead, LeadDto>()

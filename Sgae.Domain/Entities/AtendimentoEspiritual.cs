@@ -1,6 +1,7 @@
 using System;
 using Sgae.Domain.Common;
 using Sgae.Domain.Enums;
+using Sgae.Domain.Events;
 
 namespace Sgae.Domain.Entities;
 
@@ -33,6 +34,14 @@ public class AtendimentoEspiritual : BaseEntity
         TempoDuracaoMinutos = tempoDuracaoMinutos;
         TemasAbordados = temasAbordados.Trim();
         Observacoes = observacoes?.Trim() ?? string.Empty;
+
+        // Registrar o evento de domínio desacoplado de criação de novo Atendimento Espiritual
+        AddDomainEvent(new AtendimentoEspiritualCriadoEvent(
+            Id,
+            AgendamentoId,
+            Tipo,
+            TempoDuracaoMinutos,
+            TemasAbordados));
     }
 
     public Guid AgendamentoId { get; private set; }

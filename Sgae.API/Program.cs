@@ -27,15 +27,15 @@ using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração estruturada e dedicada do Serilog
+// Configuração estruturada e dedicada do Serilog enriquecido com Correlation ID para rastreabilidade
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .Enrich.FromLogContext()
-    .WriteTo.Console()
+    .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] [ID-Correlacao: {CorrelationId}] {Message:lj}{NewLine}{Exception}")
     .WriteTo.File(
         path: "Logs/sgae-log-.txt",
         rollingInterval: RollingInterval.Day,
-        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] [ID-Correlacao: {CorrelationId}] {Message:lj}{NewLine}{Exception}"
     )
     .CreateLogger();
 
@@ -56,7 +56,8 @@ builder.Services.AddSwaggerGen(options =>
                       "### 📌 Módulos Funcionais da API:\n" +
                       "- **Módulo 1: Captação (Leads)** - Registro inicial e controle de captação de consulentes.\n" +
                       "- **Módulo 2: Agendamentos** - Gestão do fluxo de datas, status e valores de consultas.\n" +
-                      "- **Módulo 3: Perfil do Consulente** - Enriquecimento sócio-demográfico e qualificação personalizada.\n\n" +
+                      "- **Módulo 3: Perfil do Consulente** - Enriquecimento sócio-demográfico e qualificação personalizada.\n" +
+                      "- **Módulo 4: Atendimento Espiritual e Acompanhamento** - Registro de atendimentos e monitoramento continuado de evolução.\n\n" +
                       "*Padrões adotados: CQRS, Mediator Pipeline Behaviors, FluentValidation e Soft-Delete.*",
         Contact = new OpenApiContact
         {
@@ -82,6 +83,8 @@ builder.Services.AddSwaggerGen(options =>
                 return new[] { "2. Módulo de Agendamentos" };
             if (controllerName.Contains("Perfil", StringComparison.OrdinalIgnoreCase))
                 return new[] { "3. Módulo de Perfil do Consulente" };
+            if (controllerName.Contains("Atendimento", StringComparison.OrdinalIgnoreCase) || controllerName.Contains("Acompanhamento", StringComparison.OrdinalIgnoreCase))
+                return new[] { "4. Módulo de Atendimento Espiritual e Acompanhamento" };
 
             return new[] { controllerName };
         }
@@ -135,6 +138,24 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Configuração robusta do Redis Distributed Cache com fallback em-memória para ambientes de dev ou test sem infraestrutura Redis
+var redisConnectionString = builder.Configuration["REDIS_CONNECTION_STRING"] 
+    ?? Environment.GetEnvironmentVariable("REDIS_CONNECTION_STRING")
+    ?? builder.Configuration.GetConnectionString("Redis");
+
+if (!string.IsNullOrEmpty(redisConnectionString))
+{
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = redisConnectionString;
+        options.InstanceName = "Sgae_";
+    });
+}
+else
+{
+    builder.Services.AddDistributedMemoryCache();
+}
+
 // Configuração de Compressão de Resposta para melhorar a performance de payloads grandes da API
 builder.Services.AddResponseCompression(options =>
 {
@@ -169,6 +190,34 @@ builder.Services.AddRateLimiter(options =>
                 QueueLimit = 0,
                 AutoReplenishment = true
             }));
+
+    // Política específica de Janela Fixa (Fixed Window) dedicada para os Serviços de Atendimento ("attendance management services")
+    options.AddFixedWindowLimiter(policyName: "AtendimentosPolicy", limOptions =>
+    {
+        limOptions.PermitLimit = 30; // 30 requisições permitidas por janela
+        limOptions.Window = TimeSpan.FromMinutes(1); // Janela fixa de 1 minuto
+        limOptions.QueueLimit = 2; // Pequena fila para suavizar picos de acessos sem estresse no servidor
+        limOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        limOptions.AutoReplenishment = true;
+    });
+
+    // Customiza a resposta de rejeição para seguir o padrão corporativo RFC 7807 (Problem Details)
+    options.OnRejected = async (context, token) =>
+    {
+        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+        context.HttpContext.Response.ContentType = "application/problem+json";
+
+        var problemDetails = new Microsoft.AspNetCore.Mvc.ProblemDetails
+        {
+            Status = StatusCodes.Status429TooManyRequests,
+            Type = "https://tools.ietf.org/html/rfc6585#section-4",
+            Title = "Too Many Requests",
+            Detail = "O limite de requisições foi excedido para o serviço de atendimento. Por favor, tente novamente mais tarde.",
+            Instance = context.HttpContext.Request.Path
+        };
+
+        await context.HttpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken: token);
+    };
 });
 
 // Configuração estruturada e segura do JWT Authentication para proteger os endpoints da API
@@ -197,9 +246,14 @@ builder.Services.AddAuthorization();
 
 // Registro das implementações físicas da camada de Infrastructure
 builder.Services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
+builder.Services.AddScoped<DatabaseSeeder>();
+builder.Services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ILeadRepository, LeadRepository>();
+builder.Services.AddScoped<IPerfilConsulenteRepository, PerfilConsulenteRepository>();
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
+builder.Services.AddScoped<IAtendimentoEspiritualRepository, AtendimentoEspiritualRepository>();
+builder.Services.AddScoped<IAcompanhamentoRepository, AcompanhamentoRepository>();
 builder.Services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
 
 // Registro do serviço de Health Checks com checker para banco de dados relacional
@@ -213,6 +267,9 @@ app.UseSerilogRequestLogging();
 
 // Ativa a compressão de respostas HTTP para melhor performance de payload
 app.UseResponseCompression();
+
+// Ativa o Middleware de ID de Correlação de forma prioritária para rastreio end-to-end
+app.UseMiddleware<CorrelationIdMiddleware>();
 
 // ATIVE O MIDDLEWARE DE EXCEÇÕES GLOBAL (RFC 7807)
 app.UseMiddleware<ExceptionHandlingMiddleware>();
@@ -261,5 +318,21 @@ app.MapHealthChecks("/health", new HealthCheckOptions
         await context.Response.WriteAsync(JsonSerializer.Serialize(response, jsonOptions));
     }
 });
+
+// Executa a inicialização e o seeding automático do banco de dados relacional na carga inicial do SGAE
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var seeder = services.GetRequiredService<DatabaseSeeder>();
+        await seeder.InitializeAndSeedAsync();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<DatabaseSeeder>>();
+        logger.LogCritical(ex, "SGAE Core: Falha estrutural crítica ao executar a inicialização e o seeding automático do banco de dados.");
+    }
+}
 
 app.Run();

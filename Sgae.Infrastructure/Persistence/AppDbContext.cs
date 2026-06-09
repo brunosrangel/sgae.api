@@ -17,6 +17,9 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Agendamento> Agendamentos => Set<Agendamento>();
     public DbSet<PerfilConsulente> PerfisConsulentes => Set<PerfilConsulente>();
     public DbSet<AtendimentoEspiritual> AtendimentosEspirituais => Set<AtendimentoEspiritual>();
+    public DbSet<Acompanhamento> Acompanhamentos => Set<Acompanhamento>();
+    public DbSet<PastoralRole> PastoralRoles => Set<PastoralRole>();
+    public DbSet<SystemConfiguration> SystemConfigurations => Set<SystemConfiguration>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -174,6 +177,88 @@ public class AppDbContext : DbContext, IAppDbContext
                 .OnDelete(DeleteBehavior.Cascade); // Se o agendamento for cancelado/expurgado de forma física
 
             builder.HasQueryFilter(a => !a.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade Acompanhamento
+        modelBuilder.Entity<Acompanhamento>(builder =>
+        {
+            builder.ToTable("Acompanhamentos");
+
+            builder.HasKey(a => a.Id);
+
+            builder.Property(a => a.DataAcompanhamento)
+                .IsRequired();
+
+            builder.Property(a => a.SintomasMelhora)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            builder.Property(a => a.Recomendacoes)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            builder.Property(a => a.Observacoes)
+                .HasMaxLength(2000)
+                .IsRequired();
+
+            // Relacionamento: 1 AtendimentoEspiritual pode ter vários Acompanhamentos
+            builder.HasOne(a => a.AtendimentoEspiritual)
+                .WithMany()
+                .HasForeignKey(a => a.AtendimentoEspiritualId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasQueryFilter(a => !a.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade PastoralRole
+        modelBuilder.Entity<PastoralRole>(builder =>
+        {
+            builder.ToTable("PastoralRoles");
+
+            builder.HasKey(r => r.Id);
+
+            builder.Property(r => r.Nome)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.Property(r => r.Descricao)
+                .HasMaxLength(500)
+                .IsRequired();
+
+            builder.Property(r => r.EscopoPermissao)
+                .HasMaxLength(250)
+                .IsRequired();
+
+            // Índice para busca e exclusividade do Nome de forma lógica
+            builder.HasIndex(r => r.Nome)
+                .IsUnique();
+
+            builder.HasQueryFilter(r => !r.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade SystemConfiguration
+        modelBuilder.Entity<SystemConfiguration>(builder =>
+        {
+            builder.ToTable("SystemConfigurations");
+
+            builder.HasKey(c => c.Id);
+
+            builder.Property(c => c.Chave)
+                .HasMaxLength(150)
+                .IsRequired();
+
+            builder.Property(c => c.Valor)
+                .HasMaxLength(2000)
+                .IsRequired();
+
+            builder.Property(c => c.Descricao)
+                .HasMaxLength(500)
+                .IsRequired();
+
+            builder.HasIndex(c => c.Chave)
+                .IsUnique();
+
+            builder.HasQueryFilter(c => !c.IsDeleted);
         });
     }
 }
