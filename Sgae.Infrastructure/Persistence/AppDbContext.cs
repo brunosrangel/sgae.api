@@ -20,6 +20,7 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Acompanhamento> Acompanhamentos => Set<Acompanhamento>();
     public DbSet<PastoralRole> PastoralRoles => Set<PastoralRole>();
     public DbSet<SystemConfiguration> SystemConfigurations => Set<SystemConfiguration>();
+    public DbSet<SpiritualAttendanceCategory> SpiritualAttendanceCategories => Set<SpiritualAttendanceCategory>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -256,6 +257,35 @@ public class AppDbContext : DbContext, IAppDbContext
                 .IsRequired();
 
             builder.HasIndex(c => c.Chave)
+                .IsUnique();
+
+            builder.HasQueryFilter(c => !c.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade SpiritualAttendanceCategory
+        modelBuilder.Entity<SpiritualAttendanceCategory>(builder =>
+        {
+            builder.ToTable("SpiritualAttendanceCategories");
+
+            builder.HasKey(c => c.Id);
+
+            builder.Property(c => c.Tipo)
+                .HasConversion<string>()
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(c => c.Nome)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.Property(c => c.Descricao)
+                .HasMaxLength(500)
+                .IsRequired();
+
+            builder.Property(c => c.TempoRecomendadoMinutos)
+                .IsRequired();
+
+            builder.HasIndex(c => c.Tipo)
                 .IsUnique();
 
             builder.HasQueryFilter(c => !c.IsDeleted);

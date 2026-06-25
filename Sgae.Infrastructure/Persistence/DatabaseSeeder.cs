@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sgae.Domain.Entities;
+using Sgae.Domain.Enums;
 
 namespace Sgae.Infrastructure.Persistence;
 
@@ -62,6 +63,9 @@ public class DatabaseSeeder
 
             // Executa o Seeding das Configurações do Sistema (System Configurations)
             await SeedSystemConfigurationsAsync(cancellationToken);
+
+            // Executa o Seeding das Categorias de Atendimento Espiritual (Spiritual Attendance Categories)
+            await SeedSpiritualAttendanceCategoriesAsync(cancellationToken);
 
             _logger.LogInformation("SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso.");
         }
@@ -160,6 +164,65 @@ public class DatabaseSeeder
         else
         {
             _logger.LogInformation("SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura.");
+        }
+    }
+
+    private async Task SeedSpiritualAttendanceCategoriesAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("SGAE Seeder: Verificando tabela de categorias de atendimento espiritual...");
+
+        var hasCategories = await _context.SpiritualAttendanceCategories.AnyAsync(cancellationToken);
+        if (!hasCategories)
+        {
+            _logger.LogInformation("SGAE Seeder: Tabela de categorias vazia. Semeando tipos de atendimentos pastorais...");
+
+            var categories = new[]
+            {
+                new SpiritualAttendanceCategory(
+                    TipoAtendimento.TratamentoEspiritual,
+                    "Tratamento Espiritual",
+                    "Tratamento focado na harmonização energética e reequilíbrio espiritual por meio de passes específicos e fluidoterapia direcionada.",
+                    40
+                ),
+                new SpiritualAttendanceCategory(
+                    TipoAtendimento.Desobsessao,
+                    "Desobsessão",
+                    "Sessão de esclarecimento e desobsessão para auxílio a entidades necessitadas e reabilitação espiritual profunda do consulente.",
+                    50
+                ),
+                new SpiritualAttendanceCategory(
+                    TipoAtendimento.AssistenciaFraterna,
+                    "Assistência Fraterna",
+                    "Atendimento acolhedor baseado em conversação fraterna, escuta ativa e direcionamento evangélico-doutrinário inicial.",
+                    30
+                ),
+                new SpiritualAttendanceCategory(
+                    TipoAtendimento.PasseEspiritual,
+                    "Passe Espiritual",
+                    "Transmissão purificadora de fluidos e bioenergia salutares para reestabelecimento psicossomático seguro.",
+                    15
+                ),
+                new SpiritualAttendanceCategory(
+                    TipoAtendimento.Doutrinacao,
+                    "Doutrinação",
+                    "Reunião dedicada ao esclarecimento doutrinário de cariz terapêutico para espíritos desencarnados aflitos.",
+                    45
+                ),
+                new SpiritualAttendanceCategory(
+                    TipoAtendimento.Outros,
+                    "Outros Atendimentos",
+                    "Ações diversas de acolhida pastoral e suporte espiritual personalizado não descritas nas categorias eminentes.",
+                    20
+                )
+            };
+
+            await _context.SpiritualAttendanceCategories.AddRangeAsync(categories, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+            _logger.LogInformation("SGAE Seeder: Semeadas 6 categorias de atendimento espiritual de referência.");
+        }
+        else
+        {
+            _logger.LogInformation("SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura.");
         }
     }
 }
