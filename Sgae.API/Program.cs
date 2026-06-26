@@ -25,8 +25,6 @@ using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Http;
 
-var builder = WebApplication.CreateBuilder(args);
-
 // Configuração estruturada e dedicada do Serilog enriquecido com Correlation ID para rastreabilidade
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
@@ -39,7 +37,13 @@ Log.Logger = new LoggerConfiguration()
     )
     .CreateLogger();
 
-builder.Host.UseSerilog();
+try
+{
+    Log.Information("Iniciando o host de inicialização da SGAE API...");
+
+    var builder = WebApplication.CreateBuilder(args);
+
+    builder.Host.UseSerilog();
 
 // Adiciona Serviços das Camadas de Arquitetura Clean
 builder.Services.AddApplication(); // Registra o MediatR e pipeline CQRS via método de extensão da Application
@@ -319,20 +323,32 @@ app.MapHealthChecks("/health", new HealthCheckOptions
     }
 });
 
-// Executa a inicialização e o seeding automático do banco de dados relacional na carga inicial do SGAE
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
+    // Executa a inicialização e o seeding automático do banco de dados relacional na carga inicial do SGAE
+    using (var scope = app.Services.CreateScope())
     {
-        var seeder = services.GetRequiredService<DatabaseSeeder>();
-        await seeder.InitializeAndSeedAsync();
+        var services = scope.ServiceProvider;
+        try
+        {
+            var seeder = services.GetRequiredService<DatabaseSeeder>();
+            await seeder.InitializeAndSeedAsync();
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<DatabaseSeeder>>();
+            logger.LogCritical(ex, "SGAE Core: Falha estrutural crítica ao executar a inicialização e o seeding automático do banco de dados.");
+        }
     }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<DatabaseSeeder>>();
-        logger.LogCritical(ex, "SGAE Core: Falha estrutural crítica ao executar a inicialização e o seeding automático do banco de dados.");
-    }
-}
 
-app.Run();
+    Log.Information("Host da SGAE API configurado com sucesso. Executando o pipeline...");
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "O host da aplicação SGAE API falhou inesperadamente durante a fase de inicialização ou execução.");
+    throw;
+}
+finally
+{
+    Log.Information("Finalizando o host da SGAE API de forma segura...");
+    Log.CloseAndFlush();
+}
