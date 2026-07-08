@@ -48,8 +48,9 @@ try
         .ReadFrom.Services(services)
         .Enrich.FromLogContext());
 
-// Adiciona Serviços das Camadas de Arquitetura Clean
-builder.Services.AddApplication(); // Registra o MediatR e pipeline CQRS via método de extensão da Application
+    // Adiciona Serviços das Camadas de Arquitetura Clean
+    // Registra o MediatR e pipeline CQRS via método de extensão da Application
+    builder.Services.AddApplication(); 
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
