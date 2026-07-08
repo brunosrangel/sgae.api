@@ -30,7 +30,12 @@ public class ExceptionHandlingMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Ocorreu uma exceção não tratada na requisição no SGAE.");
+            _logger.LogError(
+                ex, 
+                "Ocorreu uma exceção não tratada na requisição {Method} {Path}. Detalhes: {ErrorMessage}", 
+                context.Request.Method, 
+                context.Request.Path, 
+                ex.Message);
             await HandleExceptionAsync(context, ex);
         }
     }

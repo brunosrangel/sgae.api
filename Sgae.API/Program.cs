@@ -84,13 +84,15 @@ builder.Services.AddSwaggerGen(options =>
         var controllerName = api.ActionDescriptor.RouteValues["controller"];
         if (controllerName != null)
         {
-            if (controllerName.Contains("Lead", StringComparison.OrdinalIgnoreCase))
+            if (controllerName.Contains("Lead", StringComparison.OrdinalIgnoreCase) || controllerName.Contains("Patient", StringComparison.OrdinalIgnoreCase))
                 return new[] { "1. Módulo de Captação (Leads)" };
             if (controllerName.Contains("Agendamento", StringComparison.OrdinalIgnoreCase))
                 return new[] { "2. Módulo de Agendamentos" };
             if (controllerName.Contains("Perfil", StringComparison.OrdinalIgnoreCase))
                 return new[] { "3. Módulo de Perfil do Consulente" };
-            if (controllerName.Contains("Atendimento", StringComparison.OrdinalIgnoreCase) || controllerName.Contains("Acompanhamento", StringComparison.OrdinalIgnoreCase))
+            if (controllerName.Contains("Atendimento", StringComparison.OrdinalIgnoreCase) || 
+                controllerName.Contains("Acompanhamento", StringComparison.OrdinalIgnoreCase) ||
+                controllerName.Contains("Spiritual", StringComparison.OrdinalIgnoreCase))
                 return new[] { "4. Módulo de Atendimento Espiritual e Acompanhamento" };
 
             return new[] { controllerName };
@@ -269,8 +271,29 @@ builder.Services.AddHealthChecks()
 
 var app = builder.Build();
 
-// Captura requisições e respostas HTTP de forma estruturada no pipeline
-app.UseSerilogRequestLogging();
+// Captura requisições e respostas HTTP de forma estruturada no pipeline com dados enriquecidos
+app.UseSerilogRequestLogging(options =>
+{
+    options.MessageTemplate = "HTTP {RequestMethod} {RequestPath} respondeu {StatusCode} em {Elapsed:0.0000} ms";
+    options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
+    {
+        diagnosticContext.Set("RequestHost", httpContext.Request.Host.Value);
+        diagnosticContext.Set("RequestScheme", httpContext.Request.Scheme);
+        diagnosticContext.Set("QueryString", httpContext.Request.QueryString.Value ?? string.Empty);
+
+        var clientIp = httpContext.Connection.RemoteIpAddress?.ToString();
+        if (!string.IsNullOrEmpty(clientIp))
+        {
+            diagnosticContext.Set("ClientIp", clientIp);
+        }
+
+        var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
+        if (!string.IsNullOrEmpty(userAgent))
+        {
+            diagnosticContext.Set("UserAgent", userAgent);
+        }
+    };
+});
 
 // Ativa a compressão de respostas HTTP para melhor performance de payload
 app.UseResponseCompression();
@@ -281,11 +304,8 @@ app.UseMiddleware<CorrelationIdMiddleware>();
 // ATIVE O MIDDLEWARE DE EXCEÇÕES GLOBAL (RFC 7807)
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
