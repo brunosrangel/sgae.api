@@ -38,16 +38,16 @@ public class GetLeadsWithPaginationQueryHandler : IQueryHandler<GetLeadsWithPagi
 
         if (request.DataInicio.HasValue)
         {
-            query = query.Where(l => l.DataCaptacao >= request.DataInicio.Value);
+            query = query.Where(l => l.DataContato >= request.DataInicio.Value);
         }
 
         if (request.DataFim.HasValue)
         {
-            query = query.Where(l => l.DataCaptacao <= request.DataFim.Value);
+            query = query.Where(l => l.DataContato <= request.DataFim.Value);
         }
 
         // 2. Ordenação padrão por data de captação decrescente
-        query = query.OrderByDescending(l => l.DataCaptacao);
+        query = query.OrderByDescending(l => l.DataContato);
 
         // 3. Projeta diretamente em DTO usando AutoMapper para otimização de Select (QueryableExtensions) e pagina usando o helper
         return await query.ProjectTo<LeadDto>(_mapper.ConfigurationProvider)

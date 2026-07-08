@@ -18,8 +18,8 @@ public static class DependencyInjection
         // Registra o Provedor de Correlation ID
         services.AddScoped<ICorrelationIdProvider, CorrelationIdProvider>();
 
-        // Registra o AutoMapper escaneando os profiles de mapeamento do Assembly
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        // Registra o AutoMapper escaneando os profiles de mapeamento do Assembly contendo o MappingProfile
+        services.AddAutoMapper(typeof(Common.Mappings.MappingProfile));
 
         // Registra todos os validadores do FluentValidation no Assembly atual
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

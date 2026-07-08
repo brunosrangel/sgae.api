@@ -1,54 +1,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 18
-VisualStudioVersion = 18.6.11828.311 oobstable
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Domain", "Sgae.Domain\Sgae.Domain.csproj", "{D1C1B1A1-2C22-4D33-8E44-9F55A66BCC11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Application", "Sgae.Application\Sgae.Application.csproj", "{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Infrastructure", "Sgae.Infrastructure\Sgae.Infrastructure.csproj", "{4552CDC3-26B8-478F-8CBB-7E240414BA76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Infrastructure", "Sgae.Infrastructure\Sgae.Infrastructure.csproj", "{I1C1B1A7-4C22-4D33-8E44-9F55A66BCC33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.API", "Sgae.API\Sgae.API.csproj", "{9E7949E8-EF55-4202-8612-81BEC3BDA80F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.API", "Sgae.API\Sgae.API.csproj", "{P1C1B1A9-5C22-4D33-8E44-9F55A66BCC44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Domain.Tests", "Sgae.Domain.Tests\Sgae.Domain.Tests.csproj", "{101608EE-586A-450B-AD97-BDDB5D92DD3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Domain.Tests", "Sgae.Domain.Tests\Sgae.Domain.Tests.csproj", "{T1C1B1A9-6C22-4D33-8E44-9F55A66BCC55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sgae.Application.Tests", "Sgae.Application.Tests\Sgae.Application.Tests.csproj", "{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC99}"
 EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D1C1B1A1-2C22-4D33-8E44-9F55A66BCC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1C1B1A1-2C22-4D33-8E44-9F55A66BCC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1C1B1A1-2C22-4D33-8E44-9F55A66BCC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1C1B1A1-2C22-4D33-8E44-9F55A66BCC11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4552CDC3-26B8-478F-8CBB-7E240414BA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4552CDC3-26B8-478F-8CBB-7E240414BA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4552CDC3-26B8-478F-8CBB-7E240414BA76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4552CDC3-26B8-478F-8CBB-7E240414BA76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E7949E8-EF55-4202-8612-81BEC3BDA80F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E7949E8-EF55-4202-8612-81BEC3BDA80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E7949E8-EF55-4202-8612-81BEC3BDA80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E7949E8-EF55-4202-8612-81BEC3BDA80F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{101608EE-586A-450B-AD97-BDDB5D92DD3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{101608EE-586A-450B-AD97-BDDB5D92DD3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{101608EE-586A-450B-AD97-BDDB5D92DD3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{101608EE-586A-450B-AD97-BDDB5D92DD3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1C1B1A5-3C22-4D33-8E44-9F55A66BCC99}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {63313CB3-51DD-483E-A4B3-51E05EBA55A1}
-	EndGlobalSection
-EndGlobal

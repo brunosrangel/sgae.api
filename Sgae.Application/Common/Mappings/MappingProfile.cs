@@ -3,7 +3,6 @@ using Sgae.Application.Leads.DTOs;
 using Sgae.Application.Agendamentos.DTOs;
 using Sgae.Application.Perfis.DTOs;
 using Sgae.Domain.Entities;
-using Sgae.Application.Atendimentos.DTOs;
 
 namespace Sgae.Application.Common.Mappings;
 
@@ -14,10 +13,14 @@ public class MappingProfile : Profile
         // Mapeamento de PerfilConsulente para PerfilConsulenteDto
         CreateMap<PerfilConsulente, PerfilConsulenteDto>();
 
-        // Mapeamento de AtendimentoEspiritual para AtendimentoEspiritualDto
-        CreateMap<AtendimentoEspiritual, AtendimentoEspiritualDto>()
+        // Mapeamento de AtendimentoEspiritual para AtendimentoEspiritualDto (Atendimentos)
+        CreateMap<AtendimentoEspiritual, Sgae.Application.Atendimentos.DTOs.AtendimentoEspiritualDto>()
             .ForMember(dest => dest.Tipo, opt => opt.MapFrom(src => src.Tipo))
             .ForMember(dest => dest.TipoDescricao, opt => opt.MapFrom(src => src.Tipo.ToString()));
+
+        // Mapeamento de AtendimentoEspiritual para AgendamentoAtendimentoEspiritualDto (Agendamentos)
+        CreateMap<AtendimentoEspiritual, Sgae.Application.Agendamentos.DTOs.AgendamentoAtendimentoEspiritualDto>()
+            .ForMember(dest => dest.Tipo, opt => opt.MapFrom(src => src.Tipo.ToString()));
 
         // Mapeamento de Acompanhamento para AcompanhamentoDto
         CreateMap<Acompanhamento, AcompanhamentoDto>();

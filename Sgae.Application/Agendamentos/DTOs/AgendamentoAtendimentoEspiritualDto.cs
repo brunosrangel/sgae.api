@@ -2,7 +2,7 @@ using System;
 
 namespace Sgae.Application.Agendamentos.DTOs;
 
-public class AtendimentoEspiritualDto
+public class AgendamentoAtendimentoEspiritualDto
 {
     public Guid Id { get; set; }
     public Guid AgendamentoId { get; set; }
