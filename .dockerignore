@@ -1,0 +1,27 @@
+# Ignorar pastas de build local do .NET
+**/bin/
+**/obj/
+**/out/
+
+# Ignorar pastas e arquivos de controle de versão
+**/.git/
+**/.github/
+**/.gitignore
+
+# Ignorar arquivos de IDEs (Visual Studio e VS Code)
+**/.vs/
+**/.vscode/
+**/*.user
+**/*.suo
+**/*.userprefs
+
+# Ignorar arquivos de variáveis de ambiente locais
+.env
+.env.development
+.env.local
+.env.production
+
+# Ignorar logs e arquivos temporários
+**/*.log
+.dockerignore
+Dockerfile
