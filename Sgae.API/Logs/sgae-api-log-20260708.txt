@@ -1,0 +1,23 @@
+[2026-07-08 14:42:54.735 -03:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:03.528 -03:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:04.359 -03:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:04.365 -03:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:05.311 -03:00 INF] SGAE Seeder: Tabela de cargos pastorais vazia. Semeando perfis referenciais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:05.909 -03:00 INF] SGAE Seeder: Semeados 4 cargos pastorais com sucesso no banco de dados. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:05.913 -03:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:05.959 -03:00 INF] SGAE Seeder: Tabela de configurações vazia. Semeando parâmetros operacionais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:06.043 -03:00 INF] SGAE Seeder: Semeados 5 parâmetros de configuração geral com sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:06.048 -03:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:06.067 -03:00 INF] SGAE Seeder: Tabela de categorias vazia. Semeando tipos de atendimentos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:06.162 -03:00 INF] SGAE Seeder: Semeadas 6 categorias de atendimento espiritual de referência. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:06.165 -03:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-07-08 14:43:06.179 -03:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-07-08 14:43:18.230 -03:00 INF] HTTP GET / responded 404 in 494.4834 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNMT31FPUNAR:00000001","ConnectionId":"0HNMT31FPUNAR"}
+[2026-07-08 14:43:26.030 -03:00 INF] HTTP GET /swagger responded 301 in 1.7356 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNMT31FPUNAR:00000003","ConnectionId":"0HNMT31FPUNAR"}
+[2026-07-08 14:43:26.836 -03:00 INF] HTTP GET /swagger/index.html responded 200 in 681.8155 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNMT31FPUNAR:00000005","ConnectionId":"0HNMT31FPUNAR"}
+[2026-07-08 14:43:26.845 -03:00 WRN] Unable to configure Browser Link script injection on the response.  {"EventId":{"Id":3,"Name":"FailedToConfigureForBrowserLink"},"SourceContext":"Microsoft.WebTools.BrowserLink.Net.BrowserLinkMiddleware","RequestId":"0HNMT31FPUNAR:00000005","RequestPath":"/swagger/index.html","ConnectionId":"0HNMT31FPUNAR"}
+[2026-07-08 14:43:27.012 -03:00 INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 200 in 90.8013 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNMT31FPUNAR:0000000B","ConnectionId":"0HNMT31FPUNAR"}
+[2026-07-08 14:43:27.012 -03:00 INF] HTTP GET /swagger/swagger-ui.css responded 200 in 90.7977 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNMT31FPUNAR:00000007","ConnectionId":"0HNMT31FPUNAR"}
+[2026-07-08 14:43:27.488 -03:00 INF] HTTP GET /swagger/swagger-ui-bundle.js responded 200 in 567.0544 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNMT31FPUNAR:00000009","ConnectionId":"0HNMT31FPUNAR"}
+[2026-07-08 14:43:27.940 -03:00 INF] HTTP GET /swagger/favicon-32x32.png responded 200 in 0.7609 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNMT31FPUNAR:00000011","ConnectionId":"0HNMT31FPUNAR"}
+[2026-07-08 14:43:28.037 -03:00 INF] HTTP GET /swagger/v1/swagger.json responded 200 in 137.0448 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNMT31FPUNAR:0000000F","ConnectionId":"0HNMT31FPUNAR"}
