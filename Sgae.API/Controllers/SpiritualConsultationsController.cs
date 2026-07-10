@@ -110,7 +110,7 @@ public class SpiritualConsultationsController : ControllerBase
     /// <param name="cancellationToken">Token de cancelamento.</param>
     /// <returns>Status sem conteúdo em caso de sucesso.</returns>
     [HttpPut("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status24NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
@@ -148,7 +148,7 @@ public class SpiritualConsultationsController : ControllerBase
     /// <param name="cancellationToken">Token de cancelamento.</param>
     /// <returns>Status sem conteúdo em caso de sucesso.</returns>
     [HttpDelete("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status24NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(

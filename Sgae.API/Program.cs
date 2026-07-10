@@ -48,9 +48,8 @@ try
         .ReadFrom.Services(services)
         .Enrich.FromLogContext());
 
-    // Adiciona Serviços das Camadas de Arquitetura Clean
-    // Registra o MediatR e pipeline CQRS via método de extensão da Application
-    builder.Services.AddApplication(); 
+// Adiciona Serviços das Camadas de Arquitetura Clean
+builder.Services.AddApplication(); // Registra o MediatR e pipeline CQRS via método de extensão da Application
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -254,6 +253,18 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
+// Configuração da política de CORS corporativa para permitir integração segura com o SGAE Frontend
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("SgaeCorsPolicy", policy =>
+    {
+        policy.WithOrigins("https://sgae-ui.vercel.app")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
+    });
+});
+
 // Registro das implementações físicas da camada de Infrastructure
 builder.Services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
 builder.Services.AddScoped<DatabaseSeeder>();
@@ -295,6 +306,9 @@ app.UseSerilogRequestLogging(options =>
         }
     };
 });
+
+// Ativa a política de CORS antes dos demais middlewares para processar requisições OPTIONS prévias (pre-flight)
+app.UseCors("SgaeCorsPolicy");
 
 // Ativa a compressão de respostas HTTP para melhor performance de payload
 app.UseResponseCompression();
