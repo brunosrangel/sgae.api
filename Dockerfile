@@ -8,21 +8,22 @@ ENV ASPNETCORE_URLS=http://+:3000
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copia os arquivos de projeto individualmente para otimização do cache de camadas do Docker
+# Copia o arquivo da solução e os arquivos de projeto individualmente para otimização do cache de camadas do Docker
+COPY ["SgaeSolution.sln", "./"]
 COPY ["Sgae.API/Sgae.API.csproj", "Sgae.API/"]
 COPY ["Sgae.Application/Sgae.Application.csproj", "Sgae.Application/"]
 COPY ["Sgae.Domain/Sgae.Domain.csproj", "Sgae.Domain/"]
 COPY ["Sgae.Infrastructure/Sgae.Infrastructure.csproj", "Sgae.Infrastructure/"]
+COPY ["Sgae.Domain.Tests/Sgae.Domain.Tests.csproj", "Sgae.Domain.Tests/"]
+COPY ["Sgae.Application.Tests/Sgae.Application.Tests.csproj", "Sgae.Application.Tests/"]
 
-# Restaura as dependências NuGet apenas para os projetos de produção
-RUN dotnet restore "Sgae.API/Sgae.API.csproj"
+# Restaura as dependências NuGet de toda a solução
+RUN dotnet restore SgaeSolution.sln
 
-# Copia o restante do código fonte de produção
-COPY ["Sgae.Domain/", "Sgae.Domain/"]
-COPY ["Sgae.Application/", "Sgae.Application/"]
-COPY ["Sgae.Infrastructure/", "Sgae.Infrastructure/"]
-COPY ["Sgae.API/", "Sgae.API/"]
+# Copia todo o código fonte restante do repositório
+COPY . .
 
+# Compila o projeto da API em modo Release
 WORKDIR "/src/Sgae.API"
 RUN dotnet build "Sgae.API.csproj" -c Release -o /app/build --no-restore
 
