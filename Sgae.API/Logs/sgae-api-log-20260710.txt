@@ -1,0 +1,1 @@
+[2026-07-10 16:06:53.025 -03:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
