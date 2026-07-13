@@ -11,8 +11,8 @@ public record CreateLeadCommand(
     string Nome,
     string Telefone,
     string Email,
-    string Cidade,
-    string Estado,
+    string? Cidade,
+    string? Estado,
     OrigemContato Origem,
     string ProblemaPrincipal
 ) : ICommand<Guid>;
