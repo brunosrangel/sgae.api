@@ -37,10 +37,15 @@ public class CreateAgendamentoCommandHandler : ICommandHandler<CreateAgendamento
             throw new ArgumentException($"O consulente de ID '{request.LeadId}' não foi localizado no sistema.");
         }
 
-        // 2. Instancia a entidade rica executando as regras de estado
+        // 2. Resolve a data e hora em formato UTC seguro utilizando o helper de domínio
+        DateTime dataHoraUtc = !string.IsNullOrWhiteSpace(request.Data)
+            ? Sgae.Domain.Common.DateTimeHelper.ParseUtc(request.Data, request.Horario)
+            : Sgae.Domain.Common.DateTimeHelper.EnsureUtc(request.DataHora);
+
+        // 3. Instancia a entidade rica executando as regras de estado
         var agendamento = new Agendamento(
             request.LeadId,
-            request.DataHora,
+            dataHoraUtc,
             request.Modalidade,
             request.Valor
         );

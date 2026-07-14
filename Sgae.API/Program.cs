@@ -145,7 +145,8 @@ builder.Services.AddSwaggerGen(options =>
 
 // Configuração do DbContext com PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+           .AddInterceptors(new DateTimeUtcInterceptor()));
 
 // Configuração robusta do Redis Distributed Cache com fallback em-memória para ambientes de dev ou test sem infraestrutura Redis
 var redisConnectionString = builder.Configuration["REDIS_CONNECTION_STRING"] 
