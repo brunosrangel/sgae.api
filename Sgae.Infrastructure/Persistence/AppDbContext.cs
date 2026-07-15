@@ -22,6 +22,16 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<PastoralRole> PastoralRoles => Set<PastoralRole>();
     public DbSet<SystemConfiguration> SystemConfigurations => Set<SystemConfiguration>();
     public DbSet<SpiritualAttendanceCategory> SpiritualAttendanceCategories => Set<SpiritualAttendanceCategory>();
+    public DbSet<CanalCaptacao> CanaisCaptacao => Set<CanalCaptacao>();
+    public DbSet<Sacerdote> Sacerdotes => Set<Sacerdote>();
+    public DbSet<ServicoConsulta> ServicosConsulta => Set<ServicoConsulta>();
+    public DbSet<RitualSugerido> RituaisSugeridos => Set<RitualSugerido>();
+    public DbSet<LocalRealizacao> LocaisRealizacao => Set<LocalRealizacao>();
+    public DbSet<CategoriaInsumo> CategoriasInsumos => Set<CategoriaInsumo>();
+    public DbSet<CategoriaDespesa> CategoriasDespesas => Set<CategoriaDespesa>();
+    public DbSet<CustoInsumo> CustosInsumos => Set<CustoInsumo>();
+    public DbSet<Prescricao> Prescricoes => Set<Prescricao>();
+    public DbSet<Conversao> Conversoes => Set<Conversao>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -68,6 +78,11 @@ public class AppDbContext : DbContext, IAppDbContext
                 .HasMaxLength(1000)
                 .IsRequired();
 
+            builder.HasOne(l => l.CanalCaptacao)
+                .WithMany(c => c.Leads)
+                .HasForeignKey(l => l.CanalCaptacaoId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             // Filtro Global para Soft Delete (IsDeleted == false)
             builder.HasQueryFilter(l => !l.IsDeleted);
         });
@@ -106,6 +121,16 @@ public class AppDbContext : DbContext, IAppDbContext
                 .WithMany(l => l.Agendamentos)
                 .HasForeignKey(a => a.LeadId)
                 .OnDelete(DeleteBehavior.Restrict); // Evita delete em cascata acidental
+
+            builder.HasOne(a => a.Sacerdote)
+                .WithMany(s => s.Agendamentos)
+                .HasForeignKey(a => a.SacerdoteId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(a => a.ServicoConsulta)
+                .WithMany(s => s.Agendamentos)
+                .HasForeignKey(a => a.ServicoConsultaId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasQueryFilter(a => !a.IsDeleted);
         });
@@ -288,6 +313,136 @@ public class AppDbContext : DbContext, IAppDbContext
 
             builder.HasIndex(c => c.Tipo)
                 .IsUnique();
+
+            builder.HasQueryFilter(c => !c.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade CanalCaptacao
+        modelBuilder.Entity<CanalCaptacao>(builder =>
+        {
+            builder.ToTable("CanaisCaptacao");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Nome).HasMaxLength(150).IsRequired();
+            builder.HasIndex(c => c.Nome).IsUnique();
+            builder.Property(c => c.Ativo).IsRequired().HasDefaultValue(true);
+            builder.HasQueryFilter(c => !c.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade Sacerdote
+        modelBuilder.Entity<Sacerdote>(builder =>
+        {
+            builder.ToTable("Sacerdotes");
+            builder.HasKey(s => s.Id);
+            builder.Property(s => s.Nome).HasMaxLength(150).IsRequired();
+            builder.HasIndex(s => s.Nome).IsUnique();
+            builder.Property(s => s.Especialidade).HasMaxLength(500).IsRequired(false);
+            builder.Property(s => s.Ativo).IsRequired().HasDefaultValue(true);
+            builder.HasQueryFilter(s => !s.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade ServicoConsulta
+        modelBuilder.Entity<ServicoConsulta>(builder =>
+        {
+            builder.ToTable("ServicosConsulta");
+            builder.HasKey(s => s.Id);
+            builder.Property(s => s.Nome).HasMaxLength(150).IsRequired();
+            builder.HasIndex(s => s.Nome).IsUnique();
+            builder.Property(s => s.Tarifa).HasPrecision(18, 2).IsRequired();
+            builder.Property(s => s.Ativo).IsRequired().HasDefaultValue(true);
+            builder.HasQueryFilter(s => !s.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade RitualSugerido
+        modelBuilder.Entity<RitualSugerido>(builder =>
+        {
+            builder.ToTable("RituaisSugeridos");
+            builder.HasKey(r => r.Id);
+            builder.Property(r => r.Nome).HasMaxLength(150).IsRequired();
+            builder.HasIndex(r => r.Nome).IsUnique();
+            builder.Property(r => r.Ativo).IsRequired().HasDefaultValue(true);
+            builder.HasQueryFilter(r => !r.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade LocalRealizacao
+        modelBuilder.Entity<LocalRealizacao>(builder =>
+        {
+            builder.ToTable("LocaisRealizacao");
+            builder.HasKey(l => l.Id);
+            builder.Property(l => l.Nome).HasMaxLength(150).IsRequired();
+            builder.HasIndex(l => l.Nome).IsUnique();
+            builder.Property(l => l.Ativo).IsRequired().HasDefaultValue(true);
+            builder.HasQueryFilter(l => !l.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade CategoriaInsumo
+        modelBuilder.Entity<CategoriaInsumo>(builder =>
+        {
+            builder.ToTable("CategoriasInsumos");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Nome).HasMaxLength(150).IsRequired();
+            builder.HasIndex(c => c.Nome).IsUnique();
+            builder.Property(c => c.Ativo).IsRequired().HasDefaultValue(true);
+            builder.HasQueryFilter(c => !c.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade CategoriaDespesa
+        modelBuilder.Entity<CategoriaDespesa>(builder =>
+        {
+            builder.ToTable("CategoriasDespesas");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Nome).HasMaxLength(150).IsRequired();
+            builder.HasIndex(c => c.Nome).IsUnique();
+            builder.Property(c => c.Ativo).IsRequired().HasDefaultValue(true);
+            builder.HasQueryFilter(c => !c.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade CustoInsumo
+        modelBuilder.Entity<CustoInsumo>(builder =>
+        {
+            builder.ToTable("CustosInsumos");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Descricao).HasMaxLength(500).IsRequired();
+            builder.Property(c => c.Valor).HasPrecision(18, 2).IsRequired();
+
+            builder.HasOne(c => c.CategoriaInsumo)
+                .WithMany(i => i.Custos)
+                .HasForeignKey(c => c.CategoriaInsumoId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(c => c.CategoriaDespesa)
+                .WithMany(d => d.Custos)
+                .HasForeignKey(c => c.CategoriaDespesaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasQueryFilter(c => !c.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade Prescricao
+        modelBuilder.Entity<Prescricao>(builder =>
+        {
+            builder.ToTable("Prescricoes");
+            builder.HasKey(p => p.Id);
+            builder.Property(p => p.Descricao).HasMaxLength(1000).IsRequired();
+
+            builder.HasOne(p => p.Sacerdote)
+                .WithMany(s => s.Prescricoes)
+                .HasForeignKey(p => p.SacerdoteId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasQueryFilter(p => !p.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade Conversao
+        modelBuilder.Entity<Conversao>(builder =>
+        {
+            builder.ToTable("Conversoes");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Descricao).HasMaxLength(1000).IsRequired();
+
+            builder.HasOne(c => c.Sacerdote)
+                .WithMany(s => s.Conversoes)
+                .HasForeignKey(c => c.SacerdoteId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasQueryFilter(c => !c.IsDeleted);
         });

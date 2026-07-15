@@ -49,10 +49,6 @@ public class DateTimeUtcInterceptor : SaveChangesInterceptor
                 {
                     entry.Property(property.Name).CurrentValue = DateTimeHelper.EnsureUtc(dt);
                 }
-                else if (currentValue is DateTime? nullableDt && nullableDt.HasValue)
-                {
-                    entry.Property(property.Name).CurrentValue = DateTimeHelper.EnsureUtc(nullableDt.Value);
-                }
             }
         }
     }

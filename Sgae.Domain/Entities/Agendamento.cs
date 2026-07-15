@@ -46,7 +46,25 @@ public class Agendamento : BaseEntity
     // Etapa 4 - Relacionamento 1-para-1 com AtendimentoEspiritual
     public virtual AtendimentoEspiritual? Atendimento { get; private set; }
 
+    public Guid? SacerdoteId { get; private set; }
+    public virtual Sacerdote? Sacerdote { get; private set; }
+
+    public Guid? ServicoConsultaId { get; private set; }
+    public virtual ServicoConsulta? ServicoConsulta { get; private set; }
+
     // Métodos de Regras de Negócio (Status State Transitions)
+    public void DefinirSacerdote(Guid? sacerdoteId)
+    {
+        SacerdoteId = sacerdoteId;
+        RegisterUpdate();
+    }
+
+    public void DefinirServicoConsulta(Guid? servicoConsultaId)
+    {
+        ServicoConsultaId = servicoConsultaId;
+        RegisterUpdate();
+    }
+
     public void ConfirmarAgendamento()
     {
         if (Status != StatusAgendamento.Pendente)

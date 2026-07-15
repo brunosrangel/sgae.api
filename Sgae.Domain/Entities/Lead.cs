@@ -37,6 +37,8 @@ public class Lead : BaseEntity
     public DateTime DataContato { get; private set; }
     public OrigemContato Origem { get; private set; }
     public string ProblemaPrincipal { get; private set; } = null!;
+    public Guid? CanalCaptacaoId { get; private set; }
+    public virtual CanalCaptacao? CanalCaptacao { get; private set; }
 
     // Relacionamento de Navegação (1-para-N): Um Lead pode ter vários agendamentos no sistema
     public virtual ICollection<Agendamento> Agendamentos { get; private set; } = new List<Agendamento>();
@@ -84,6 +86,12 @@ public class Lead : BaseEntity
     public void DefinirPerfil(PerfilConsulente perfil)
     {
         Perfil = perfil ?? throw new ArgumentNullException(nameof(perfil));
+        RegisterUpdate();
+    }
+
+    public void DefinirCanalCaptacao(Guid? canalCaptacaoId)
+    {
+        CanalCaptacaoId = canalCaptacaoId;
         RegisterUpdate();
     }
 }
