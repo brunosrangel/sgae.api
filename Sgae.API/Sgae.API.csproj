@@ -26,4 +26,8 @@
     <ProjectReference Include="..\Sgae.Infrastructure\Sgae.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
 </Project>

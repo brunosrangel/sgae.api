@@ -1,4 +1,3 @@
-using System;
 using Sgae.Domain.Enums;
 
 namespace Sgae.Application.Atendimentos.DTOs;

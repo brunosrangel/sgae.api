@@ -1,10 +1,9 @@
-using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
-using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using Sgae.Application.Abstractions;
 using Sgae.Application.Common;
 using Sgae.Application.Common.Behaviors;
+using System.Reflection;
 
 namespace Sgae.Application;
 

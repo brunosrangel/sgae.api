@@ -1,13 +1,10 @@
-using System;
-using System.Data;
-using System.Threading;
-using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Caching.Distributed;
-using System.Text.Json;
 using Sgae.Application.Abstractions;
-using Sgae.Application.Common.CQRS;
 using Sgae.Application.Atendimentos.DTOs;
+using Sgae.Application.Common.CQRS;
+using System.Data;
+using System.Text.Json;
 
 namespace Sgae.Application.Atendimentos.Queries.GetAtendimentoById;
 
@@ -49,7 +46,7 @@ public class GetAtendimentoByIdQueryHandler : IQueryHandler<GetAtendimentoByIdQu
             WHERE ""Id"" = @Id AND ""IsDeleted"" = false";
 
         var result = await connection.QueryFirstOrDefaultAsync<AtendimentoEspiritualDto>(
-            sql, 
+            sql,
             new { Id = request.Id }
         );
 
@@ -59,9 +56,9 @@ public class GetAtendimentoByIdQueryHandler : IQueryHandler<GetAtendimentoByIdQu
 
             var serializedData = JsonSerializer.Serialize(result);
             await _cache.SetStringAsync(
-                cacheKey, 
-                serializedData, 
-                new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = System.TimeSpan.FromMinutes(10) }, 
+                cacheKey,
+                serializedData,
+                new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = System.TimeSpan.FromMinutes(10) },
                 cancellationToken
             );
         }

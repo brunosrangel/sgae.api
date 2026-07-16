@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Serilog.Context;
 using Sgae.Application.Abstractions;
 
@@ -25,9 +21,9 @@ public class CorrelationIdMiddleware
     {
         // 1. Tentar ler o Correlation ID existente do cabeçalho da requisição ou gerar um novo de forma segura
         var correlationIdHeader = context.Request.Headers[CorrelationIdHeaderKey].FirstOrDefault();
-        
-        Guid correlationId = Guid.TryParse(correlationIdHeader, out var parsedGuid) 
-            ? parsedGuid 
+
+        Guid correlationId = Guid.TryParse(correlationIdHeader, out var parsedGuid)
+            ? parsedGuid
             : Guid.NewGuid();
 
         // 2. Definir o Correlation ID no provedor escopado das camadas internas (CQRS Pipeline)

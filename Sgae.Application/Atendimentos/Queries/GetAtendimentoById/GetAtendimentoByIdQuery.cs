@@ -1,6 +1,5 @@
-using System;
-using Sgae.Application.Common.CQRS;
 using Sgae.Application.Atendimentos.DTOs;
+using Sgae.Application.Common.CQRS;
 
 namespace Sgae.Application.Atendimentos.Queries.GetAtendimentoById;
 

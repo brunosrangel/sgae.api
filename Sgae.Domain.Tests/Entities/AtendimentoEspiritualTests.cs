@@ -1,4 +1,3 @@
-using System;
 using FluentAssertions;
 using Sgae.Domain.Entities;
 using Sgae.Domain.Enums;

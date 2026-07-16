@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Sgae.Application.Abstractions;
@@ -19,8 +15,8 @@ public class DomainEventDispatcher : IDomainEventDispatcher
     private readonly ILogger<DomainEventDispatcher> _logger;
 
     public DomainEventDispatcher(
-        AppDbContext context, 
-        IPublisher publisher, 
+        AppDbContext context,
+        IPublisher publisher,
         ILogger<DomainEventDispatcher> logger)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
@@ -46,7 +42,7 @@ public class DomainEventDispatcher : IDomainEventDispatcher
         }
 
         _logger.LogInformation(
-            "SGAE Event Dispatcher: Identificados {Count} evento(s) de domínio pendente(s) para correspondência.", 
+            "SGAE Event Dispatcher: Identificados {Count} evento(s) de domínio pendente(s) para correspondência.",
             domainEvents.Count);
 
         // 2. Limpar os eventos de domínio das entidades antes do despacho para evitar loops ou re-entrada acidental
@@ -60,8 +56,8 @@ public class DomainEventDispatcher : IDomainEventDispatcher
         {
             var eventType = domainEvent.GetType();
             _logger.LogInformation(
-                "SGAE Event Dispatcher: Envelopando evento {EventName} [ID: {EventId}] como INotification para publicação.", 
-                eventType.Name, 
+                "SGAE Event Dispatcher: Envelopando evento {EventName} [ID: {EventId}] como INotification para publicação.",
+                eventType.Name,
                 domainEvent.EventId);
 
             var notificationType = typeof(Sgae.Application.Common.Events.DomainEventNotification<>)

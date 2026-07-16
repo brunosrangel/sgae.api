@@ -1,9 +1,9 @@
 using AutoMapper;
-using Sgae.Application.Leads.DTOs;
 using Sgae.Application.Agendamentos.DTOs;
+using Sgae.Application.Atendimentos.DTOs;
+using Sgae.Application.Leads.DTOs;
 using Sgae.Application.Perfis.DTOs;
 using Sgae.Domain.Entities;
-using Sgae.Application.Atendimentos.DTOs;
 
 namespace Sgae.Application.Common.Mappings;
 

@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Caching.Distributed;
-using System.Text.Json;
 using Sgae.Application.Abstractions;
-using Sgae.Application.Common.CQRS;
 using Sgae.Application.Atendimentos.DTOs;
+using Sgae.Application.Common.CQRS;
+using System.Data;
+using System.Text.Json;
 
 namespace Sgae.Application.Atendimentos.Queries.GetAcompanhamentosByAtendimentoId;
 
@@ -56,7 +51,7 @@ public class GetAcompanhamentosByAtendimentoIdQueryHandler : IQueryHandler<GetAc
             ORDER BY ""DataAcompanhamento"" DESC";
 
         var result = await connection.QueryAsync<AcompanhamentoDto>(
-            sql, 
+            sql,
             new { AtendimentoEspiritualId = request.AtendimentoEspiritualId }
         );
 
@@ -64,9 +59,9 @@ public class GetAcompanhamentosByAtendimentoIdQueryHandler : IQueryHandler<GetAc
 
         var serializedData = JsonSerializer.Serialize(list);
         await _cache.SetStringAsync(
-            cacheKey, 
-            serializedData, 
-            new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = System.TimeSpan.FromMinutes(10) }, 
+            cacheKey,
+            serializedData,
+            new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = System.TimeSpan.FromMinutes(10) },
             cancellationToken
         );
 

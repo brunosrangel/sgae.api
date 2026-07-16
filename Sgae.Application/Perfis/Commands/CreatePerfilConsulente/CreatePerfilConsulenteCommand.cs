@@ -1,4 +1,3 @@
-using System;
 using Sgae.Application.Common.CQRS;
 
 namespace Sgae.Application.Perfis.Commands.CreatePerfilConsulente;

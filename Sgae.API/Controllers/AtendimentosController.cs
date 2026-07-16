@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Sgae.Application.Atendimentos.Commands.CreateAcompanhamento;
@@ -43,7 +38,7 @@ public class AtendimentosController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAtendimento(
-        [FromBody] CreateAtendimentoCommand command, 
+        [FromBody] CreateAtendimentoCommand command,
         CancellationToken cancellationToken)
     {
         try
@@ -95,7 +90,7 @@ public class AtendimentosController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<AtendimentoEspiritualDto>> GetAtendimentoById(
-        Guid id, 
+        Guid id,
         CancellationToken cancellationToken)
     {
         var result = await _sender.Send(new GetAtendimentoByIdQuery(id), cancellationToken);
@@ -133,8 +128,8 @@ public class AtendimentosController : ControllerBase
 
             var acompanhamentoId = await _sender.Send(command, cancellationToken);
             return CreatedAtAction(
-                nameof(GetAcompanhamentosByAtendimentoId), 
-                new { id }, 
+                nameof(GetAcompanhamentosByAtendimentoId),
+                new { id },
                 acompanhamentoId
             );
         }

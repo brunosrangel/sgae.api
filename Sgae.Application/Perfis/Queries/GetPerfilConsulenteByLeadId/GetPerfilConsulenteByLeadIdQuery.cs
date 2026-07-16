@@ -1,4 +1,3 @@
-using System;
 using Sgae.Application.Common.CQRS;
 using Sgae.Application.Perfis.DTOs;
 

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Sgae.Domain.Common;
 using Sgae.Domain.Enums;
 
@@ -14,12 +12,12 @@ public class Lead : BaseEntity
     private Lead() { }
 
     public Lead(
-        string nome, 
-        string telefone, 
-        string email, 
-        string cidade, 
-        string estado, 
-        OrigemContato origem, 
+        string nome,
+        string telefone,
+        string email,
+        string cidade,
+        string estado,
+        OrigemContato origem,
         string problemaPrincipal)
     {
         UpdateDadosPessoais(nome, email, telefone);
@@ -51,7 +49,7 @@ public class Lead : BaseEntity
     {
         if (string.IsNullOrWhiteSpace(nome))
             throw new ArgumentException("Nome não pode ser vazio.");
-        
+
         if (string.IsNullOrWhiteSpace(telefone))
             throw new ArgumentException("Telefone para contato é obrigatório.");
 
@@ -65,7 +63,7 @@ public class Lead : BaseEntity
     {
         if (string.IsNullOrWhiteSpace(cidade))
             throw new ArgumentException("Cidade é obrigatória.");
-        
+
         if (string.IsNullOrWhiteSpace(estado) || estado.Length != 2)
             throw new ArgumentException("Estado é obrigatório e deve conter exatamente 2 caracteres (UF).");
 
@@ -78,7 +76,7 @@ public class Lead : BaseEntity
     {
         if (string.IsNullOrWhiteSpace(novoProblema))
             throw new ArgumentException("O problema principal não pode ser nulo.");
-        
+
         ProblemaPrincipal = novoProblema.Trim();
         RegisterUpdate();
     }

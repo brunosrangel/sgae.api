@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sgae.Domain.Entities;
@@ -88,23 +84,23 @@ public class DatabaseSeeder
             var roles = new[]
             {
                 new PastoralRole(
-                    "Admin", 
-                    "Administrador de sistemas com privilégios irrestritos de configuração, auditoria e controle de acessos.", 
+                    "Admin",
+                    "Administrador de sistemas com privilégios irrestritos de configuração, auditoria e controle de acessos.",
                     "System.All,Pastoral.All"
                 ),
                 new PastoralRole(
-                    "Pastor", 
-                    "Membro da equipe pastoral responsável por triagens, aconselhamento fraterno, passes e acompanhamento dos consulentes.", 
+                    "Pastor",
+                    "Membro da equipe pastoral responsável por triagens, aconselhamento fraterno, passes e acompanhamento dos consulentes.",
                     "Pastoral.Atendimento,Pastoral.Acompanhamento,Pastoral.Leitura"
                 ),
                 new PastoralRole(
-                    "Coordenador", 
-                    "Coordenador do fluxo de acolhimento encarregado do controle de leads de captação, agendamentos e status de salas.", 
+                    "Coordenador",
+                    "Coordenador do fluxo de acolhimento encarregado do controle de leads de captação, agendamentos e status de salas.",
                     "Pastoral.Agendamento,Pastoral.Lead,Pastoral.Leitura"
                 ),
                 new PastoralRole(
-                    "PastoralStaff", 
-                    "Auxiliar de apoio pastoral focado na acolhida inicial, suporte logístico e leitura de relatórios de presença.", 
+                    "PastoralStaff",
+                    "Auxiliar de apoio pastoral focado na acolhida inicial, suporte logístico e leitura de relatórios de presença.",
                     "Pastoral.Leitura"
                 )
             };
@@ -131,28 +127,28 @@ public class DatabaseSeeder
             var configs = new[]
             {
                 new SystemConfiguration(
-                    "JwtExpirationMinutes", 
-                    "120", 
+                    "JwtExpirationMinutes",
+                    "120",
                     "Define o tempo máximo de expiração do Token JWT (em minutos) antes de requerer reautenticação."
                 ),
                 new SystemConfiguration(
-                    "RateLimitPermitLimit", 
-                    "30", 
+                    "RateLimitPermitLimit",
+                    "30",
                     "Limite de requisições por minuto toleradas para endpoints sensíveis de atendimento pastoral."
                 ),
                 new SystemConfiguration(
-                    "DatabaseCacheMinutes", 
-                    "60", 
+                    "DatabaseCacheMinutes",
+                    "60",
                     "Tempo padrão de sobrevivência das listagens pastorais no cache distribuído estruturado."
                 ),
                 new SystemConfiguration(
-                    "MinPastoralSessionDuration", 
-                    "15", 
+                    "MinPastoralSessionDuration",
+                    "15",
                     "Duração mínima sugerida em minutos para um atendimento visando qualidade pastoral."
                 ),
                 new SystemConfiguration(
-                    "ThemeLayoutValue", 
-                    "CorporateSlate", 
+                    "ThemeLayoutValue",
+                    "CorporateSlate",
                     "Configuração estética do dashboard do consolador (CorporateSlate, AmberSerene, MidnightSpace, PastelAura)."
                 )
             };

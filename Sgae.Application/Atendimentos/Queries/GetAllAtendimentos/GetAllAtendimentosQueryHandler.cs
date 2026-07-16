@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Caching.Distributed;
-using System.Text.Json;
 using Sgae.Application.Abstractions;
+using Sgae.Application.Atendimentos.DTOs;
 using Sgae.Application.Common.CQRS;
 using Sgae.Application.Common.Models;
-using Sgae.Application.Atendimentos.DTOs;
+using System.Data;
+using System.Text.Json;
 
 namespace Sgae.Application.Atendimentos.Queries.GetAllAtendimentos;
 
@@ -95,9 +90,9 @@ public class GetAllAtendimentosQueryHandler : IQueryHandler<GetAllAtendimentosQu
         // 4. Armazenar em cache o resultado paginado por 10 minutos
         var serializedData = JsonSerializer.Serialize(pagedResponse);
         await _cache.SetStringAsync(
-            cacheKey, 
-            serializedData, 
-            new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) }, 
+            cacheKey,
+            serializedData,
+            new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10) },
             cancellationToken
         );
 

@@ -1,13 +1,10 @@
-using System;
-using System.Data;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Text.Json;
 using Dapper;
 using Microsoft.Extensions.Caching.Distributed;
 using Sgae.Application.Abstractions;
 using Sgae.Application.Common.CQRS;
 using Sgae.Application.Perfis.DTOs;
+using System.Data;
+using System.Text.Json;
 
 namespace Sgae.Application.Perfis.Queries.GetPerfilConsulenteByLeadId;
 
@@ -28,7 +25,7 @@ public class GetPerfilConsulenteByLeadIdQueryHandler : IQueryHandler<GetPerfilCo
     public async Task<PerfilConsulenteDto?> Handle(GetPerfilConsulenteByLeadIdQuery request, CancellationToken cancellationToken)
     {
         var cacheKey = $"perfil_lead_{request.LeadId}";
-        
+
         // 1. Tentar recuperar dados do Cache Distribuído
         var cachedData = await _cache.GetStringAsync(cacheKey, cancellationToken);
         if (!string.IsNullOrEmpty(cachedData))

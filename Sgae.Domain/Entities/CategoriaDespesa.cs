@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Sgae.Domain.Common;
 
 namespace Sgae.Domain.Entities;

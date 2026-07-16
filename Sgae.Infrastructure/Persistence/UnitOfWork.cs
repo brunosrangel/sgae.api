@@ -1,5 +1,3 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Sgae.Application.Abstractions;
 
 namespace Sgae.Infrastructure.Persistence;

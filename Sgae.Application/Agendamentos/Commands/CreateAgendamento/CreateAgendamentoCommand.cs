@@ -1,7 +1,6 @@
-using System;
 using Sgae.Application.Common.CQRS;
-using Sgae.Domain.Enums;
 using Sgae.Domain.Common;
+using Sgae.Domain.Enums;
 
 namespace Sgae.Application.Agendamentos.Commands.CreateAgendamento;
 

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Sgae.Domain.Entities;
 using Sgae.Application.Abstractions;
+using Sgae.Domain.Entities;
 
 namespace Sgae.Infrastructure.Persistence;
 
@@ -43,7 +43,7 @@ public class AppDbContext : DbContext, IAppDbContext
             builder.ToTable("Leads");
 
             builder.HasKey(l => l.Id);
-            
+
             builder.Property(l => l.Nome)
                 .HasMaxLength(150)
                 .IsRequired();

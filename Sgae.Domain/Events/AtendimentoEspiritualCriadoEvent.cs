@@ -1,4 +1,3 @@
-using System;
 using Sgae.Domain.Common;
 using Sgae.Domain.Enums;
 
@@ -19,10 +18,10 @@ public class AtendimentoEspiritualCriadoEvent : IDomainEvent
     public string TemasAbordados { get; }
 
     public AtendimentoEspiritualCriadoEvent(
-        Guid atendimentoId, 
-        Guid agendamentoId, 
-        TipoAtendimento tipo, 
-        int tempoDuracaoMinutos, 
+        Guid atendimentoId,
+        Guid agendamentoId,
+        TipoAtendimento tipo,
+        int tempoDuracaoMinutos,
         string temasAbordados)
     {
         AtendimentoId = atendimentoId;

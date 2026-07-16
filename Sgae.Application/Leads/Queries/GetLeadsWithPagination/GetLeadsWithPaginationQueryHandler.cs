@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -31,8 +27,8 @@ public class GetLeadsWithPaginationQueryHandler : IQueryHandler<GetLeadsWithPagi
         if (!string.IsNullOrWhiteSpace(request.SearchTerm))
         {
             var search = request.SearchTerm.ToLower();
-            query = query.Where(l => l.Nome.ToLower().Contains(search) || 
-                                     l.Email.ToLower().Contains(search) || 
+            query = query.Where(l => l.Nome.ToLower().Contains(search) ||
+                                     l.Email.ToLower().Contains(search) ||
                                      l.Cidade.ToLower().Contains(search));
         }
 

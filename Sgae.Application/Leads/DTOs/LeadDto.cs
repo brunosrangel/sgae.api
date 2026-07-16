@@ -1,4 +1,3 @@
-using System;
 using Sgae.Application.Perfis.DTOs;
 
 namespace Sgae.Application.Leads.DTOs;

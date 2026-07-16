@@ -1,4 +1,3 @@
-using System;
 using Sgae.Application.Abstractions;
 
 namespace Sgae.Application.Common;

@@ -1,4 +1,3 @@
-using System;
 using Sgae.Application.Common.CQRS;
 
 namespace Sgae.Application.Atendimentos.Commands.DeleteAtendimento;

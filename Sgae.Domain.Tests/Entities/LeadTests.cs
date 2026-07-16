@@ -1,4 +1,3 @@
-using System;
 using Sgae.Domain.Entities;
 using Sgae.Domain.Enums;
 using Xunit;

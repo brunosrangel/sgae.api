@@ -1,4 +1,3 @@
-using System;
 using Sgae.Domain.Common;
 using Sgae.Domain.Enums;
 
@@ -13,8 +12,8 @@ public class Agendamento : BaseEntity
 
     public Agendamento(
         Guid leadId,
-        DateTime dataHora, 
-        ModalidadeAtendimento modalidade, 
+        DateTime dataHora,
+        ModalidadeAtendimento modalidade,
         decimal valor)
     {
         if (leadId == Guid.Empty)

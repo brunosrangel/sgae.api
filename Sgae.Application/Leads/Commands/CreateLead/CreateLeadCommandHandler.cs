@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Sgae.Application.Abstractions;
 using Sgae.Application.Common.CQRS;
 using Sgae.Domain.Entities;

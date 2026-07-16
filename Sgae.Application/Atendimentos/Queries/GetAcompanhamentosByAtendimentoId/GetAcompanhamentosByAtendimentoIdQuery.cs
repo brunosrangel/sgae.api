@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using Sgae.Application.Common.CQRS;
 using Sgae.Application.Atendimentos.DTOs;
+using Sgae.Application.Common.CQRS;
 
 namespace Sgae.Application.Atendimentos.Queries.GetAcompanhamentosByAtendimentoId;
 

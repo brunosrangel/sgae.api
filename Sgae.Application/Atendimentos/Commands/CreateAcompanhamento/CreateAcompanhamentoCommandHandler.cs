@@ -1,8 +1,5 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using Sgae.Application.Abstractions;
 using Sgae.Application.Common.CQRS;
 using Sgae.Domain.Entities;

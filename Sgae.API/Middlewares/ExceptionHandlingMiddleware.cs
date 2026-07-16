@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace Sgae.API.Middlewares;
 
@@ -31,10 +26,10 @@ public class ExceptionHandlingMiddleware
         catch (Exception ex)
         {
             _logger.LogError(
-                ex, 
-                "Ocorreu uma exceção não tratada na requisição {Method} {Path}. Detalhes: {ErrorMessage}", 
-                context.Request.Method, 
-                context.Request.Path, 
+                ex,
+                "Ocorreu uma exceção não tratada na requisição {Method} {Path}. Detalhes: {ErrorMessage}",
+                context.Request.Method,
+                context.Request.Path,
                 ex.Message);
             await HandleExceptionAsync(context, ex);
         }

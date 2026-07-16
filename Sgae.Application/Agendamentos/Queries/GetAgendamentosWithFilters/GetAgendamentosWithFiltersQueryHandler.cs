@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Sgae.Application.Abstractions;
-using Sgae.Application.Common.CQRS;
 using Sgae.Application.Agendamentos.DTOs;
+using Sgae.Application.Common.CQRS;
 
 namespace Sgae.Application.Agendamentos.Queries.GetAgendamentosWithFilters;
 

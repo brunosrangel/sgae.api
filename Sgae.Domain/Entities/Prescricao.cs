@@ -1,4 +1,3 @@
-using System;
 using Sgae.Domain.Common;
 
 namespace Sgae.Domain.Entities;

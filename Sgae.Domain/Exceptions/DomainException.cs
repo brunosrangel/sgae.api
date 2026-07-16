@@ -1,5 +1,3 @@
-using System;
-
 namespace Sgae.Domain.Exceptions;
 
 /// <summary>

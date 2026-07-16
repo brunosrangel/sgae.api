@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sgae.Application.Agendamentos.Commands.CreateAgendamento;
 using Sgae.Application.Agendamentos.DTOs;

@@ -1,8 +1,7 @@
-using System;
-using System.Data;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using Sgae.Application.Abstractions;
+using System.Data;
 
 namespace Sgae.Infrastructure.Persistence;
 
@@ -15,7 +14,7 @@ public class SqlConnectionFactory : ISqlConnectionFactory
 
     public SqlConnectionFactory(IConfiguration configuration)
     {
-        _connectionString = configuration.GetConnectionString("DefaultConnection") 
+        _connectionString = configuration.GetConnectionString("DefaultConnection")
             ?? throw new ArgumentException("A connection string 'DefaultConnection' não foi configurada.");
     }
 

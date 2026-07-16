@@ -1,6 +1,4 @@
-using System;
 using Sgae.Application.Common.CQRS;
-using Sgae.Domain.Enums;
 
 namespace Sgae.Application.Leads.Commands.UpdateLead;
 

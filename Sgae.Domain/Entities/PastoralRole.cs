@@ -1,4 +1,3 @@
-using System;
 using Sgae.Domain.Common;
 
 namespace Sgae.Domain.Entities;
@@ -12,11 +11,11 @@ public class PastoralRole : BaseEntity
 
     public PastoralRole(string nome, string descricao, string escopoPermissao)
     {
-        if (string.IsNullOrWhiteSpace(nome)) 
+        if (string.IsNullOrWhiteSpace(nome))
             throw new ArgumentException("O nome do cargo pastoral é obrigatório.", nameof(nome));
-        if (string.IsNullOrWhiteSpace(descricao)) 
+        if (string.IsNullOrWhiteSpace(descricao))
             throw new ArgumentException("A descrição do cargo pastoral é obrigatória.", nameof(descricao));
-        if (string.IsNullOrWhiteSpace(escopoPermissao)) 
+        if (string.IsNullOrWhiteSpace(escopoPermissao))
             throw new ArgumentException("O escopo de permissão do cargo é obrigatório.", nameof(escopoPermissao));
 
         Nome = nome.Trim();
@@ -30,9 +29,9 @@ public class PastoralRole : BaseEntity
 
     public void Update(string descricao, string escopoPermissao)
     {
-        if (string.IsNullOrWhiteSpace(descricao)) 
+        if (string.IsNullOrWhiteSpace(descricao))
             throw new ArgumentException("A descrição do cargo pastoral é obrigatória.", nameof(descricao));
-        if (string.IsNullOrWhiteSpace(escopoPermissao)) 
+        if (string.IsNullOrWhiteSpace(escopoPermissao))
             throw new ArgumentException("O escopo de permissão do cargo é obrigatório.", nameof(escopoPermissao));
 
         Descricao = descricao.Trim();

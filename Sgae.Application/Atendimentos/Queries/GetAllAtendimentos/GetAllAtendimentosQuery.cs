@@ -1,6 +1,6 @@
+using Sgae.Application.Atendimentos.DTOs;
 using Sgae.Application.Common.CQRS;
 using Sgae.Application.Common.Models;
-using Sgae.Application.Atendimentos.DTOs;
 
 namespace Sgae.Application.Atendimentos.Queries.GetAllAtendimentos;
 

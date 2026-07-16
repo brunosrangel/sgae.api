@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using Sgae.Application.Common.CQRS;
 using Sgae.Application.Agendamentos.DTOs;
+using Sgae.Application.Common.CQRS;
 using Sgae.Domain.Enums;
 
 namespace Sgae.Application.Agendamentos.Queries.GetAgendamentosWithFilters;

@@ -1,4 +1,3 @@
-using System;
 using FluentValidation;
 
 namespace Sgae.Application.Atendimentos.Commands.CreateAcompanhamento;

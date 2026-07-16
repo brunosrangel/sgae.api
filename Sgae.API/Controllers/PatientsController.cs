@@ -1,13 +1,9 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sgae.Application.Common.Models;
 using Sgae.Application.Leads.Commands.CreateLead;
-using Sgae.Application.Leads.Commands.UpdateLead;
 using Sgae.Application.Leads.Commands.DeleteLead;
+using Sgae.Application.Leads.Commands.UpdateLead;
 using Sgae.Application.Leads.DTOs;
 using Sgae.Application.Leads.Queries.GetLeadById;
 using Sgae.Application.Leads.Queries.GetLeadsWithPagination;

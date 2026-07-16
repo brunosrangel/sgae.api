@@ -1,5 +1,3 @@
-using System;
-
 namespace Sgae.Application.Agendamentos.DTOs;
 
 public class AgendamentoDto

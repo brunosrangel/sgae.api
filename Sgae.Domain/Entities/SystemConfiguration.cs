@@ -1,4 +1,3 @@
-using System;
 using Sgae.Domain.Common;
 
 namespace Sgae.Domain.Entities;
@@ -12,11 +11,11 @@ public class SystemConfiguration : BaseEntity
 
     public SystemConfiguration(string chave, string valor, string descricao)
     {
-        if (string.IsNullOrWhiteSpace(chave)) 
+        if (string.IsNullOrWhiteSpace(chave))
             throw new ArgumentException("A chave de configuração é obrigatória.", nameof(chave));
-        if (string.IsNullOrWhiteSpace(valor)) 
+        if (string.IsNullOrWhiteSpace(valor))
             throw new ArgumentException("O valor de configuração é obrigatório.", nameof(valor));
-        if (string.IsNullOrWhiteSpace(descricao)) 
+        if (string.IsNullOrWhiteSpace(descricao))
             throw new ArgumentException("A descrição de configuração é obrigatória.", nameof(descricao));
 
         Chave = chave.Trim();
@@ -30,7 +29,7 @@ public class SystemConfiguration : BaseEntity
 
     public void UpdateValue(string valor)
     {
-        if (string.IsNullOrWhiteSpace(valor)) 
+        if (string.IsNullOrWhiteSpace(valor))
             throw new ArgumentException("O valor de configuração é obrigatório.", nameof(valor));
 
         Valor = valor.Trim();

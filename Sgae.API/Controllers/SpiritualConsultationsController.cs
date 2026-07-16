@@ -1,12 +1,8 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sgae.Application.Atendimentos.Commands.CreateAtendimento;
-using Sgae.Application.Atendimentos.Commands.UpdateAtendimento;
 using Sgae.Application.Atendimentos.Commands.DeleteAtendimento;
+using Sgae.Application.Atendimentos.Commands.UpdateAtendimento;
 using Sgae.Application.Atendimentos.DTOs;
 using Sgae.Application.Atendimentos.Queries.GetAllAtendimentos;
 using Sgae.Application.Atendimentos.Queries.GetAtendimentoById;

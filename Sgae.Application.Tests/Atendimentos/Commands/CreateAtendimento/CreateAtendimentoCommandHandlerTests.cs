@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
 using Sgae.Application.Atendimentos.Commands.CreateAtendimento;
@@ -65,7 +62,7 @@ public class CreateAtendimentoCommandHandlerTests : HandlerTestBase
         // Arrange
         var agendamentoId = Guid.NewGuid();
         var leadId = Guid.NewGuid();
-        
+
         // Configura uma data e hora futura válida para passar na regra de negócios da entidade Agendamento
         var agendamento = new Agendamento(leadId, DateTime.UtcNow.AddDays(2), ModalidadeAtendimento.Presencial, 0);
 
@@ -104,9 +101,9 @@ public class CreateAtendimentoCommandHandlerTests : HandlerTestBase
         // Arrange
         var leadId = Guid.NewGuid();
         var agendamento = new Agendamento(leadId, DateTime.UtcNow.AddDays(1), ModalidadeAtendimento.Presencial, 0);
-        
+
         // Garante que o status inicial do agendamento esteja em "Confirmado"
-        agendamento.ConfirmarAgendamento(); 
+        agendamento.ConfirmarAgendamento();
         agendamento.Status.Should().Be(StatusAgendamento.Confirmado);
 
         var command = new CreateAtendimentoCommand(
@@ -135,7 +132,7 @@ public class CreateAtendimentoCommandHandlerTests : HandlerTestBase
         _mockAgendamentoRepo.Verify(r => r.Update(agendamento), Times.Once);
         _mockAtendimentoRepo.Verify(r => r.AddAsync(It.IsAny<AtendimentoEspiritual>(), It.IsAny<CancellationToken>()), Times.Once);
         MockUnitOfWork.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
-        
+
         // Verifica se houve invalidação apropriada do cache distribuído de listagem de atendimentos
         MockCache.Verify(c => c.RemoveAsync("atendimentos_all", It.IsAny<CancellationToken>()), Times.Once);
     }
@@ -146,7 +143,7 @@ public class CreateAtendimentoCommandHandlerTests : HandlerTestBase
         // Arrange
         var leadId = Guid.NewGuid();
         var agendamento = new Agendamento(leadId, DateTime.UtcNow.AddDays(15), ModalidadeAtendimento.Online, 100);
-        
+
         // Status inicial de fábrica em Pendente
         agendamento.Status.Should().Be(StatusAgendamento.Pendente);
 
@@ -176,7 +173,7 @@ public class CreateAtendimentoCommandHandlerTests : HandlerTestBase
         _mockAgendamentoRepo.Verify(r => r.Update(agendamento), Times.Once);
         _mockAtendimentoRepo.Verify(r => r.AddAsync(It.IsAny<AtendimentoEspiritual>(), It.IsAny<CancellationToken>()), Times.Once);
         MockUnitOfWork.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
-        
+
         MockCache.Verify(c => c.RemoveAsync("atendimentos_all", It.IsAny<CancellationToken>()), Times.Once);
     }
 }
