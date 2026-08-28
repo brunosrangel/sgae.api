@@ -15,7 +15,12 @@ try
     // Camadas de Arquitetura Clean
     builder.Services.AddApplication(); // MediatR e pipeline CQRS via método de extensão da Application
 
-    builder.Services.AddControllers();
+    builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(new Sgae.Application.Common.JsonConverters.FlexibleEnumConverterFactory());
+            options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        });
     builder.Services.AddEndpointsApiExplorer();
 
     // Documentação, persistência, cache, performance, segurança e observabilidade

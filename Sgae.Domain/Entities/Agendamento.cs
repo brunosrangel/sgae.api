@@ -19,8 +19,8 @@ public class Agendamento : BaseEntity
         if (leadId == Guid.Empty)
             throw new ArgumentException("O agendamento deve estar associado a um consulente (LeadId) válido.");
 
-        if (dataHora < DateTime.UtcNow)
-            throw new ArgumentException("A data do agendamento não pode ser retroativa.");
+        if (dataHora == default || dataHora == DateTime.MinValue)
+            throw new ArgumentException("A data do agendamento deve ser informada e válida.");
 
         if (valor < 0)
             throw new ArgumentException("O valor do agendamento não pode ser negativo.");
@@ -106,8 +106,8 @@ public class Agendamento : BaseEntity
 
     public void Reagendar(DateTime novaDataHora)
     {
-        if (novaDataHora < DateTime.UtcNow)
-            throw new ArgumentException("Nova data de reagendamento não pode ser menor que a data/hora atual.");
+        if (novaDataHora == default || novaDataHora == DateTime.MinValue)
+            throw new ArgumentException("Nova data de reagendamento informada é inválida.");
 
         if (Status == StatusAgendamento.Realizado || Status == StatusAgendamento.Cancelado)
             throw new InvalidOperationException("Não é possível reagendar atendimentos concluídos ou cancelados.");

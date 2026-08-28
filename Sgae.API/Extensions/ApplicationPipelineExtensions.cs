@@ -47,9 +47,12 @@ public static class ApplicationPipelineExtensions
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseSwagger();
-        app.UseSwaggerUI();
-
-        app.UseHttpsRedirection();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "SGAE API v1");
+            c.DocumentTitle = "SGAE API - Sistema de Gestão de Atendimento Especializado";
+            c.RoutePrefix = string.Empty;
+        });
 
         // Rate limiting com políticas de segurança por IP do cliente
         app.UseRateLimiter();

@@ -72,6 +72,8 @@ public class CreateAgendamentoCommand : ICommand<Guid>
     public string? ConfigLembrete { get; set; }
     public string? FrequenciaLembrete { get; set; }
     public string? LeadNome { get; set; }
+    public string? LeadTelefone { get; set; }
+    public object? Atendimento { get; set; }
 
     // Construtores para compatibilidade
     public CreateAgendamentoCommand()

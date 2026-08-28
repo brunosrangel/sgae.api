@@ -101,6 +101,53 @@ public class DatabaseSeeder
                         ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
                     );
 
+                    CREATE TABLE IF NOT EXISTS ""Sacerdotes"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""Nome"" VARCHAR(150) NOT NULL,
+                        ""Cargo"" VARCHAR(100) NULL,
+                        ""Ativo"" BOOLEAN NOT NULL DEFAULT TRUE,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE TABLE IF NOT EXISTS ""ServicosConsulta"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""Nome"" VARCHAR(150) NOT NULL,
+                        ""Descricao"" VARCHAR(500) NULL,
+                        ""ValorBase"" DECIMAL(18,2) NOT NULL DEFAULT 0,
+                        ""Ativo"" BOOLEAN NOT NULL DEFAULT TRUE,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE TABLE IF NOT EXISTS ""Agendamentos"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""LeadId"" UUID NOT NULL REFERENCES ""Leads""(""Id"") ON DELETE CASCADE,
+                        ""DataHora"" TIMESTAMP WITH TIME ZONE NOT NULL,
+                        ""Modalidade"" VARCHAR(50) NOT NULL DEFAULT 'Presencial',
+                        ""Valor"" DECIMAL(18, 2) NOT NULL DEFAULT 0,
+                        ""Status"" VARCHAR(50) NOT NULL DEFAULT 'Pendente',
+                        ""MotivoCancelamento"" VARCHAR(500) NULL,
+                        ""SacerdoteId"" UUID NULL REFERENCES ""Sacerdotes""(""Id"") ON DELETE SET NULL,
+                        ""ServicoConsultaId"" UUID NULL REFERENCES ""ServicosConsulta""(""Id"") ON DELETE SET NULL,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""SacerdoteId"" UUID NULL;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""ServicoConsultaId"" UUID NULL;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""MotivoCancelamento"" VARCHAR(500) NULL;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""Modalidade"" VARCHAR(50) NOT NULL DEFAULT 'Presencial';
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""Status"" VARCHAR(50) NOT NULL DEFAULT 'Pendente';
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""Valor"" DECIMAL(18, 2) NOT NULL DEFAULT 0;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""DataHora"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL;
+
                     CREATE TABLE IF NOT EXISTS ""CanaisCaptacao"" (
                         ""Id"" UUID PRIMARY KEY,
                         ""Nome"" VARCHAR(150) NOT NULL UNIQUE,

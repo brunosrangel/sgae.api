@@ -15,11 +15,11 @@ public class CreateAgendamentoCommandValidator : AbstractValidator<CreateAgendam
             .Must(data => string.IsNullOrWhiteSpace(data) || DateTimeHelper.IsValidIso8601(data))
             .WithMessage("A data informada deve seguir um formato ISO 8601 válido (ex: yyyy-MM-dd).");
 
-        // Valida se a data e hora combinadas final não são nulas/vazias e não estão no passado
+        // Valida se a data e hora combinadas final não são nulas/vazias
         RuleFor(v => v.DataHora)
             .NotEmpty().WithMessage("A data e hora do agendamento são obrigatórias.")
-            .Must(dt => dt > DateTime.UtcNow)
-            .WithMessage("A data de agendamento deve ser uma data futura.");
+            .Must(dt => dt != default && dt > DateTime.MinValue)
+            .WithMessage("A data de agendamento informada é inválida.");
 
         RuleFor(v => v.Valor)
             .GreaterThanOrEqualTo(0).WithMessage("O valor do agendamento não pode ser negativo.");
