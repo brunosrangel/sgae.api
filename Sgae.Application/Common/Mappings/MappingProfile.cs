@@ -26,9 +26,18 @@ public class MappingProfile : Profile
         // Mapeamento de Acompanhamento para AcompanhamentoDto
         CreateMap<Acompanhamento, AcompanhamentoDto>();
 
+        // Mapeamento de LeadHistorico para LeadHistoricoDto
+        CreateMap<LeadHistorico, LeadHistoricoDto>();
+
         // Mapeamento bidirecional ou unidirecional de Lead para LeadDto
         CreateMap<Lead, LeadDto>()
-            .ForMember(dest => dest.Origem, opt => opt.MapFrom(src => src.Origem.ToString()));
+            .ForMember(dest => dest.NomeCompleto, opt => opt.MapFrom(src => src.Nome))
+            .ForMember(dest => dest.Uf, opt => opt.MapFrom(src => src.Estado))
+            .ForMember(dest => dest.DataCadastro, opt => opt.MapFrom(src => src.DataContato))
+            .ForMember(dest => dest.CanalCaptacaoNome, opt => opt.MapFrom(src => src.CanalCaptacao != null ? src.CanalCaptacao.Nome : null))
+            .ForMember(dest => dest.Origem, opt => opt.MapFrom(src => src.Origem.ToString()))
+            .ForMember(dest => dest.Historico, opt => opt.MapFrom(src => src.Historico))
+            .ForMember(dest => dest.Perfil, opt => opt.MapFrom(src => src.Perfil));
 
         // Mapeamento enriquecido de Agendamento buscando campos da entidade navegacional 'Lead'
         CreateMap<Agendamento, AgendamentoDto>()

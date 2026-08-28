@@ -17,6 +17,8 @@ public class LeadRepository : ILeadRepository
     {
         return await _context.Leads
             .Include(l => l.Perfil)
+            .Include(l => l.Historico)
+            .Include(l => l.CanalCaptacao)
             .FirstOrDefaultAsync(l => l.Id == id, cancellationToken);
     }
 
@@ -24,6 +26,8 @@ public class LeadRepository : ILeadRepository
     {
         return await _context.Leads
             .Include(l => l.Perfil)
+            .Include(l => l.Historico)
+            .Include(l => l.CanalCaptacao)
             .ToListAsync(cancellationToken);
     }
 

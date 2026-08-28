@@ -26,9 +26,52 @@ public class UpdateLeadCommandHandler : ICommandHandler<UpdateLeadCommand>
             throw new ArgumentException($"Consulente de ID '{request.Id}' não localizado.");
         }
 
-        lead.UpdateDadosPessoais(request.Nome, request.Email, request.Telefone);
-        lead.UpdateLocalizacao(request.Cidade, request.Estado);
-        lead.AlterarProblemaPrincipal(request.ProblemaPrincipal);
+        var nome = request.GetNomeEfetivo();
+        var cidade = request.GetCidadeEfetiva();
+        var estado = request.GetEstadoEfetivo();
+
+        lead.UpdateDadosPessoais(
+            nome, 
+            request.Email, 
+            request.Telefone, 
+            request.DataNascimento, 
+            request.Profissao, 
+            request.Nacionalidade, 
+            request.Naturalidade
+        );
+
+        lead.UpdateLocalizacao(
+            cidade, 
+            estado, 
+            request.Cep, 
+            request.Endereco, 
+            request.Numero, 
+            request.Complemento, 
+            request.Bairro
+        );
+
+        lead.UpdateTradicao(
+            request.TradicaoTerreiro, 
+            request.VinculoTradicoes, 
+            request.VinculoCcrias, 
+            request.Temporalidade, 
+            request.JogouBuziosBabalorisaSidnei, 
+            request.OrixasNagoKetu
+        );
+
+        lead.UpdateStatusPrioridade(request.Status, request.Prioridade, request.Observacoes);
+
+        if (!string.IsNullOrWhiteSpace(request.ProblemaPrincipal))
+        {
+            lead.AlterarProblemaPrincipal(request.ProblemaPrincipal);
+        }
+
+        if (request.CanalCaptacaoId.HasValue)
+        {
+            lead.DefinirCanalCaptacao(request.CanalCaptacaoId);
+        }
+
+        lead.AdicionarHistorico("Atualização", "Dados do lead atualizados");
 
         _leadRepository.Update(lead);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

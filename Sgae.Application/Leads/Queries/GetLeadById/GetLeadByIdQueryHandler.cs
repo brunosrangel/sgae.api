@@ -1,50 +1,40 @@
-using Dapper;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sgae.Application.Abstractions;
 using Sgae.Application.Common.CQRS;
 using Sgae.Application.Leads.DTOs;
-using Sgae.Application.Perfis.DTOs;
 
 namespace Sgae.Application.Leads.Queries.GetLeadById;
 
 /// <summary>
-/// Manipulador da consulta GetLeadByIdQuery otimizado com Dapper para realizar leituras de alta performance (CQRS).
+/// Manipulador da consulta GetLeadByIdQuery para retornar todos os dados ricos do Lead, Perfil e Histórico.
 /// </summary>
 public class GetLeadByIdQueryHandler : IQueryHandler<GetLeadByIdQuery, LeadDto?>
 {
-    private readonly ISqlConnectionFactory _sqlConnectionFactory;
+    private readonly IAppDbContext _context;
+    private readonly IMapper _mapper;
 
-    public GetLeadByIdQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
+    public GetLeadByIdQueryHandler(IAppDbContext context, IMapper mapper)
     {
-        _sqlConnectionFactory = sqlConnectionFactory ?? throw new ArgumentNullException(nameof(sqlConnectionFactory));
+        _context = context ?? throw new ArgumentNullException(nameof(context));
+        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     }
 
     public async Task<LeadDto?> Handle(GetLeadByIdQuery request, CancellationToken cancellationToken)
     {
-        using var connection = _sqlConnectionFactory.CreateConnection();
+        var lead = await _context.Leads
+            .AsNoTracking()
+            .Include(l => l.Perfil)
+            .Include(l => l.Historico)
+            .Include(l => l.CanalCaptacao)
+            .FirstOrDefaultAsync(l => l.Id == request.Id, cancellationToken);
 
-        // Query SQL otimizada com JOIN para carregar o Lead e seu Perfil associado em uma única viagem ao banco de dados (single roundtrip)
-        const string sql = @"
-            SELECT 
-                l.""Id"", l.""Nome"", l.""Telefone"", l.""Email"", l.""Cidade"", l.""Estado"", l.""Origem"", l.""ProblemaPrincipal"", l.""DataContato"" AS ""DataCaptacao"",
-                p.""Id"", p.""Idade"", p.""FaixaEtaria"", p.""Genero"", p.""Profissao"", p.""Escolaridade"", p.""EstadoCivil"", p.""LeadId""
-            FROM ""Leads"" l
-            LEFT JOIN ""PerfisConsulentes"" p ON l.""Id"" = p.""LeadId"" AND p.""IsDeleted"" = false
-            WHERE l.""Id"" = @Id AND l.""IsDeleted"" = false";
+        if (lead == null)
+            return null;
 
-        var result = await connection.QueryAsync<LeadDto, PerfilConsulenteDto, LeadDto>(
-            sql,
-            (lead, perfil) =>
-            {
-                if (perfil != null && perfil.Id != Guid.Empty)
-                {
-                    lead.Perfil = perfil;
-                }
-                return lead;
-            },
-            new { Id = request.Id },
-            splitOn: "Id"
-        );
-
-        return result.FirstOrDefault();
+        return _mapper.Map<LeadDto>(lead);
     }
 }

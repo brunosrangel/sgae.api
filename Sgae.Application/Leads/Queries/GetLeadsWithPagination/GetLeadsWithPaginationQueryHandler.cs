@@ -1,3 +1,7 @@
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -21,15 +25,22 @@ public class GetLeadsWithPaginationQueryHandler : IQueryHandler<GetLeadsWithPagi
 
     public async Task<PagedResult<LeadDto>> Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken)
     {
-        var query = _context.Leads.AsNoTracking();
+        var query = _context.Leads
+            .AsNoTracking()
+            .Include(l => l.Perfil)
+            .Include(l => l.Historico)
+            .Include(l => l.CanalCaptacao)
+            .AsQueryable();
 
         // 1. Aplica filtros dinâmicos
         if (!string.IsNullOrWhiteSpace(request.SearchTerm))
         {
             var search = request.SearchTerm.ToLower();
-            query = query.Where(l => l.Nome.ToLower().Contains(search) ||
-                                     l.Email.ToLower().Contains(search) ||
-                                     l.Cidade.ToLower().Contains(search));
+            query = query.Where(l => l.Nome.ToLower().Contains(search) || 
+                                     l.Email.ToLower().Contains(search) || 
+                                     l.Cidade.ToLower().Contains(search) ||
+                                     (l.CustomId != null && l.CustomId.ToLower().Contains(search)) ||
+                                     l.Telefone.Contains(search));
         }
 
         if (request.DataInicio.HasValue)
@@ -45,7 +56,7 @@ public class GetLeadsWithPaginationQueryHandler : IQueryHandler<GetLeadsWithPagi
         // 2. Ordenação padrão por data de captação decrescente
         query = query.OrderByDescending(l => l.DataContato);
 
-        // 3. Projeta diretamente em DTO usando AutoMapper para otimização de Select (QueryableExtensions) e pagina usando o helper
+        // 3. Projeta diretamente em DTO usando AutoMapper
         return await query.ProjectTo<LeadDto>(_mapper.ConfigurationProvider)
             .ToPagedResultAsync(
                 request.PageNumber,

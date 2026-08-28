@@ -28,9 +28,5 @@ public class LeadValidator : AbstractValidator<Lead>
         RuleFor(x => x.Estado)
             .NotEmpty().WithMessage("Estado é obrigatório.")
             .Length(2).WithMessage("Estado deve conter exatamente 2 caracteres (UF).");
-
-        RuleFor(x => x.ProblemaPrincipal)
-            .NotEmpty().WithMessage("O problema principal deve ser especificado para captação.")
-            .MaximumLength(1000).WithMessage("O problema principal não pode exceder 1000 caracteres.");
     }
 }

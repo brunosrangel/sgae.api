@@ -1,6 +1,7 @@
 using Sgae.Application.Abstractions;
 using Sgae.Application.Common.CQRS;
 using Sgae.Domain.Entities;
+using Sgae.Domain.Enums;
 using Sgae.Domain.Repositories;
 
 namespace Sgae.Application.Leads.Commands.CreateLead;
@@ -21,16 +22,55 @@ public class CreateLeadCommandHandler : ICommandHandler<CreateLeadCommand, Guid>
 
     public async Task<Guid> Handle(CreateLeadCommand request, CancellationToken cancellationToken)
     {
-        // Instanciação rica da entidade de domínio (validará as exigências e invariantes internamente)
+        var nome = request.GetNomeEfetivo();
+        var cidade = request.GetCidadeEfetiva();
+        var estado = request.GetEstadoEfetivo();
+        var problemaPrincipal = request.GetProblemaPrincipalEfetivo();
+        var origem = request.Origem ?? OrigemContato.Indicacao;
+        var dataCadastro = request.DataCadastro ?? request.DataContato ?? DateTime.UtcNow;
+
         var lead = new Lead(
-            request.Nome,
-            request.Telefone,
-            request.Email,
-            request.Cidade,
-            request.Estado,
-            request.Origem,
-            request.ProblemaPrincipal
+            nome: nome,
+            telefone: request.Telefone,
+            email: request.Email,
+            cidade: cidade,
+            estado: estado,
+            origem: origem,
+            problemaPrincipal: problemaPrincipal,
+            customId: request.Id,
+            dataNascimento: request.DataNascimento,
+            profissao: request.Profissao,
+            nacionalidade: request.Nacionalidade,
+            naturalidade: request.Naturalidade,
+            tradicaoTerreiro: request.TradicaoTerreiro,
+            vinculoTradicoes: request.VinculoTradicoes,
+            vinculoCcrias: request.VinculoCcrias,
+            temporalidade: request.Temporalidade,
+            jogouBuziosBabalorisaSidnei: request.JogouBuziosBabalorisaSidnei,
+            orixasNagoKetu: request.OrixasNagoKetu,
+            cep: request.Cep,
+            endereco: request.Endereco,
+            numero: request.Numero,
+            complemento: request.Complemento,
+            bairro: request.Bairro,
+            observacoes: request.Observacoes,
+            status: request.Status ?? "Novo",
+            prioridade: request.Prioridade ?? "Média",
+            dataCadastro: dataCadastro,
+            canalCaptacaoId: request.CanalCaptacaoId
         );
+
+        // Se veio histórico adicional especificado no comando
+        if (request.Historico != null && request.Historico.Count > 0)
+        {
+            foreach (var h in request.Historico)
+            {
+                if (!string.IsNullOrWhiteSpace(h.Descricao))
+                {
+                    lead.AdicionarHistorico(h.Tipo ?? "Criação", h.Descricao, h.Data ?? dataCadastro);
+                }
+            }
+        }
 
         await _leadRepository.AddAsync(lead, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

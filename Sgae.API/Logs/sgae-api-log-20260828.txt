@@ -1,0 +1,404 @@
+[2026-08-28 18:52:45.238 +00:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:45.909 +00:00 WRN] The property 'Lead.OrixasNagoKetu' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly. {"EventId":{"Id":10620,"Name":"Microsoft.EntityFrameworkCore.Model.Validation.CollectionWithoutComparer"},"SourceContext":"Microsoft.EntityFrameworkCore.Model.Validation"}
+[2026-08-28 18:52:49.542 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:50.490 +00:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:50.491 +00:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:50.869 +00:00 INF] SGAE Seeder: Dados de cargos pastorais já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:50.870 +00:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:51.019 +00:00 INF] SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:51.020 +00:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:51.166 +00:00 INF] SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:51.167 +00:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 18:52:51.171 +00:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-08-28 18:52:51.198 +00:00 WRN] No XML encryptor configured. Key {afb7ff58-7b12-4b78-bff1-7428673e7ca7} may be persisted to storage in unencrypted form. {"EventId":{"Id":35,"Name":"NoXMLEncryptorConfiguredKeyMayBePersistedToStorageInUnencryptedForm"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager"}
+[2026-08-28 18:52:51.559 +00:00 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNO56M7TOC94:00000001","RequestPath":"/","ConnectionId":"0HNO56M7TOC94","CorrelationId":"9d7fa87e-2316-4419-96aa-f29c80faed21"}
+[2026-08-28 18:52:51.589 +00:00 INF] HTTP GET / respondeu 404 em 53.5788 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Go-http-client/1.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC94:00000001","ConnectionId":"0HNO56M7TOC94"}
+[2026-08-28 18:52:58.384 +00:00 INF] HTTP GET /health respondeu 200 em 830.9505 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC95:00000001","ConnectionId":"0HNO56M7TOC95"}
+[2026-08-28 18:53:01.102 +00:00 INF] HTTP GET / respondeu 404 em 4.8026 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC96:00000001","ConnectionId":"0HNO56M7TOC96"}
+[2026-08-28 18:53:44.571 +00:00 INF] HTTP GET / respondeu 404 em 0.4362 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","Source[2026-08-28 18:53:45.846 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do ba[2026-08-28 18:53:47.536 +00:00 INF] HTTP GET /index.html respondeu 404 em 1.2432 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC98:00000001","ConnectionId":"0HNO56M7TOC98"}
+[2026-08-28 18:53:47.828 +00:00 INF] HTTP GET /swagger/v1/swagger.json respondeu 200 em 267.2166 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC99:00000001","ConnectionId":"0HNO56M7TOC99"}
+[2026-08-28 18:53:50.729 +00:00 INF] HTTP GET /swagger/index.html respondeu 200 em 48.0415 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9A:00000001","ConnectionId":"0HNO56M7TOC9A"}
+[2026-08-28 18:54:19.681 +00:00 INF] HTTP GET / respondeu 404 em 0.4960 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9B:00000001","ConnectionId":"0HNO56M7TOC9B"}
+[2026-08-28 18:54:34.258 +00:00 INF] HTTP GET /health respondeu 200 em 837.3873 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9C:00000001","ConnectionId":"0HNO56M7TOC9C"}
+[2026-08-28 18:54:39.178 +00:00 INF] HTTP GET / respondeu 404 em 0.6452 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9D:00000001","ConnectionId":"0HNO56M7TOC9D"}
+[2026-08-28 18:54:42.445 +00:00 INF] HTTP GET /swagger/index.html respondeu 200 em 1.4861 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9E:00000001","ConnectionId":"0HNO56M7TOC9E"}
+[2026-08-28 18:55:17.167 +00:00 INF] HTTP GET /api respondeu 404 em 0.3732 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9F:00000001","ConnectionId":"0HNO56M7TOC9F"}
+[2026-08-28 18:55:29.688 +00:00 INF] HTTP GET /api respondeu 404 em 0.3675 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9G:00000001","ConnectionId":"0HNO56M7TOC9G"}
+[2026-08-28 18:55:40.778 +00:00 INF] SGAE Pipeline [CID: "e3914f8f-2d1d-4a16-8078-5eea66aa784e"]: Iniciando processamento do Request GetLeadsWithPaginationQuery {"PageNumber":1,"PageSize":10,"SearchTerm":null,"DataInicio":null,"DataFim":null,"$type":"GetLeadsWithPaginationQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9H:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9H"}
+[2026-08-28 18:55:41.419 +00:00 ERR] Failed executing DbCommand (144ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."CustomId", t."Nome", t."Telefone", t."Email", t."DataNascimento", t."Profissao", t."Nacionalidade", t."Naturalidade", t."TradicaoTerreiro", t."VinculoTradicoes", t."VinculoCcrias", t."Temporalidade", t."JogouBuziosBabalorisaSidnei", t."OrixasNagoKetu", t."Cep", t."Endereco", t."Numero", t."Complemento", t."Bairro", t."Cidade", t."Estado", t."Observacoes", t."ProblemaPrincipal", t."Status", t."Prioridade", t."DataContato", t."Origem", t."CanalCaptacaoId", t0."Nome", t0."Id", t1."Id", t2."Id", t2."Data", t2."Tipo", t2."Descricao", t1."Id" IS NULL, t1."LeadId", t1."Idade", t1."FaixaEtaria", t1."Genero", t1."Profissao", t1."Escolaridade", t1."EstadoCivil"
+FROM (
+    SELECT l."Id", l."Bairro", l."CanalCaptacaoId", l."Cep", l."Cidade", l."Complemento", l."CustomId", l."DataContato", l."DataNascimento", l."Email", l."Endereco", l."Estado", l."JogouBuziosBabalorisaSidnei", l."Nacionalidade", l."Naturalidade", l."Nome", l."Numero", l."Observacoes", l."Origem", l."OrixasNagoKetu", l."Prioridade", l."ProblemaPrincipal", l."Profissao", l."Status", l."Telefone", l."Temporalidade", l."TradicaoTerreiro", l."VinculoCcrias", l."VinculoTradicoes"
+    FROM "Leads" AS l
+    WHERE NOT (l."IsDeleted")
+    ORDER BY l."DataContato" DESC
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN (
+    SELECT c."Id", c."Nome"
+    FROM "CanaisCaptacao" AS c
+    WHERE NOT (c."IsDeleted")
+) AS t0 ON t."CanalCaptacaoId" = t0."Id"
+LEFT JOIN (
+    SELECT p."Id", p."Escolaridade", p."EstadoCivil", p."FaixaEtaria", p."Genero", p."Idade", p."LeadId", p."Profissao"
+    FROM "PerfisConsulentes" AS p
+    WHERE NOT (p."IsDeleted")
+) AS t1 ON t."Id" = t1."LeadId"
+LEFT JOIN (
+    SELECT l0."Id", l0."Data", l0."Tipo", l0."Descricao", l0."LeadId"
+    FROM "LeadsHistoricos" AS l0
+    WHERE NOT (l0."IsDeleted")
+) AS t2 ON t."Id" = t2."LeadId"
+ORDER BY t."DataContato" DESC, t."Id", t0."Id", t1."Id" {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9H:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9H","CorrelationId":"e3914f8f-2d1d-4a16-8078-5eea66aa784e"}
+[2026-08-28 18:55:41.440 +00:00 ERR] An exception occurred while iterating over the results of a query for context type 'Sgae.Infrastructure.Persistence.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 42703: column l.Bairro does not exist
+
+POSITION: 705
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column l.Bairro does not exist
+    Position: 705
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Query","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9H:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9H","CorrelationId":"e3914f8f-2d1d-4a16-8078-5eea66aa784e"}
+Npgsql.PostgresException (0x80004005): 42703: column l.Bairro does not exist
+
+POSITION: 705
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column l.Bairro does not exist
+    Position: 705
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 18:55:41.447 +00:00 ERR] SGAE Pipeline [CID: "e3914f8f-2d1d-4a16-8078-5eea66aa784e"]: Falha crítica na execução do Request GetLeadsWithPaginationQuery após 668ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9H:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9H"}
+Npgsql.PostgresException (0x80004005): 42703: column l.Bairro does not exist
+
+POSITION: 705
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Sgae.Application.Common.Models.PaginationHelper.ToPagedResultAsync[T](IQueryable`1 source, Int32 pageNumber, Int32 pageSize, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Models/PaginationHelper.cs:line 30
+   at Sgae.Application.Leads.Queries.GetLeadsWithPagination.GetLeadsWithPaginationQueryHandler.Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Leads/Queries/GetLeadsWithPagination/GetLeadsWithPaginationQueryHandler.cs:line 60
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 32
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 36
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column l.Bairro does not exist
+    Position: 705
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 18:55:41.458 +00:00 ERR] Ocorreu uma exceção não tratada na requisição GET /api/leads. Detalhes: 42703: column l.Bairro does not exist
+
+POSITION: 705 {"SourceContext":"Sgae.API.Middlewares.ExceptionHandlingMiddleware","RequestId":"0HNO56M7TOC9H:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9H","CorrelationId":"e3914f8f-2d1d-4a16-8078-5eea66aa784e"}
+Npgsql.PostgresException (0x80004005): 42703: column l.Bairro does not exist
+
+POSITION: 705
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Sgae.Application.Common.Models.PaginationHelper.ToPagedResultAsync[T](IQueryable`1 source, Int32 pageNumber, Int32 pageSize, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Models/PaginationHelper.cs:line 30
+   at Sgae.Application.Leads.Queries.GetLeadsWithPagination.GetLeadsWithPaginationQueryHandler.Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Leads/Queries/GetLeadsWithPagination/GetLeadsWithPaginationQueryHandler.cs:line 60
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 32
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 36
+   at Sgae.API.Controllers.LeadsController.GetLeads(Int32 pageNumber, Int32 pageSize, String searchTerm, Nullable`1 dataInicio, Nullable`1 dataFim, CancellationToken cancellationToken)
+   at lambda_method13(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Sgae.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column l.Bairro does not exist
+    Position: 705
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 18:55:41.479 +00:00 ERR] HTTP GET /api/leads respondeu 500 em 735.2306 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9H:00000001","ConnectionId":"0HNO56M7TOC9H"}
+[2026-08-28 18:56:35.030 +00:00 INF] HTTP GET /health respondeu 200 em 765.8517 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9I:00000001","ConnectionId":"0HNO56M7TOC9I"}
+[2026-08-28 18:56:35.050 +00:00 INF] SGAE Pipeline [CID: "24d66720-c705-403a-abe7-f1388fe4f49b"]: Iniciando processamento do Request GetLeadsWithPaginationQuery {"PageNumber":1,"PageSize":10,"SearchTerm":null,"DataInicio":null,"DataFim":null,"$type":"GetLeadsWithPaginationQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9J:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9J"}
+[2026-08-28 18:56:35.314 +00:00 ERR] Failed executing DbCommand (126ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT t."Id", t."CustomId", t."Nome", t."Telefone", t."Email", t."DataNascimento", t."Profissao", t."Nacionalidade", t."Naturalidade", t."TradicaoTerreiro", t."VinculoTradicoes", t."VinculoCcrias", t."Temporalidade", t."JogouBuziosBabalorisaSidnei", t."OrixasNagoKetu", t."Cep", t."Endereco", t."Numero", t."Complemento", t."Bairro", t."Cidade", t."Estado", t."Observacoes", t."ProblemaPrincipal", t."Status", t."Prioridade", t."DataContato", t."Origem", t."CanalCaptacaoId", t0."Nome", t0."Id", t1."Id", t2."Id", t2."Data", t2."Tipo", t2."Descricao", t1."Id" IS NULL, t1."LeadId", t1."Idade", t1."FaixaEtaria", t1."Genero", t1."Profissao", t1."Escolaridade", t1."EstadoCivil"
+FROM (
+    SELECT l."Id", l."Bairro", l."CanalCaptacaoId", l."Cep", l."Cidade", l."Complemento", l."CustomId", l."DataContato", l."DataNascimento", l."Email", l."Endereco", l."Estado", l."JogouBuziosBabalorisaSidnei", l."Nacionalidade", l."Naturalidade", l."Nome", l."Numero", l."Observacoes", l."Origem", l."OrixasNagoKetu", l."Prioridade", l."ProblemaPrincipal", l."Profissao", l."Status", l."Telefone", l."Temporalidade", l."TradicaoTerreiro", l."VinculoCcrias", l."VinculoTradicoes"
+    FROM "Leads" AS l
+    WHERE NOT (l."IsDeleted")
+    ORDER BY l."DataContato" DESC
+    LIMIT @__p_1 OFFSET @__p_0
+) AS t
+LEFT JOIN (
+    SELECT c."Id", c."Nome"
+    FROM "CanaisCaptacao" AS c
+    WHERE NOT (c."IsDeleted")
+) AS t0 ON t."CanalCaptacaoId" = t0."Id"
+LEFT JOIN (
+    SELECT p."Id", p."Escolaridade", p."EstadoCivil", p."FaixaEtaria", p."Genero", p."Idade", p."LeadId", p."Profissao"
+    FROM "PerfisConsulentes" AS p
+    WHERE NOT (p."IsDeleted")
+) AS t1 ON t."Id" = t1."LeadId"
+LEFT JOIN (
+    SELECT l0."Id", l0."Data", l0."Tipo", l0."Descricao", l0."LeadId"
+    FROM "LeadsHistoricos" AS l0
+    WHERE NOT (l0."IsDeleted")
+) AS t2 ON t."Id" = t2."LeadId"
+ORDER BY t."DataContato" DESC, t."Id", t0."Id", t1."Id" {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9J:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9J","CorrelationId":"24d66720-c705-403a-abe7-f1388fe4f49b"}
+[2026-08-28 18:56:35.317 +00:00 ERR] An exception occurred while iterating over the results of a query for context type 'Sgae.Infrastructure.Persistence.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 42703: column l.Observacoes does not exist
+
+POSITION: 956
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column l.Observacoes does not exist
+    Position: 956
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Query","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9J:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9J","CorrelationId":"24d66720-c705-403a-abe7-f1388fe4f49b"}
+Npgsql.PostgresException (0x80004005): 42703: column l.Observacoes does not exist
+
+POSITION: 956
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column l.Observacoes does not exist
+    Position: 956
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 18:56:35.325 +00:00 ERR] SGAE Pipeline [CID: "24d66720-c705-403a-abe7-f1388fe4f49b"]: Falha crítica na execução do Request GetLeadsWithPaginationQuery após 275ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9J:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9J"}
+Npgsql.PostgresException (0x80004005): 42703: column l.Observacoes does not exist
+
+POSITION: 956
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Sgae.Application.Common.Models.PaginationHelper.ToPagedResultAsync[T](IQueryable`1 source, Int32 pageNumber, Int32 pageSize, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Models/PaginationHelper.cs:line 30
+   at Sgae.Application.Leads.Queries.GetLeadsWithPagination.GetLeadsWithPaginationQueryHandler.Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Leads/Queries/GetLeadsWithPagination/GetLeadsWithPaginationQueryHandler.cs:line 60
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 32
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 36
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column l.Observacoes does not exist
+    Position: 956
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 18:56:35.330 +00:00 ERR] Ocorreu uma exceção não tratada na requisição GET /api/leads. Detalhes: 42703: column l.Observacoes does not exist
+
+POSITION: 956 {"SourceContext":"Sgae.API.Middlewares.ExceptionHandlingMiddleware","RequestId":"0HNO56M7TOC9J:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9J","CorrelationId":"24d66720-c705-403a-abe7-f1388fe4f49b"}
+Npgsql.PostgresException (0x80004005): 42703: column l.Observacoes does not exist
+
+POSITION: 956
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Sgae.Application.Common.Models.PaginationHelper.ToPagedResultAsync[T](IQueryable`1 source, Int32 pageNumber, Int32 pageSize, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Models/PaginationHelper.cs:line 30
+   at Sgae.Application.Leads.Queries.GetLeadsWithPagination.GetLeadsWithPaginationQueryHandler.Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Leads/Queries/GetLeadsWithPagination/GetLeadsWithPaginationQueryHandler.cs:line 60
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 32
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 36
+   at Sgae.API.Controllers.LeadsController.GetLeads(Int32 pageNumber, Int32 pageSize, String searchTerm, Nullable`1 dataInicio, Nullable`1 dataFim, CancellationToken cancellationToken)
+   at lambda_method13(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Sgae.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context)
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column l.Observacoes does not exist
+    Position: 956
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 18:56:35.338 +00:00 ERR] HTTP GET /api/leads respondeu 500 em 291.0869 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9J:00000001","ConnectionId":"0HNO56M7TOC9J"}
+[2026-08-28 18:57:05.015 +00:00 INF] SGAE Pipeline [CID: "10609ca7-d665-45ff-a383-709c4504c973"]: Iniciando processamento do Request GetLeadsWithPaginationQuery {"PageNumber":1,"PageSize":10,"SearchTerm":null,"DataInicio":null,"DataFim":null,"$type":"GetLeadsWithPaginationQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9K:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9K"}
+[2026-08-28 18:57:05.303 +00:00 ERR] An exception occurred while iterating over the results of a query for context type 'Sgae.Infrastructure.Persistence.AppDbContext'.
+System.InvalidCastException: Column 'OrixasNagoKetu' is null.
+   at Npgsql.ThrowHelper.ThrowInvalidCastException_NoValue(FieldDescription field)
+   at Npgsql.NpgsqlDataReader.DbNullValueOrThrow[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method26(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync() {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Query","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9K:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9K","CorrelationId":"10609ca7-d665-45ff-a383-709c4504c973"}
+System.InvalidCastException: Column 'OrixasNagoKetu' is null.
+   at Npgsql.ThrowHelper.ThrowInvalidCastException_NoValue(FieldDescription field)
+   at Npgsql.NpgsqlDataReader.DbNullValueOrThrow[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method26(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+[2026-08-28 18:57:05.304 +00:00 ERR] SGAE Pipeline [CID: "10609ca7-d665-45ff-a383-709c4504c973"]: Falha crítica na execução do Request GetLeadsWithPaginationQuery após 289ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9K:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9K"}
+System.InvalidCastException: Column 'OrixasNagoKetu' is null.
+   at Npgsql.ThrowHelper.ThrowInvalidCastException_NoValue(FieldDescription field)
+   at Npgsql.NpgsqlDataReader.DbNullValueOrThrow[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method26(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Sgae.Application.Common.Models.PaginationHelper.ToPagedResultAsync[T](IQueryable`1 source, Int32 pageNumber, Int32 pageSize, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Models/PaginationHelper.cs:line 30
+   at Sgae.Application.Leads.Queries.GetLeadsWithPagination.GetLeadsWithPaginationQueryHandler.Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Leads/Queries/GetLeadsWithPagination/GetLeadsWithPaginationQueryHandler.cs:line 60
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 32
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 36
+[2026-08-28 18:57:05.306 +00:00 ERR] Ocorreu uma exceção não tratada na requisição GET /api/leads. Detalhes: Column 'OrixasNagoKetu' is null. {"SourceContext":"Sgae.API.Middlewares.ExceptionHandlingMiddleware","RequestId":"0HNO56M7TOC9K:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9K","CorrelationId":"10609ca7-d665-45ff-a383-709c4504c973"}
+System.InvalidCastException: Column 'OrixasNagoKetu' is null.
+   at Npgsql.ThrowHelper.ThrowInvalidCastException_NoValue(FieldDescription field)
+   at Npgsql.NpgsqlDataReader.DbNullValueOrThrow[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetFieldValueCore[T](Int32 ordinal)
+   at Npgsql.NpgsqlDataReader.GetString(Int32 ordinal)
+   at lambda_method26(Closure, QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Sgae.Application.Common.Models.PaginationHelper.ToPagedResultAsync[T](IQueryable`1 source, Int32 pageNumber, Int32 pageSize, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Models/PaginationHelper.cs:line 30
+   at Sgae.Application.Leads.Queries.GetLeadsWithPagination.GetLeadsWithPaginationQueryHandler.Handle(GetLeadsWithPaginationQuery request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Leads/Queries/GetLeadsWithPagination/GetLeadsWithPaginationQueryHandler.cs:line 60
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 32
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 36
+   at Sgae.API.Controllers.LeadsController.GetLeads(Int32 pageNumber, Int32 pageSize, String searchTerm, Nullable`1 dataInicio, Nullable`1 dataFim, CancellationToken cancellationToken)
+   at lambda_method13(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Sgae.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context)
+[2026-08-28 18:57:05.308 +00:00 ERR] HTTP GET /api/leads respondeu 500 em 295.4209 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9K:00000001","ConnectionId":"0HNO56M7TOC9K"}
+[2026-08-28 18:57:42.779 +00:00 INF] SGAE Pipeline [CID: "bd8aa649-47c2-4df5-b636-06d6186e2ae4"]: Iniciando processamento do Request GetLeadsWithPaginationQuery {"PageNumber":1,"PageSize":10,"SearchTerm":null,"DataInicio":null,"DataFim":null,"$type":"GetLeadsWithPaginationQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9L:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9L"}
+[2026-08-28 18:57:43.049 +00:00 INF] SGAE Pipeline [CID: "bd8aa649-47c2-4df5-b636-06d6186e2ae4"]: Finalizado processamento de GetLeadsWithPaginationQuery com sucesso em 270ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"54eecd73-b336-4e20-8923-54926c918b28","ActionName":"Sgae.API.Controllers.LeadsController.GetLeads (Sgae.API)","RequestId":"0HNO56M7TOC9L:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9L"}
+[2026-08-28 18:57:43.078 +00:00 INF] HTTP GET /api/leads respondeu 200 em 300.8240 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9L:00000001","ConnectionId":"0HNO56M7TOC9L"}
+[2026-08-28 18:57:50.584 +00:00 INF] SGAE Pipeline [CID: "b4ae0cd9-3363-46f3-9a42-4a2cf0f653bd"]: Iniciando processamento do Request CreateLeadCommand {"Id":"1724851234567-abc12345","Nome":null,"NomeCompleto":"Maria Silva dos Santos","Telefone":"11987654321","Email":"maria.silva@exemplo.com","DataNascimento":"1990-04-15T00:00:00.0000000","Profissao":"Professora","Nacionalidade":"Brasileira","Naturalidade":"São Paulo - SP","TradicaoTerreiro":"Candomblé – Angola, Efon, Ijexá, Jeje, Nagô-Ketu ou Nação Mista.","VinculoTradicoes":"Iniciado(a) / Feito(a) no Santo","VinculoCcrias":"Sim","Temporalidade":"10 anos","JogouBuziosBabalorisaSidnei":"Sim","OrixasNagoKetu":["Èṣù (Exu)","Ògún (Ogum)","Ọ̀ṣọ́ọ̀sì (Oxóssi)"],"Cep":"01310-100","Endereco":"Avenida Paulista","Numero":"1000","Complemento":"Apto 42","Bairro":"Bela Vista","Cidade":"São Paulo","Estado":null,"Uf":"SP","Origem":null,"ProblemaPrincipal":null,"Observacoes":"Consulente encaminhado via indicação.","Status":"Novo","Prioridade":"Média","DataContato":null,"DataCadastro":"2026-08-28T14:25:16.0000000Z","CanalCaptacaoId":null,"Historico":[{"Data":"2026-08-28T14:25:16.0000000Z","Tipo":"Cadastro","Descricao":"Lead inserido no SGAE via formulário web.","$type":"LeadHistoricoInputDto"}],"$type":"CreateLeadCommand"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"ce27dd15-9980-4d99-9447-a34f923915b7","ActionName":"Sgae.API.Controllers.LeadsController.CreateLead (Sgae.API)","RequestId":"0HNO56M7TOC9M:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9M"}
+[2026-08-28 18:57:52.225 +00:00 INF] SGAE Pipeline [CID: "b4ae0cd9-3363-46f3-9a42-4a2cf0f653bd"]: Finalizado processamento de CreateLeadCommand com sucesso em 1639ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"ce27dd15-9980-4d99-9447-a34f923915b7","ActionName":"Sgae.API.Controllers.LeadsController.CreateLead (Sgae.API)","RequestId":"0HNO56M7TOC9M:00000001","RequestPath":"/api/leads","ConnectionId":"0HNO56M7TOC9M"}
+[2026-08-28 18:57:52.244 +00:00 INF] HTTP POST /api/leads respondeu 201 em 1713.5663 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9M:00000001","ConnectionId":"0HNO56M7TOC9M"}
+[2026-08-28 18:57:56.033 +00:00 INF] SGAE Pipeline [CID: "4dcc5d83-8880-45d9-8cc5-647f2d1f400d"]: Iniciando processamento do Request GetLeadByIdQuery {"Id":"7e8372c9-318b-4bb3-99ee-b0a5ad0c1257","$type":"GetLeadByIdQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"ac0dada0-f52a-4fe9-a422-6af76e2ba528","ActionName":"Sgae.API.Controllers.LeadsController.GetLeadById (Sgae.API)","RequestId":"0HNO56M7TOC9N:00000001","RequestPath":"/api/leads/7e8372c9-318b-4bb3-99ee-b0a5ad0c1257","ConnectionId":"0HNO56M7TOC9N"}
+[2026-08-28 18:57:56.244 +00:00 INF] SGAE Pipeline [CID: "4dcc5d83-8880-45d9-8cc5-647f2d1f400d"]: Finalizado processamento de GetLeadByIdQuery com sucesso em 210ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"ac0dada0-f52a-4fe9-a422-6af76e2ba528","ActionName":"Sgae.API.Controllers.LeadsController.GetLeadById (Sgae.API)","RequestId":"0HNO56M7TOC9N:00000001","RequestPath":"/api/leads/7e8372c9-318b-4bb3-99ee-b0a5ad0c1257","ConnectionId":"0HNO56M7TOC9N"}
+[2026-08-28 18:57:56.246 +00:00 INF] HTTP GET /api/leads/7e8372c9-318b-4bb3-99ee-b0a5ad0c1257 respondeu 200 em 220.6919 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO56M7TOC9N:00000001","ConnectionId":"0HNO56M7TOC9N"}

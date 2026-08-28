@@ -52,6 +52,70 @@ public class DatabaseSeeder
                 await _context.Database.EnsureCreatedAsync(cancellationToken);
             }
 
+            // Garante de forma idempotente a existência de todas as novas colunas e tabelas no banco relacional PostgreSQL
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(@"
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""CustomId"" VARCHAR(100) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Nome"" VARCHAR(150) NOT NULL DEFAULT '';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Telefone"" VARCHAR(20) NOT NULL DEFAULT '';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Email"" VARCHAR(150) NOT NULL DEFAULT '';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""DataNascimento"" TIMESTAMP WITH TIME ZONE NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Profissao"" VARCHAR(100) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Nacionalidade"" VARCHAR(100) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Naturalidade"" VARCHAR(150) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""TradicaoTerreiro"" VARCHAR(500) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""VinculoTradicoes"" VARCHAR(200) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""VinculoCcrias"" VARCHAR(50) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Temporalidade"" VARCHAR(100) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""JogouBuziosBabalorisaSidnei"" VARCHAR(50) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""OrixasNagoKetu"" TEXT NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Cep"" VARCHAR(20) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Endereco"" VARCHAR(250) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Numero"" VARCHAR(50) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Complemento"" VARCHAR(100) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Bairro"" VARCHAR(100) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Cidade"" VARCHAR(100) NOT NULL DEFAULT 'São Paulo';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Estado"" VARCHAR(2) NOT NULL DEFAULT 'SP';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""DataContato"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Origem"" VARCHAR(50) NOT NULL DEFAULT 'Organico';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""ProblemaPrincipal"" VARCHAR(2000) NOT NULL DEFAULT '';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Observacoes"" VARCHAR(2000) NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Status"" VARCHAR(50) NOT NULL DEFAULT 'Novo';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""Prioridade"" VARCHAR(50) NOT NULL DEFAULT 'Média';
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""CanalCaptacaoId"" UUID NULL;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE;
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
+                    ALTER TABLE IF EXISTS ""Leads"" ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL;
+
+                    UPDATE ""Leads"" SET ""OrixasNagoKetu"" = '[]' WHERE ""OrixasNagoKetu"" IS NULL;
+
+                    CREATE TABLE IF NOT EXISTS ""LeadsHistoricos"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""LeadId"" UUID NOT NULL REFERENCES ""Leads""(""Id"") ON DELETE CASCADE,
+                        ""Data"" TIMESTAMP WITH TIME ZONE NOT NULL,
+                        ""Tipo"" VARCHAR(100) NOT NULL,
+                        ""Descricao"" VARCHAR(1000) NOT NULL,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL,
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE TABLE IF NOT EXISTS ""CanaisCaptacao"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""Nome"" VARCHAR(150) NOT NULL UNIQUE,
+                        ""Ativo"" BOOLEAN NOT NULL DEFAULT TRUE,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL,
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+                ", cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "SGAE Seeder: Aviso ao sincronizar esquema adicional de tabelas.");
+            }
+
             _logger.LogInformation("SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra.");
 
             // Executa o Seeding dos Cargos Pastorais (SGAE Pastoral Roles)

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Sgae.Application.Abstractions;
 using Sgae.Domain.Entities;
+using Sgae.Application.Abstractions;
 
 namespace Sgae.Infrastructure.Persistence;
 
@@ -15,6 +15,7 @@ public class AppDbContext : DbContext, IAppDbContext
     }
 
     public DbSet<Lead> Leads => Set<Lead>();
+    public DbSet<LeadHistorico> LeadsHistoricos => Set<LeadHistorico>();
     public DbSet<Agendamento> Agendamentos => Set<Agendamento>();
     public DbSet<PerfilConsulente> PerfisConsulentes => Set<PerfilConsulente>();
     public DbSet<AtendimentoEspiritual> AtendimentosEspirituais => Set<AtendimentoEspiritual>();
@@ -43,6 +44,10 @@ public class AppDbContext : DbContext, IAppDbContext
             builder.ToTable("Leads");
 
             builder.HasKey(l => l.Id);
+            
+            builder.Property(l => l.CustomId)
+                .HasMaxLength(100)
+                .IsRequired(false);
 
             builder.Property(l => l.Nome)
                 .HasMaxLength(150)
@@ -55,6 +60,76 @@ public class AppDbContext : DbContext, IAppDbContext
             builder.Property(l => l.Email)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            builder.Property(l => l.DataNascimento)
+                .IsRequired(false);
+
+            builder.Property(l => l.Profissao)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
+            builder.Property(l => l.Nacionalidade)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
+            builder.Property(l => l.Naturalidade)
+                .HasMaxLength(150)
+                .IsRequired(false);
+
+            builder.Property(l => l.TradicaoTerreiro)
+                .HasMaxLength(500)
+                .IsRequired(false);
+
+            builder.Property(l => l.VinculoTradicoes)
+                .HasMaxLength(200)
+                .IsRequired(false);
+
+            builder.Property(l => l.VinculoCcrias)
+                .HasMaxLength(50)
+                .IsRequired(false);
+
+            builder.Property(l => l.Temporalidade)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
+            builder.Property(l => l.JogouBuziosBabalorisaSidnei)
+                .HasMaxLength(50)
+                .IsRequired(false);
+
+            var stringListComparer = new Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<List<string>>(
+                (c1, c2) => c1 != null && c2 != null ? c1.SequenceEqual(c2) : c1 == c2,
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                c => c.ToList()
+            );
+
+            builder.Property(l => l.OrixasNagoKetu)
+                .HasConversion(
+                    v => System.Text.Json.JsonSerializer.Serialize(v ?? new List<string>(), (System.Text.Json.JsonSerializerOptions?)null),
+                    v => string.IsNullOrEmpty(v) ? new List<string>() : (System.Text.Json.JsonSerializer.Deserialize<List<string>>(v, (System.Text.Json.JsonSerializerOptions?)null) ?? new List<string>())
+                )
+                .IsRequired(false)
+                .HasDefaultValueSql("'[]'::text")
+                .Metadata.SetValueComparer(stringListComparer);
+
+            builder.Property(l => l.Cep)
+                .HasMaxLength(20)
+                .IsRequired(false);
+
+            builder.Property(l => l.Endereco)
+                .HasMaxLength(250)
+                .IsRequired(false);
+
+            builder.Property(l => l.Numero)
+                .HasMaxLength(50)
+                .IsRequired(false);
+
+            builder.Property(l => l.Complemento)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
+            builder.Property(l => l.Bairro)
+                .HasMaxLength(100)
+                .IsRequired(false);
 
             builder.Property(l => l.Cidade)
                 .HasMaxLength(100)
@@ -75,16 +150,61 @@ public class AppDbContext : DbContext, IAppDbContext
                 .IsRequired();
 
             builder.Property(l => l.ProblemaPrincipal)
-                .HasMaxLength(1000)
+                .HasMaxLength(2000)
                 .IsRequired();
+
+            builder.Property(l => l.Observacoes)
+                .HasMaxLength(2000)
+                .IsRequired(false);
+
+            builder.Property(l => l.Status)
+                .HasMaxLength(50)
+                .IsRequired()
+                .HasDefaultValue("Novo");
+
+            builder.Property(l => l.Prioridade)
+                .HasMaxLength(50)
+                .IsRequired()
+                .HasDefaultValue("Média");
 
             builder.HasOne(l => l.CanalCaptacao)
                 .WithMany(c => c.Leads)
                 .HasForeignKey(l => l.CanalCaptacaoId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            builder.HasMany(l => l.Historico)
+                .WithOne(h => h.Lead)
+                .HasForeignKey(h => h.LeadId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // Filtro Global para Soft Delete (IsDeleted == false)
             builder.HasQueryFilter(l => !l.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade LeadHistorico
+        modelBuilder.Entity<LeadHistorico>(builder =>
+        {
+            builder.ToTable("LeadsHistoricos");
+
+            builder.HasKey(h => h.Id);
+
+            builder.Property(h => h.Tipo)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.Property(h => h.Descricao)
+                .HasMaxLength(1000)
+                .IsRequired();
+
+            builder.Property(h => h.Data)
+                .IsRequired();
+
+            builder.HasOne(h => h.Lead)
+                .WithMany(l => l.Historico)
+                .HasForeignKey(h => h.LeadId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasQueryFilter(h => !h.IsDeleted);
         });
 
         // Configuração Estrita da Entidade Agendamento (Agendamento)
