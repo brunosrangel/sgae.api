@@ -2,12 +2,15 @@ using System;
 using System.Linq;
 using FluentValidation;
 
-namespace Sgae.Application.Leads.Commands.CreateLead;
+namespace Sgae.Application.Leads.Commands.UpdateLead;
 
-public class CreateLeadCommandValidator : AbstractValidator<CreateLeadCommand>
+public class UpdateLeadCommandValidator : AbstractValidator<UpdateLeadCommand>
 {
-    public CreateLeadCommandValidator()
+    public UpdateLeadCommandValidator()
     {
+        RuleFor(v => v.Id)
+            .NotEmpty().WithMessage("ID do consulente é obrigatório para atualização.");
+
         RuleFor(v => v.GetNomeEfetivo())
             .NotEmpty().WithMessage("Nome/NomeCompleto do consulente é obrigatório.")
             .MaximumLength(150).WithMessage("Nome não pode exceder 150 caracteres.");

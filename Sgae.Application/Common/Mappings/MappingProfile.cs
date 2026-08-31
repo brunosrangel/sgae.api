@@ -39,12 +39,26 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Historico, opt => opt.MapFrom(src => src.Historico))
             .ForMember(dest => dest.Perfil, opt => opt.MapFrom(src => src.Perfil));
 
-        // Mapeamento enriquecido de Agendamento buscando campos da entidade navegacional 'Lead'
+        // Mapeamento enriquecido de Agendamento buscando campos da entidade navegacional 'Lead', 'Sacerdote' e 'ServicoConsulta'
         CreateMap<Agendamento, AgendamentoDto>()
             .ForMember(dest => dest.LeadNome, opt => opt.MapFrom(src => src.Lead != null ? src.Lead.Nome : string.Empty))
             .ForMember(dest => dest.LeadTelefone, opt => opt.MapFrom(src => src.Lead != null ? src.Lead.Telefone : string.Empty))
+            .ForMember(dest => dest.Data, opt => opt.MapFrom(src => src.DataHora.ToString("yyyy-MM-dd")))
+            .ForMember(dest => dest.Horario, opt => opt.MapFrom(src => src.DataHora.ToString("HH:mm")))
             .ForMember(dest => dest.Modalidade, opt => opt.MapFrom(src => src.Modalidade.ToString()))
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+            .ForMember(dest => dest.SacerdoteId, opt => opt.MapFrom(src => src.SacerdoteId))
+            .ForMember(dest => dest.Sacerdote, opt => opt.MapFrom(src => src.Sacerdote != null ? src.Sacerdote.Nome : null))
+            .ForMember(dest => dest.SacerdoteNome, opt => opt.MapFrom(src => src.Sacerdote != null ? src.Sacerdote.Nome : null))
+            .ForMember(dest => dest.ServicoConsultaId, opt => opt.MapFrom(src => src.ServicoConsultaId))
+            .ForMember(dest => dest.TipoConsulta, opt => opt.MapFrom(src => src.ServicoConsulta != null ? src.ServicoConsulta.Nome : null))
+            .ForMember(dest => dest.ServicoConsultaNome, opt => opt.MapFrom(src => src.ServicoConsulta != null ? src.ServicoConsulta.Nome : null))
+            .ForMember(dest => dest.FormaPagamento, opt => opt.MapFrom(src => src.FormaPagamento))
+            .ForMember(dest => dest.Pago, opt => opt.MapFrom(src => src.Pago))
+            .ForMember(dest => dest.Observacoes, opt => opt.MapFrom(src => src.Observacoes))
+            .ForMember(dest => dest.WhatsappConfirmacaoDisparada, opt => opt.MapFrom(src => src.WhatsappConfirmacaoDisparada))
+            .ForMember(dest => dest.ConfigLembrete, opt => opt.MapFrom(src => src.ConfigLembrete))
+            .ForMember(dest => dest.FrequenciaLembrete, opt => opt.MapFrom(src => src.FrequenciaLembrete))
             .ForMember(dest => dest.Atendimento, opt => opt.MapFrom(src => src.Atendimento));
     }
 }

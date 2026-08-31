@@ -854,3 +854,652 @@ POSITION: 119
 [2026-08-28 19:42:42.566 +00:00 INF] SGAE Pipeline [CID: "4bf7a8c5-e402-4a64-91b0-da1b2f31c7d6"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"d4ef5e47-5881-403e-8440-02c30a1a591f","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO57I1A0K2S:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57I1A0K2S"}
 [2026-08-28 19:42:42.909 +00:00 INF] SGAE Pipeline [CID: "4bf7a8c5-e402-4a64-91b0-da1b2f31c7d6"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 342ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"d4ef5e47-5881-403e-8440-02c30a1a591f","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO57I1A0K2S:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57I1A0K2S"}
 [2026-08-28 19:42:42.921 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 373.8037 ms {"RequestHost":"127.0.0.1:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57I1A0K2S:00000001","ConnectionId":"0HNO57I1A0K2S"}
+[2026-08-28 19:43:21.862 +00:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:25.263 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.300 +00:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.302 +00:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.626 +00:00 INF] SGAE Seeder: Dados de cargos pastorais já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.628 +00:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.768 +00:00 INF] SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.769 +00:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.908 +00:00 INF] SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.908 +00:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 19:43:26.912 +00:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-08-28 19:43:27.236 +00:00 INF] HTTP GET / respondeu 301 em 26.9198 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Go-http-client/1.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57IGJS0RA:00000001","ConnectionId":"0HNO57IGJS0RA"}
+[2026-08-28 19:43:27.341 +00:00 INF] HTTP GET /index.html respondeu 200 em 88.9493 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Go-http-client/1.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57IGJS0RA:00000002","ConnectionId":"0HNO57IGJS0RA"}
+[2026-08-28 19:43:32.161 +00:00 INF] HTTP GET /index.html respondeu 200 em 3.2538 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57IGJS0RB:00000001","ConnectionId":"0HNO57IGJS0RB"}
+[2026-08-28 19:43:32.591 +00:00 INF] HTTP GET /swagger/v1/swagger.json respondeu 200 em 214.9492 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57IGJS0RC:00000001","ConnectionId":"0HNO57IGJS0RC"}
+[2026-08-28 20:05:27.555 +00:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:31.347 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:32.594 +00:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:32.596 +00:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:32.943 +00:00 INF] SGAE Seeder: Dados de cargos pastorais já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:32.944 +00:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:33.092 +00:00 INF] SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:33.094 +00:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:33.243 +00:00 INF] SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:33.243 +00:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:05:33.248 +00:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-08-28 20:05:43.946 +00:00 INF] SGAE Pipeline [CID: "9cc9a24a-52cb-493c-9472-3344ae8d3427"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"fbdcd637-39ee-402f-a439-8b3a96aacd09","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO57UUV6E68:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57UUV6E68"}
+[2026-08-28 20:05:44.439 +00:00 INF] SGAE Pipeline [CID: "9cc9a24a-52cb-493c-9472-3344ae8d3427"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 487ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"fbdcd637-39ee-402f-a439-8b3a96aacd09","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO57UUV6E68:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57UUV6E68"}
+[2026-08-28 20:05:44.504 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 667.1041 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57UUV6E68:00000001","ConnectionId":"0HNO57UUV6E68"}
+[2026-08-28 20:05:47.141 +00:00 INF] SGAE Pipeline [CID: "6caa46ee-ff24-492e-a57c-48be08282d73"]: Iniciando processamento do Request CreateAgendamentoCommand {"LeadId":"998d5dc7-59a3-4d8f-b3c9-ae39b09170e3","DataHora":"2026-08-28T11:00:00.0000000Z","Data":"2026-08-28","Horario":"11:00","Modalidade":"Presencial","Valor":250,"SacerdoteId":null,"Sacerdote":"Babalorixa Sidnei T' Sango","ServicoConsultaId":null,"TipoConsulta":"Jogo de Búzios","Status":"Pendente","FormaPagamento":"Cartão","Pago":false,"Observacoes":"","WhatsappConfirmacaoDisparada":false,"ConfigLembrete":"Não Configurado","FrequenciaLembrete":"Nenhum","LeadNome":"Bruno Rangel III","LeadTelefone":"","Atendimento":null,"$type":"CreateAgendamentoCommand"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"64eccc90-9ba4-41b2-bb7c-bd51b63be2ca","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57UUV6E69:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57UUV6E69"}
+[2026-08-28 20:05:47.806 +00:00 ERR] Failed executing DbCommand (138ms) [Parameters=[@__ToLower_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."Id", s."Ativo", s."CreatedAt", s."Especialidade", s."IsDeleted", s."Nome", s."UpdatedAt"
+FROM "Sacerdotes" AS s
+WHERE NOT (s."IsDeleted") AND lower(s."Nome") = @__ToLower_0
+LIMIT 1 {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command","ActionId":"64eccc90-9ba4-41b2-bb7c-bd51b63be2ca","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57UUV6E69:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57UUV6E69","CorrelationId":"6caa46ee-ff24-492e-a57c-48be08282d73"}
+[2026-08-28 20:05:47.824 +00:00 ERR] An exception occurred while iterating over the results of a query for context type 'Sgae.Infrastructure.Persistence.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Query","ActionId":"64eccc90-9ba4-41b2-bb7c-bd51b63be2ca","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57UUV6E69:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57UUV6E69","CorrelationId":"6caa46ee-ff24-492e-a57c-48be08282d73"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:05:47.830 +00:00 ERR] SGAE Pipeline [CID: "6caa46ee-ff24-492e-a57c-48be08282d73"]: Falha crítica na execução do Request CreateAgendamentoCommand após 686ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"64eccc90-9ba4-41b2-bb7c-bd51b63be2ca","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57UUV6E69:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57UUV6E69"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Sgae.Application.Agendamentos.Commands.CreateAgendamento.CreateAgendamentoCommandHandler.Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Agendamentos/Commands/CreateAgendamento/CreateAgendamentoCommandHandler.cs:line 54
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 28
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 33
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:05:47.842 +00:00 ERR] Ocorreu uma exceção não tratada na requisição POST /api/Agendamentos. Detalhes: 42703: column s.Especialidade does not exist
+
+POSITION: 42 {"SourceContext":"Sgae.API.Middlewares.ExceptionHandlingMiddleware","RequestId":"0HNO57UUV6E69:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57UUV6E69","CorrelationId":"6caa46ee-ff24-492e-a57c-48be08282d73"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Sgae.Application.Agendamentos.Commands.CreateAgendamento.CreateAgendamentoCommandHandler.Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Agendamentos/Commands/CreateAgendamento/CreateAgendamentoCommandHandler.cs:line 54
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 28
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 33
+   at Sgae.API.Controllers.AgendamentosController.CreateAgendamento(CreateAgendamentoCommand command, CancellationToken cancellationToken) in /app/applet/Sgae.API/Controllers/AgendamentosController.cs:line 39
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Sgae.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in /app/applet/Sgae.API/Middlewares/ExceptionHandlingMiddleware.cs:line 24
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:05:47.863 +00:00 ERR] HTTP POST /api/Agendamentos respondeu 500 em 805.4794 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57UUV6E69:00000001","ConnectionId":"0HNO57UUV6E69"}
+[2026-08-28 20:06:33.547 +00:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:37.029 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.182 +00:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.184 +00:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.544 +00:00 INF] SGAE Seeder: Dados de cargos pastorais já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.546 +00:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.675 +00:00 INF] SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.677 +00:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.825 +00:00 INF] SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.825 +00:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:06:38.831 +00:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-08-28 20:06:46.726 +00:00 INF] SGAE Pipeline [CID: "1505b6b9-095a-4f83-8c0b-989e5349a55e"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"6a77330d-d0e2-48fd-b9ec-1dd3314b4d20","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO57VHM3SGR:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGR"}
+[2026-08-28 20:06:47.139 +00:00 INF] SGAE Pipeline [CID: "1505b6b9-095a-4f83-8c0b-989e5349a55e"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 409ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"6a77330d-d0e2-48fd-b9ec-1dd3314b4d20","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO57VHM3SGR:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGR"}
+[2026-08-28 20:06:47.209 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 575.6992 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57VHM3SGR:00000001","ConnectionId":"0HNO57VHM3SGR"}
+[2026-08-28 20:06:49.560 +00:00 INF] SGAE Pipeline [CID: "9b50fe33-c8c9-437c-886c-afa021f59762"]: Iniciando processamento do Request CreateAgendamentoCommand {"LeadId":"998d5dc7-59a3-4d8f-b3c9-ae39b09170e3","DataHora":"2026-08-28T11:00:00.0000000Z","Data":"2026-08-28","Horario":"11:00","Modalidade":"Presencial","Valor":250,"SacerdoteId":null,"Sacerdote":"Babalorixa Sidnei T' Sango","ServicoConsultaId":null,"TipoConsulta":"Jogo de Búzios","Status":"Pendente","FormaPagamento":"Cartão","Pago":false,"Observacoes":"","WhatsappConfirmacaoDisparada":false,"ConfigLembrete":"Não Configurado","FrequenciaLembrete":"Nenhum","LeadNome":"Bruno Rangel III","LeadTelefone":"","Atendimento":null,"$type":"CreateAgendamentoCommand"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"d751d618-3d81-45cb-ae5a-256892ab8188","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VHM3SGS:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGS"}
+[2026-08-28 20:06:50.194 +00:00 ERR] Failed executing DbCommand (125ms) [Parameters=[@__ToLower_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."Id", s."Ativo", s."CreatedAt", s."Especialidade", s."IsDeleted", s."Nome", s."UpdatedAt"
+FROM "Sacerdotes" AS s
+WHERE NOT (s."IsDeleted") AND lower(s."Nome") = @__ToLower_0
+LIMIT 1 {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command","ActionId":"d751d618-3d81-45cb-ae5a-256892ab8188","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VHM3SGS:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGS","CorrelationId":"9b50fe33-c8c9-437c-886c-afa021f59762"}
+[2026-08-28 20:06:50.212 +00:00 ERR] An exception occurred while iterating over the results of a query for context type 'Sgae.Infrastructure.Persistence.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Query","ActionId":"d751d618-3d81-45cb-ae5a-256892ab8188","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VHM3SGS:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGS","CorrelationId":"9b50fe33-c8c9-437c-886c-afa021f59762"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:06:50.216 +00:00 ERR] SGAE Pipeline [CID: "9b50fe33-c8c9-437c-886c-afa021f59762"]: Falha crítica na execução do Request CreateAgendamentoCommand após 653ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"d751d618-3d81-45cb-ae5a-256892ab8188","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VHM3SGS:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGS"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Sgae.Application.Agendamentos.Commands.CreateAgendamento.CreateAgendamentoCommandHandler.Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Agendamentos/Commands/CreateAgendamento/CreateAgendamentoCommandHandler.cs:line 84
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 28
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 33
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:06:50.229 +00:00 ERR] [Server Error 500] Exceção crítica não tratada na requisição POST /api/Agendamentos. Detalhes: 42703: column s.Especialidade does not exist
+
+POSITION: 42 {"SourceContext":"Sgae.API.Middlewares.ExceptionHandlingMiddleware","RequestId":"0HNO57VHM3SGS:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGS","CorrelationId":"9b50fe33-c8c9-437c-886c-afa021f59762"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Sgae.Application.Agendamentos.Commands.CreateAgendamento.CreateAgendamentoCommandHandler.Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Agendamentos/Commands/CreateAgendamento/CreateAgendamentoCommandHandler.cs:line 84
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 28
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 33
+   at Sgae.API.Controllers.AgendamentosController.CreateAgendamento(CreateAgendamentoCommand command, CancellationToken cancellationToken) in /app/applet/Sgae.API/Controllers/AgendamentosController.cs:line 39
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Sgae.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in /app/applet/Sgae.API/Middlewares/ExceptionHandlingMiddleware.cs:line 25
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:06:50.249 +00:00 ERR] HTTP POST /api/Agendamentos respondeu 500 em 750.6871 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57VHM3SGS:00000001","ConnectionId":"0HNO57VHM3SGS"}
+[2026-08-28 20:06:53.432 +00:00 INF] SGAE Pipeline [CID: "38d9b70f-60f6-461f-b2dd-d1a000dd5eb0"]: Iniciando processamento do Request CreateAgendamentoCommand {"LeadId":"998d5dc7-59a3-4d8f-b3c9-ae39b09170e3","DataHora":"2026-08-28T11:00:00.0000000Z","Data":"2026-08-28","Horario":"11:00","Modalidade":"Presencial","Valor":250,"SacerdoteId":null,"Sacerdote":"Babalorixa Sidnei T' Sango","ServicoConsultaId":null,"TipoConsulta":"Jogo de Búzios","Status":"Pendente","FormaPagamento":"Cartão","Pago":false,"Observacoes":"","WhatsappConfirmacaoDisparada":false,"ConfigLembrete":"Não Configurado","FrequenciaLembrete":"Nenhum","LeadNome":"Bruno Rangel III","LeadTelefone":"","Atendimento":null,"$type":"CreateAgendamentoCommand"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"d751d618-3d81-45cb-ae5a-256892ab8188","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VHM3SGT:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGT"}
+[2026-08-28 20:06:53.688 +00:00 ERR] Failed executing DbCommand (123ms) [Parameters=[@__ToLower_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."Id", s."Ativo", s."CreatedAt", s."Especialidade", s."IsDeleted", s."Nome", s."UpdatedAt"
+FROM "Sacerdotes" AS s
+WHERE NOT (s."IsDeleted") AND lower(s."Nome") = @__ToLower_0
+LIMIT 1 {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command","ActionId":"d751d618-3d81-45cb-ae5a-256892ab8188","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VHM3SGT:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGT","CorrelationId":"38d9b70f-60f6-461f-b2dd-d1a000dd5eb0"}
+[2026-08-28 20:06:53.690 +00:00 ERR] An exception occurred while iterating over the results of a query for context type 'Sgae.Infrastructure.Persistence.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Query","ActionId":"d751d618-3d81-45cb-ae5a-256892ab8188","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VHM3SGT:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGT","CorrelationId":"38d9b70f-60f6-461f-b2dd-d1a000dd5eb0"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:06:53.694 +00:00 ERR] SGAE Pipeline [CID: "38d9b70f-60f6-461f-b2dd-d1a000dd5eb0"]: Falha crítica na execução do Request CreateAgendamentoCommand após 261ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"d751d618-3d81-45cb-ae5a-256892ab8188","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VHM3SGT:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGT"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Sgae.Application.Agendamentos.Commands.CreateAgendamento.CreateAgendamentoCommandHandler.Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Agendamentos/Commands/CreateAgendamento/CreateAgendamentoCommandHandler.cs:line 84
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 28
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 33
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:06:53.698 +00:00 ERR] [Server Error 500] Exceção crítica não tratada na requisição POST /api/Agendamentos. Detalhes: 42703: column s.Especialidade does not exist
+
+POSITION: 42 {"SourceContext":"Sgae.API.Middlewares.ExceptionHandlingMiddleware","RequestId":"0HNO57VHM3SGT:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VHM3SGT","CorrelationId":"38d9b70f-60f6-461f-b2dd-d1a000dd5eb0"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Sgae.Application.Agendamentos.Commands.CreateAgendamento.CreateAgendamentoCommandHandler.Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Agendamentos/Commands/CreateAgendamento/CreateAgendamentoCommandHandler.cs:line 84
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 28
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 33
+   at Sgae.API.Controllers.AgendamentosController.CreateAgendamento(CreateAgendamentoCommand command, CancellationToken cancellationToken) in /app/applet/Sgae.API/Controllers/AgendamentosController.cs:line 39
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Sgae.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in /app/applet/Sgae.API/Middlewares/ExceptionHandlingMiddleware.cs:line 25
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:06:53.704 +00:00 ERR] HTTP POST /api/Agendamentos respondeu 500 em 280.2966 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57VHM3SGT:00000001","ConnectionId":"0HNO57VHM3SGT"}
+[2026-08-28 20:07:02.582 +00:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:06.197 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.351 +00:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.353 +00:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.708 +00:00 INF] SGAE Seeder: Dados de cargos pastorais já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.709 +00:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.837 +00:00 INF] SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.839 +00:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.986 +00:00 INF] SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.987 +00:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:07.991 +00:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-08-28 20:07:10.906 +00:00 INF] SGAE Pipeline [CID: "29b2b169-55ff-402c-ad5a-9a0c8a089d33"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"3c08fa6b-7126-4591-b1ff-5f0824613036","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO57VOSK8AC:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VOSK8AC"}
+[2026-08-28 20:07:11.322 +00:00 INF] SGAE Pipeline [CID: "29b2b169-55ff-402c-ad5a-9a0c8a089d33"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 410ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"3c08fa6b-7126-4591-b1ff-5f0824613036","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO57VOSK8AC:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VOSK8AC"}
+[2026-08-28 20:07:11.385 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 582.2926 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57VOSK8AC:00000001","ConnectionId":"0HNO57VOSK8AC"}
+[2026-08-28 20:07:15.019 +00:00 INF] SGAE Pipeline [CID: "9b5100fa-4b0a-490c-9600-75ad24a9b9be"]: Iniciando processamento do Request CreateAgendamentoCommand {"LeadId":"998d5dc7-59a3-4d8f-b3c9-ae39b09170e3","DataHora":"2026-08-28T11:00:00.0000000Z","Data":"2026-08-28","Horario":"11:00","Modalidade":"Presencial","Valor":250,"SacerdoteId":null,"Sacerdote":"Babalorixa Sidnei T' Sango","ServicoConsultaId":null,"TipoConsulta":"Jogo de Búzios","Status":"Pendente","FormaPagamento":"Cartão","Pago":false,"Observacoes":"","WhatsappConfirmacaoDisparada":false,"ConfigLembrete":"Não Configurado","FrequenciaLembrete":"Nenhum","LeadNome":"Bruno Rangel III","LeadTelefone":"","Atendimento":null,"$type":"CreateAgendamentoCommand"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"a666ecae-1c2e-46ba-833e-51aebbb3e1be","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VOSK8AD:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VOSK8AD"}
+[2026-08-28 20:07:15.640 +00:00 ERR] Failed executing DbCommand (126ms) [Parameters=[@__ToLower_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT s."Id", s."Ativo", s."CreatedAt", s."Especialidade", s."IsDeleted", s."Nome", s."UpdatedAt"
+FROM "Sacerdotes" AS s
+WHERE NOT (s."IsDeleted") AND lower(s."Nome") = @__ToLower_0
+LIMIT 1 {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command","ActionId":"a666ecae-1c2e-46ba-833e-51aebbb3e1be","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VOSK8AD:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VOSK8AD","CorrelationId":"9b5100fa-4b0a-490c-9600-75ad24a9b9be"}
+[2026-08-28 20:07:15.656 +00:00 ERR] An exception occurred while iterating over the results of a query for context type 'Sgae.Infrastructure.Persistence.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn {"EventId":{"Id":10100,"Name":"Microsoft.EntityFrameworkCore.Query.QueryIterationFailed"},"SourceContext":"Microsoft.EntityFrameworkCore.Query","ActionId":"a666ecae-1c2e-46ba-833e-51aebbb3e1be","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VOSK8AD:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VOSK8AD","CorrelationId":"9b5100fa-4b0a-490c-9600-75ad24a9b9be"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:07:15.664 +00:00 ERR] SGAE Pipeline [CID: "9b5100fa-4b0a-490c-9600-75ad24a9b9be"]: Falha crítica na execução do Request CreateAgendamentoCommand após 643ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"a666ecae-1c2e-46ba-833e-51aebbb3e1be","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO57VOSK8AD:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VOSK8AD"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Sgae.Application.Agendamentos.Commands.CreateAgendamento.CreateAgendamentoCommandHandler.Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Agendamentos/Commands/CreateAgendamento/CreateAgendamentoCommandHandler.cs:line 84
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 28
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 33
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:07:15.676 +00:00 ERR] [Server Error 500] Exceção crítica não tratada na requisição POST /api/Agendamentos. Detalhes: 42703: column s.Especialidade does not exist
+
+POSITION: 42 {"SourceContext":"Sgae.API.Middlewares.ExceptionHandlingMiddleware","RequestId":"0HNO57VOSK8AD:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO57VOSK8AD","CorrelationId":"9b5100fa-4b0a-490c-9600-75ad24a9b9be"}
+Npgsql.PostgresException (0x80004005): 42703: column s.Especialidade does not exist
+
+POSITION: 42
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Sgae.Application.Agendamentos.Commands.CreateAgendamento.CreateAgendamentoCommandHandler.Handle(CreateAgendamentoCommand request, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Agendamentos/Commands/CreateAgendamento/CreateAgendamentoCommandHandler.cs:line 84
+   at Sgae.Application.Common.Behaviors.FluentValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/FluentValidationBehavior.cs:line 28
+   at Sgae.Application.Common.Behaviors.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /app/applet/Sgae.Application/Common/Behaviors/LoggingBehavior.cs:line 33
+   at Sgae.API.Controllers.AgendamentosController.CreateAgendamento(CreateAgendamentoCommand command, CancellationToken cancellationToken) in /app/applet/Sgae.API/Controllers/AgendamentosController.cs:line 39
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Sgae.API.Middlewares.ExceptionHandlingMiddleware.InvokeAsync(HttpContext context) in /app/applet/Sgae.API/Middlewares/ExceptionHandlingMiddleware.cs:line 25
+  Exception data:
+    Severity: ERROR
+    SqlState: 42703
+    MessageText: column s.Especialidade does not exist
+    Position: 42
+    File: parse_relation.c
+    Line: 3854
+    Routine: errorMissingColumn
+[2026-08-28 20:07:15.702 +00:00 ERR] HTTP POST /api/Agendamentos respondeu 500 em 770.8519 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO57VOSK8AD:00000001","ConnectionId":"0HNO57VOSK8AD"}
+[2026-08-28 20:07:41.177 +00:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:44.902 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.046 +00:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.048 +00:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.441 +00:00 INF] SGAE Seeder: Dados de cargos pastorais já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.443 +00:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.573 +00:00 INF] SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.574 +00:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.703 +00:00 INF] SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.703 +00:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:07:46.708 +00:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-08-28 20:07:49.482 +00:00 INF] SGAE Pipeline [CID: "f853dadb-af4c-477e-81df-b6ae42bcd77f"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"74a95652-52cf-4c4e-86c6-41db0615e87d","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO5804CJ29P:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO5804CJ29P"}
+[2026-08-28 20:07:49.904 +00:00 INF] SGAE Pipeline [CID: "f853dadb-af4c-477e-81df-b6ae42bcd77f"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 418ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"74a95652-52cf-4c4e-86c6-41db0615e87d","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO5804CJ29P:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO5804CJ29P"}
+[2026-08-28 20:07:49.967 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 580.5800 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO5804CJ29P:00000001","ConnectionId":"0HNO5804CJ29P"}
+[2026-08-28 20:07:52.534 +00:00 INF] SGAE Pipeline [CID: "2f243b6e-7c69-42aa-b6c9-a59bedfe86c7"]: Iniciando processamento do Request CreateAgendamentoCommand {"LeadId":"998d5dc7-59a3-4d8f-b3c9-ae39b09170e3","DataHora":"2026-08-28T11:00:00.0000000Z","Data":"2026-08-28","Horario":"11:00","Modalidade":"Presencial","Valor":250,"SacerdoteId":null,"Sacerdote":"Babalorixa Sidnei T' Sango","ServicoConsultaId":null,"TipoConsulta":"Jogo de Búzios","Status":"Pendente","FormaPagamento":"Cartão","Pago":false,"Observacoes":"","WhatsappConfirmacaoDisparada":false,"ConfigLembrete":"Não Configurado","FrequenciaLembrete":"Nenhum","LeadNome":"Bruno Rangel III","LeadTelefone":"","Atendimento":null,"$type":"CreateAgendamentoCommand"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"073e1ac5-03cb-4491-ab0b-2e50e1851eb7","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO5804CJ29Q:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO5804CJ29Q"}
+[2026-08-28 20:07:53.887 +00:00 INF] SGAE Pipeline [CID: "2f243b6e-7c69-42aa-b6c9-a59bedfe86c7"]: Finalizado processamento de CreateAgendamentoCommand com sucesso em 1351ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"073e1ac5-03cb-4491-ab0b-2e50e1851eb7","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO5804CJ29Q:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO5804CJ29Q"}
+[2026-08-28 20:07:53.910 +00:00 INF] HTTP POST /api/Agendamentos respondeu 201 em 1442.9591 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO5804CJ29Q:00000001","ConnectionId":"0HNO5804CJ29Q"}
+[2026-08-28 20:07:56.877 +00:00 INF] SGAE Pipeline [CID: "193330c1-743e-4b72-98a0-f4b830d29e5d"]: Iniciando processamento do Request GetAgendamentoByIdQuery {"Id":"74ecf4a7-0dcd-409a-9540-d3971b55473c","$type":"GetAgendamentoByIdQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"7b2f1542-419f-498b-944d-299df5f249fc","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentoById (Sgae.API)","RequestId":"0HNO5804CJ29R:00000001","RequestPath":"/api/Agendamentos/74ecf4a7-0dcd-409a-9540-d3971b55473c","ConnectionId":"0HNO5804CJ29R"}
+[2026-08-28 20:07:57.044 +00:00 INF] SGAE Pipeline [CID: "193330c1-743e-4b72-98a0-f4b830d29e5d"]: Finalizado processamento de GetAgendamentoByIdQuery com sucesso em 166ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"7b2f1542-419f-498b-944d-299df5f249fc","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentoById (Sgae.API)","RequestId":"0HNO5804CJ29R:00000001","RequestPath":"/api/Agendamentos/74ecf4a7-0dcd-409a-9540-d3971b55473c","ConnectionId":"0HNO5804CJ29R"}
+[2026-08-28 20:07:57.046 +00:00 INF] HTTP GET /api/Agendamentos/74ecf4a7-0dcd-409a-9540-d3971b55473c respondeu 200 em 183.7491 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO5804CJ29R:00000001","ConnectionId":"0HNO5804CJ29R"}
+[2026-08-28 20:07:59.721 +00:00 INF] HTTP POST /api/Agendamentos respondeu 400 em 25.1440 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO5804CJ29S:00000001","ConnectionId":"0HNO5804CJ29S"}
+[2026-08-28 20:08:02.291 +00:00 INF] SGAE Pipeline [CID: "8f9d6740-1e93-445c-9ab7-4df0d5a6e40a"]: Iniciando processamento do Request CreateLeadCommand {"Id":null,"Nome":null,"NomeCompleto":"Consulente Teste Nagô","Telefone":"11988887777","Email":"teste.nago@exemplo.com","DataNascimento":"1992-05-20T00:00:00.0000000Z","Profissao":null,"Nacionalidade":null,"Naturalidade":null,"TradicaoTerreiro":"Candomblé Nagô-Ketu","VinculoTradicoes":null,"VinculoCcrias":null,"Temporalidade":null,"JogouBuziosBabalorisaSidnei":null,"OrixasNagoKetu":["Èṣù (Exu)","Ògún (Ogum)"],"Cep":null,"Endereco":null,"Numero":null,"Complemento":null,"Bairro":null,"Cidade":"São Paulo","Estado":null,"Uf":"SP","Origem":"Instagram","ProblemaPrincipal":"Orientação espiritual","Observacoes":null,"Status":null,"Prioridade":null,"DataContato":null,"DataCadastro":null,"CanalCaptacaoId":null,"Historico":[],"$type":"CreateLeadCommand"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"08d5d165-20c0-46c9-a91d-c4dde56a2602","ActionName":"Sgae.API.Controllers.LeadsController.CreateLead (Sgae.API)","RequestId":"0HNO5804CJ29T:00000001","RequestPath":"/api/Leads","ConnectionId":"0HNO5804CJ29T"}
+[2026-08-28 20:08:02.586 +00:00 INF] SGAE Pipeline [CID: "8f9d6740-1e93-445c-9ab7-4df0d5a6e40a"]: Finalizado processamento de CreateLeadCommand com sucesso em 293ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"08d5d165-20c0-46c9-a91d-c4dde56a2602","ActionName":"Sgae.API.Controllers.LeadsController.CreateLead (Sgae.API)","RequestId":"0HNO5804CJ29T:00000001","RequestPath":"/api/Leads","ConnectionId":"0HNO5804CJ29T"}
+[2026-08-28 20:08:02.588 +00:00 INF] HTTP POST /api/Leads respondeu 201 em 346.2609 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO5804CJ29T:00000001","ConnectionId":"0HNO5804CJ29T"}
+[2026-08-28 20:08:05.455 +00:00 INF] SGAE Pipeline [CID: "b352c3ea-210b-4d91-87bb-16c48675f962"]: Iniciando processamento do Request GetLeadByIdQuery {"Id":"e66c9e77-30ab-46e5-b542-8b9e3ff15a67","$type":"GetLeadByIdQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"461a5498-5a5c-4ce0-a60c-d46a1997c0fe","ActionName":"Sgae.API.Controllers.LeadsController.GetLeadById (Sgae.API)","RequestId":"0HNO5804CJ29U:00000001","RequestPath":"/api/Leads/e66c9e77-30ab-46e5-b542-8b9e3ff15a67","ConnectionId":"0HNO5804CJ29U"}
+[2026-08-28 20:08:05.616 +00:00 INF] SGAE Pipeline [CID: "b352c3ea-210b-4d91-87bb-16c48675f962"]: Finalizado processamento de GetLeadByIdQuery com sucesso em 160ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"461a5498-5a5c-4ce0-a60c-d46a1997c0fe","ActionName":"Sgae.API.Controllers.LeadsController.GetLeadById (Sgae.API)","RequestId":"0HNO5804CJ29U:00000001","RequestPath":"/api/Leads/e66c9e77-30ab-46e5-b542-8b9e3ff15a67","ConnectionId":"0HNO5804CJ29U"}
+[2026-08-28 20:08:05.624 +00:00 INF] HTTP GET /api/Leads/e66c9e77-30ab-46e5-b542-8b9e3ff15a67 respondeu 200 em 179.2392 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO5804CJ29U:00000001","ConnectionId":"0HNO5804CJ29U"}
+[2026-08-28 20:08:27.791 +00:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:31.119 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.276 +00:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.278 +00:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.671 +00:00 INF] SGAE Seeder: Dados de cargos pastorais já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.672 +00:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.802 +00:00 INF] SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.804 +00:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.933 +00:00 INF] SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.933 +00:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:08:32.937 +00:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-08-28 20:08:34.005 +00:00 INF] HTTP GET / respondeu 301 em 29.1844 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Go-http-client/1.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO580HLPL7F:00000001","ConnectionId":"0HNO580HLPL7F"}
+[2026-08-28 20:08:34.113 +00:00 INF] HTTP GET /index.html respondeu 200 em 90.9183 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Go-http-client/1.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO580HLPL7F:00000002","ConnectionId":"0HNO580HLPL7F"}
+[2026-08-28 20:08:40.413 +00:00 INF] HTTP GET /index.html respondeu 200 em 4.7902 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO580HLPL7G:00000001","ConnectionId":"0HNO580HLPL7G"}
+[2026-08-28 20:08:40.829 +00:00 INF] HTTP GET /swagger/v1/swagger.json respondeu 200 em 206.6938 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO580HLPL7H:00000001","ConnectionId":"0HNO580HLPL7H"}
+[2026-08-28 20:09:09.939 +00:00 INF] SGAE Pipeline [CID: "fe4b8fdd-5abc-49cf-b864-5d03e81d2e93"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"840a09b6-14c5-4bae-8bbf-d6058abc53f9","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO580HLPL7I:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO580HLPL7I"}
+[2026-08-28 20:09:10.371 +00:00 INF] SGAE Pipeline [CID: "fe4b8fdd-5abc-49cf-b864-5d03e81d2e93"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 430ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"840a09b6-14c5-4bae-8bbf-d6058abc53f9","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO580HLPL7I:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO580HLPL7I"}
+[2026-08-28 20:09:10.403 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 544.8641 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO580HLPL7I:00000001","ConnectionId":"0HNO580HLPL7I"}
+[2026-08-28 20:09:14.097 +00:00 INF] SGAE Pipeline [CID: "33b5a6b5-6450-446e-bbf3-b9738e12f851"]: Iniciando processamento do Request CreateAgendamentoCommand {"LeadId":"998d5dc7-59a3-4d8f-b3c9-ae39b09170e3","DataHora":"2026-09-01T18:00:00.0000000Z","Data":"2026-09-01","Horario":"18:00","Modalidade":"Presencial","Valor":250,"SacerdoteId":null,"Sacerdote":"Babalorixa Sidnei T' Sango","ServicoConsultaId":null,"TipoConsulta":"Jogo de Búzios","Status":"Pendente","FormaPagamento":"Cartão","Pago":false,"Observacoes":"","WhatsappConfirmacaoDisparada":false,"ConfigLembrete":"Não Configurado","FrequenciaLembrete":"Nenhum","LeadNome":"Bruno Rangel III","LeadTelefone":"","Atendimento":null,"$type":"CreateAgendamentoCommand"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"c1e60d45-cdab-4bd2-bb6c-2aead07cdb2a","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO580HLPL7J:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO580HLPL7J"}
+[2026-08-28 20:09:15.299 +00:00 INF] SGAE Pipeline [CID: "33b5a6b5-6450-446e-bbf3-b9738e12f851"]: Finalizado processamento de CreateAgendamentoCommand com sucesso em 1201ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"c1e60d45-cdab-4bd2-bb6c-2aead07cdb2a","ActionName":"Sgae.API.Controllers.AgendamentosController.CreateAgendamento (Sgae.API)","RequestId":"0HNO580HLPL7J:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO580HLPL7J"}
+[2026-08-28 20:09:15.320 +00:00 INF] HTTP POST /api/Agendamentos respondeu 201 em 1283.3776 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO580HLPL7J:00000001","ConnectionId":"0HNO580HLPL7J"}
+[2026-08-28 20:09:19.530 +00:00 INF] SGAE Pipeline [CID: "e02dddd0-3040-4091-a968-7b5d5f731566"]: Iniciando processamento do Request GetAgendamentoByIdQuery {"Id":"efd0b2e5-f992-482c-bf15-389037f60477","$type":"GetAgendamentoByIdQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"97f33c2d-4fe5-4eba-bd1d-3d74037cc76a","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentoById (Sgae.API)","RequestId":"0HNO580HLPL7K:00000001","RequestPath":"/api/Agendamentos/efd0b2e5-f992-482c-bf15-389037f60477","ConnectionId":"0HNO580HLPL7K"}
+[2026-08-28 20:09:19.701 +00:00 INF] SGAE Pipeline [CID: "e02dddd0-3040-4091-a968-7b5d5f731566"]: Finalizado processamento de GetAgendamentoByIdQuery com sucesso em 170ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"97f33c2d-4fe5-4eba-bd1d-3d74037cc76a","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentoById (Sgae.API)","RequestId":"0HNO580HLPL7K:00000001","RequestPath":"/api/Agendamentos/efd0b2e5-f992-482c-bf15-389037f60477","ConnectionId":"0HNO580HLPL7K"}
+[2026-08-28 20:09:19.702 +00:00 INF] HTTP GET /api/Agendamentos/efd0b2e5-f992-482c-bf15-389037f60477 respondeu 200 em 182.4472 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO580HLPL7K:00000001","ConnectionId":"0HNO580HLPL7K"}
+[2026-08-28 20:09:33.423 +00:00 INF] SGAE Pipeline [CID: "75894650-37f6-4b29-abd8-c41e45dc5de8"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"840a09b6-14c5-4bae-8bbf-d6058abc53f9","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO580HLPL7L:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO580HLPL7L"}
+[2026-08-28 20:09:33.554 +00:00 INF] SGAE Pipeline [CID: "75894650-37f6-4b29-abd8-c41e45dc5de8"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 130ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"840a09b6-14c5-4bae-8bbf-d6058abc53f9","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO580HLPL7L:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO580HLPL7L"}
+[2026-08-28 20:09:33.556 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 134.7909 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO580HLPL7L:00000001","ConnectionId":"0HNO580HLPL7L"}
+[2026-08-28 20:10:54.470 +00:00 INF] SGAE Seeder: Iniciando validação de infraestrutura e migração estruturada do banco de dados... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:10:57.728 +00:00 INF] SGAE Seeder: Nenhuma migração pendente encontrada. Garantindo criação física do banco... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:10:58.896 +00:00 INF] SGAE Seeder: Infraestrutura de tabelas assegurada de forma íntegra. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:10:58.898 +00:00 INF] SGAE Seeder: Verificando tabela de papeis/cargos pastorais... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:10:59.218 +00:00 INF] SGAE Seeder: Dados de cargos pastorais já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:10:59.219 +00:00 INF] SGAE Seeder: Verificando tabela de configurações gerais de negócio... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:10:59.366 +00:00 INF] SGAE Seeder: Configurações do sistema já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:10:59.368 +00:00 INF] SGAE Seeder: Verificando tabela de categorias de atendimento espiritual... {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:10:59.494 +00:00 INF] SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:11:00.530 +00:00 INF] SGAE Seeder: Sincronizados 5 agendamentos com dados pastorais e financeiros completos. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:11:00.532 +00:00 INF] SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso. {"SourceContext":"Sgae.Infrastructure.Persistence.DatabaseSeeder"}
+[2026-08-28 20:11:00.536 +00:00 INF] Host da SGAE API configurado com sucesso. Executando o pipeline... {}
+[2026-08-28 20:11:02.367 +00:00 INF] SGAE Pipeline [CID: "46b71db8-014f-4a13-9a53-3655607d0b1f"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"f8db7ee8-ac25-4e8c-9063-e02f7384917c","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO581TS1VGK:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO581TS1VGK"}
+[2026-08-28 20:11:02.736 +00:00 INF] SGAE Pipeline [CID: "46b71db8-014f-4a13-9a53-3655607d0b1f"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 366ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"f8db7ee8-ac25-4e8c-9063-e02f7384917c","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO581TS1VGK:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO581TS1VGK"}
+[2026-08-28 20:11:02.787 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 520.9566 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO581TS1VGK:00000001","ConnectionId":"0HNO581TS1VGK"}
+[2026-08-28 20:11:04.972 +00:00 INF] SGAE Pipeline [CID: "2d6a8184-36ee-4890-aea2-81bc2b3b2ee0"]: Iniciando processamento do Request GetAgendamentosWithFiltersQuery {"DataInicio":null,"DataFim":null,"Modalidade":null,"Status":null,"$type":"GetAgendamentosWithFiltersQuery"} {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"f8db7ee8-ac25-4e8c-9063-e02f7384917c","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO581TS1VGL:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO581TS1VGL"}
+[2026-08-28 20:11:05.159 +00:00 INF] SGAE Pipeline [CID: "2d6a8184-36ee-4890-aea2-81bc2b3b2ee0"]: Finalizado processamento de GetAgendamentosWithFiltersQuery com sucesso em 185ms {"SourceContext":"Sgae.Application.Common.Behaviors.LoggingBehavior","ActionId":"f8db7ee8-ac25-4e8c-9063-e02f7384917c","ActionName":"Sgae.API.Controllers.AgendamentosController.GetAgendamentos (Sgae.API)","RequestId":"0HNO581TS1VGL:00000001","RequestPath":"/api/Agendamentos","ConnectionId":"0HNO581TS1VGL"}
+[2026-08-28 20:11:05.160 +00:00 INF] HTTP GET /api/Agendamentos respondeu 200 em 191.9598 ms {"RequestHost":"localhost:3000","RequestScheme":"http","QueryString":"","ClientIp":"127.0.0.1","UserAgent":"curl/7.88.1","SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNO581TS1VGL:00000001","ConnectionId":"0HNO581TS1VGL"}

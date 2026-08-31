@@ -46,6 +46,7 @@ public static class ApplicationPipelineExtensions
         // Tratamento global de exceções (RFC 7807)
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
+        // Swagger / OpenAPI na raiz da WebAPI
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {

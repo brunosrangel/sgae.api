@@ -1,10 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Sgae.API.Middlewares;
 
 /// <summary>
-/// Middleware global para capturar e normalizar erros (RFC 7807) antes de responder ao cliente.
+/// Middleware global para capturar, logar detalhadamente e normalizar erros (RFC 7807) antes de responder ao cliente.
 /// </summary>
 public class ExceptionHandlingMiddleware
 {
@@ -25,17 +26,11 @@ public class ExceptionHandlingMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogError(
-                ex,
-                "Ocorreu uma exceção não tratada na requisição {Method} {Path}. Detalhes: {ErrorMessage}",
-                context.Request.Method,
-                context.Request.Path,
-                ex.Message);
             await HandleExceptionAsync(context, ex);
         }
     }
 
-    private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
+    private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
         context.Response.ContentType = "application/problem+json";
 
@@ -62,14 +57,41 @@ public class ExceptionHandlingMiddleware
                 argEx.Message,
                 null
             ),
+            // BadHttpRequestException (ex: JSON parsing/binding inválido)
+            BadHttpRequestException badReqEx => (
+                StatusCodes.Status400BadRequest,
+                "Bad Request",
+                badReqEx.Message,
+                null
+            ),
             // Outros erros genéricos inexplicados
             _ => (
                 StatusCodes.Status500InternalServerError,
                 "Internal Server Error",
-                "Ocorreu um erro interno inesperado nos servidores do SGAE.",
+                exception.Message + " | " + exception.InnerException?.Message,
                 null
             )
         };
+
+        if (statusCode >= StatusCodes.Status500InternalServerError)
+        {
+            _logger.LogError(
+                exception,
+                "[Server Error 500] Exceção crítica não tratada na requisição {Method} {Path}. Detalhes: {ErrorMessage}",
+                context.Request.Method,
+                context.Request.Path,
+                exception.Message);
+        }
+        else
+        {
+            _logger.LogWarning(
+                "[Request Failure {StatusCode}] Requisição {Method} {Path} rejeitada. Motivo: {Detail}. Erros dos campos: {@Errors}",
+                statusCode,
+                context.Request.Method,
+                context.Request.Path,
+                detail,
+                errors ?? (object)exception.Message);
+        }
 
         context.Response.StatusCode = statusCode;
 

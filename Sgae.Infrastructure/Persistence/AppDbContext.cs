@@ -236,6 +236,30 @@ public class AppDbContext : DbContext, IAppDbContext
                 .HasMaxLength(500)
                 .IsRequired(false);
 
+            builder.Property(a => a.FormaPagamento)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
+            builder.Property(a => a.Pago)
+                .IsRequired()
+                .HasDefaultValue(false);
+
+            builder.Property(a => a.Observacoes)
+                .HasMaxLength(1000)
+                .IsRequired(false);
+
+            builder.Property(a => a.WhatsappConfirmacaoDisparada)
+                .IsRequired()
+                .HasDefaultValue(false);
+
+            builder.Property(a => a.ConfigLembrete)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
+            builder.Property(a => a.FrequenciaLembrete)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
             // Relacionamento Fluente: 1 Lead para N Agendamentos
             builder.HasOne(a => a.Lead)
                 .WithMany(l => l.Agendamentos)

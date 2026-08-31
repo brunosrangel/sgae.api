@@ -14,7 +14,16 @@ public class Agendamento : BaseEntity
         Guid leadId,
         DateTime dataHora,
         ModalidadeAtendimento modalidade,
-        decimal valor)
+        decimal valor,
+        Guid? sacerdoteId = null,
+        Guid? servicoConsultaId = null,
+        string? formaPagamento = null,
+        bool pago = false,
+        string? observacoes = null,
+        bool whatsappConfirmacaoDisparada = false,
+        string? configLembrete = null,
+        string? frequenciaLembrete = null,
+        StatusAgendamento status = StatusAgendamento.Pendente)
     {
         if (leadId == Guid.Empty)
             throw new ArgumentException("O agendamento deve estar associado a um consulente (LeadId) válido.");
@@ -29,7 +38,15 @@ public class Agendamento : BaseEntity
         DataHora = dataHora;
         Modalidade = modalidade;
         Valor = valor;
-        Status = StatusAgendamento.Pendente;
+        SacerdoteId = sacerdoteId;
+        ServicoConsultaId = servicoConsultaId;
+        FormaPagamento = formaPagamento?.Trim();
+        Pago = pago;
+        Observacoes = observacoes?.Trim();
+        WhatsappConfirmacaoDisparada = whatsappConfirmacaoDisparada;
+        ConfigLembrete = configLembrete?.Trim();
+        FrequenciaLembrete = frequenciaLembrete?.Trim();
+        Status = status;
         MotivoCancelamento = null;
     }
 
@@ -41,6 +58,13 @@ public class Agendamento : BaseEntity
     public decimal Valor { get; private set; }
     public StatusAgendamento Status { get; private set; }
     public string? MotivoCancelamento { get; private set; }
+
+    public string? FormaPagamento { get; private set; }
+    public bool Pago { get; private set; }
+    public string? Observacoes { get; private set; }
+    public bool WhatsappConfirmacaoDisparada { get; private set; }
+    public string? ConfigLembrete { get; private set; }
+    public string? FrequenciaLembrete { get; private set; }
 
     // Etapa 4 - Relacionamento 1-para-1 com AtendimentoEspiritual
     public virtual AtendimentoEspiritual? Atendimento { get; private set; }
@@ -61,6 +85,29 @@ public class Agendamento : BaseEntity
     public void DefinirServicoConsulta(Guid? servicoConsultaId)
     {
         ServicoConsultaId = servicoConsultaId;
+        RegisterUpdate();
+    }
+
+    public void AtualizarDetalhes(
+        string? formaPagamento,
+        bool pago,
+        string? observacoes,
+        bool whatsappConfirmacaoDisparada,
+        string? configLembrete,
+        string? frequenciaLembrete)
+    {
+        FormaPagamento = formaPagamento?.Trim();
+        Pago = pago;
+        Observacoes = observacoes?.Trim();
+        WhatsappConfirmacaoDisparada = whatsappConfirmacaoDisparada;
+        ConfigLembrete = configLembrete?.Trim();
+        FrequenciaLembrete = frequenciaLembrete?.Trim();
+        RegisterUpdate();
+    }
+
+    public void DefinirStatus(StatusAgendamento status)
+    {
+        Status = status;
         RegisterUpdate();
     }
 

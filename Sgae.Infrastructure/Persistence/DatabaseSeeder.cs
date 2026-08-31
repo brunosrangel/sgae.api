@@ -104,6 +104,7 @@ public class DatabaseSeeder
                     CREATE TABLE IF NOT EXISTS ""Sacerdotes"" (
                         ""Id"" UUID PRIMARY KEY,
                         ""Nome"" VARCHAR(150) NOT NULL,
+                        ""Especialidade"" VARCHAR(500) NULL,
                         ""Cargo"" VARCHAR(100) NULL,
                         ""Ativo"" BOOLEAN NOT NULL DEFAULT TRUE,
                         ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
@@ -111,9 +112,14 @@ public class DatabaseSeeder
                         ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
                     );
 
+                    ALTER TABLE IF EXISTS ""Sacerdotes"" ADD COLUMN IF NOT EXISTS ""Especialidade"" VARCHAR(500) NULL;
+                    ALTER TABLE IF EXISTS ""Sacerdotes"" ADD COLUMN IF NOT EXISTS ""Ativo"" BOOLEAN NOT NULL DEFAULT TRUE;
+                    ALTER TABLE IF EXISTS ""Sacerdotes"" ADD COLUMN IF NOT EXISTS ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE;
+
                     CREATE TABLE IF NOT EXISTS ""ServicosConsulta"" (
                         ""Id"" UUID PRIMARY KEY,
                         ""Nome"" VARCHAR(150) NOT NULL,
+                        ""Tarifa"" DECIMAL(18,2) NOT NULL DEFAULT 0,
                         ""Descricao"" VARCHAR(500) NULL,
                         ""ValorBase"" DECIMAL(18,2) NOT NULL DEFAULT 0,
                         ""Ativo"" BOOLEAN NOT NULL DEFAULT TRUE,
@@ -121,6 +127,10 @@ public class DatabaseSeeder
                         ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
                         ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
                     );
+
+                    ALTER TABLE IF EXISTS ""ServicosConsulta"" ADD COLUMN IF NOT EXISTS ""Tarifa"" DECIMAL(18,2) NOT NULL DEFAULT 0;
+                    ALTER TABLE IF EXISTS ""ServicosConsulta"" ADD COLUMN IF NOT EXISTS ""Ativo"" BOOLEAN NOT NULL DEFAULT TRUE;
+                    ALTER TABLE IF EXISTS ""ServicosConsulta"" ADD COLUMN IF NOT EXISTS ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE;
 
                     CREATE TABLE IF NOT EXISTS ""Agendamentos"" (
                         ""Id"" UUID PRIMARY KEY,
@@ -143,6 +153,12 @@ public class DatabaseSeeder
                     ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""Modalidade"" VARCHAR(50) NOT NULL DEFAULT 'Presencial';
                     ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""Status"" VARCHAR(50) NOT NULL DEFAULT 'Pendente';
                     ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""Valor"" DECIMAL(18, 2) NOT NULL DEFAULT 0;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""FormaPagamento"" VARCHAR(100) NULL;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""Pago"" BOOLEAN NOT NULL DEFAULT FALSE;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""Observacoes"" VARCHAR(1000) NULL;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""WhatsappConfirmacaoDisparada"" BOOLEAN NOT NULL DEFAULT FALSE;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""ConfigLembrete"" VARCHAR(100) NULL;
+                    ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""FrequenciaLembrete"" VARCHAR(100) NULL;
                     ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""DataHora"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
                     ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE;
                     ALTER TABLE IF EXISTS ""Agendamentos"" ADD COLUMN IF NOT EXISTS ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
@@ -174,12 +190,85 @@ public class DatabaseSeeder
             // Executa o Seeding das Categorias de Atendimento Espiritual (Spiritual Attendance Categories)
             await SeedSpiritualAttendanceCategoriesAsync(cancellationToken);
 
+            // Semeia e sincroniza Sacerdotes, Serviços de Consulta e Agendamentos completos
+            await SeedAgendamentosAndSacerdotesAsync(cancellationToken);
+
             _logger.LogInformation("SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso.");
         }
         catch (Exception ex)
         {
             _logger.LogCritical(ex, "SGAE Seeder: Erro catastrófico ao inicializar e semear o banco de dados.");
             throw;
+        }
+    }
+
+    private async Task SeedAgendamentosAndSacerdotesAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            // 1. Assegura a presença do Sacerdote Padrão
+            var sacerdoteDefaultId = Guid.Parse("16f372fa-5435-4b3e-a949-dd76dd98bf77");
+            var sacerdote = await _context.Sacerdotes.FirstOrDefaultAsync(s => s.Nome.Contains("Sidnei"), cancellationToken);
+            if (sacerdote == null)
+            {
+                sacerdote = new Sacerdote(
+                    "Babalorixa Sidnei T' Sango",
+                    "Jogo de Búzios e Orientação Espiritual de Tradição Nagô",
+                    true
+                );
+                typeof(Sgae.Domain.Common.BaseEntity).GetProperty("Id")?.SetValue(sacerdote, sacerdoteDefaultId);
+                await _context.Sacerdotes.AddAsync(sacerdote, cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
+            }
+
+            // 2. Assegura a presença do Serviço de Consulta Padrão
+            var servicoDefaultId = Guid.Parse("fcd150b0-71a6-4067-b2f3-243a688c101d");
+            var servico = await _context.ServicosConsulta.FirstOrDefaultAsync(s => s.Nome.Contains("Búzios"), cancellationToken);
+            if (servico == null)
+            {
+                servico = new ServicoConsulta("Jogo de Búzios", 250.00m, true);
+                typeof(Sgae.Domain.Common.BaseEntity).GetProperty("Id")?.SetValue(servico, servicoDefaultId);
+                await _context.ServicosConsulta.AddAsync(servico, cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
+            }
+
+            // 3. Atualiza agendamentos existentes que possuam campos nulos para refletirem dados completos e fiéis no grid
+            var agendamentosIncompletos = await _context.Agendamentos
+                .Where(a => a.SacerdoteId == null || a.ServicoConsultaId == null || a.FormaPagamento == null)
+                .ToListAsync(cancellationToken);
+
+            foreach (var ag in agendamentosIncompletos)
+            {
+                if (ag.SacerdoteId == null)
+                {
+                    ag.DefinirSacerdote(sacerdote.Id);
+                }
+                if (ag.ServicoConsultaId == null)
+                {
+                    ag.DefinirServicoConsulta(servico.Id);
+                }
+                if (string.IsNullOrEmpty(ag.FormaPagamento))
+                {
+                    ag.AtualizarDetalhes(
+                        "Cartão",
+                        ag.Pago,
+                        ag.Observacoes ?? "",
+                        ag.WhatsappConfirmacaoDisparada,
+                        ag.ConfigLembrete ?? "Não Configurado",
+                        ag.FrequenciaLembrete ?? "Nenhum"
+                    );
+                }
+            }
+
+            if (agendamentosIncompletos.Count > 0)
+            {
+                await _context.SaveChangesAsync(cancellationToken);
+                _logger.LogInformation("SGAE Seeder: Sincronizados {Count} agendamentos com dados pastorais e financeiros completos.", agendamentosIncompletos.Count);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "SGAE Seeder: Aviso ao semear/sincronizar sacerdotes e agendamentos.");
         }
     }
 

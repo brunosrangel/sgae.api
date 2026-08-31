@@ -62,7 +62,9 @@ public class CreateAgendamentoCommand : ICommand<Guid>
     public decimal Valor { get; set; }
 
     // Propriedades adicionais enviadas pelo JSON do front-end para perfeita compatibilidade de payload
+    public Guid? SacerdoteId { get; set; }
     public string? Sacerdote { get; set; }
+    public Guid? ServicoConsultaId { get; set; }
     public string? TipoConsulta { get; set; }
     public string? Status { get; set; }
     public string? FormaPagamento { get; set; }
