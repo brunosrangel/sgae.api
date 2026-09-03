@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Sgae.API.Middlewares;
 
 /// <summary>
-/// Middleware global para capturar, logar detalhadamente e normalizar erros (RFC 7807) antes de responder ao cliente.
+/// Middleware global para capturar, logar detalhadamente e normalizar erros em formato ProblemDetails (RFC 7807).
 /// </summary>
 public class ExceptionHandlingMiddleware
 {
@@ -34,50 +35,95 @@ public class ExceptionHandlingMiddleware
     {
         context.Response.ContentType = "application/problem+json";
 
-        var (statusCode, title, detail, errors) = exception switch
+        var (statusCode, title, type, detail, errors) = exception switch
         {
-            // Erro de Domínio - Invariante violada (ex: agendamento retroativo)
-            Sgae.Domain.Exceptions.DomainException domainEx => (
-                StatusCodes.Status400BadRequest,
-                "Domain Rule Violation",
-                domainEx.Message,
-                null
-            ),
-            // Erro de Validação de dados de entrada do FluentValidation (etapas de entrada)
+            // Erro de Validação de dados de entrada do FluentValidation
             FluentValidation.ValidationException valEx => (
                 StatusCodes.Status422UnprocessableEntity,
                 "Validation Failed",
-                "Um ou mais erros de validação ocorreram na entrada dos dados.",
+                "https://tools.ietf.org/html/rfc4918#section-11.2",
+                "One or more validation errors occurred in the request payload.",
                 ExtractValidationErrors(valEx)
             ),
-            // Exceção de Argumentos inválidos
+            // Erro de Recurso Não Encontrado
+            Sgae.Domain.Exceptions.NotFoundException domainNotFoundEx => (
+                StatusCodes.Status404NotFound,
+                "Resource Not Found",
+                "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+                domainNotFoundEx.Message,
+                null
+            ),
+            KeyNotFoundException notFoundEx => (
+                StatusCodes.Status404NotFound,
+                "Resource Not Found",
+                "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+                notFoundEx.Message,
+                null
+            ),
+            // Não Autorizado / Falha de Autenticação / Tokens Inválidos
+            Microsoft.IdentityModel.Tokens.SecurityTokenException secTokenEx => (
+                StatusCodes.Status401Unauthorized,
+                "Invalid Security Token",
+                "https://tools.ietf.org/html/rfc7235#section-3.1",
+                secTokenEx.Message,
+                null
+            ),
+            UnauthorizedAccessException unauthEx => (
+                StatusCodes.Status401Unauthorized,
+                "Unauthorized",
+                "https://tools.ietf.org/html/rfc7235#section-3.1",
+                string.IsNullOrWhiteSpace(unauthEx.Message) ? "Authentication credentials are required or invalid." : unauthEx.Message,
+                null
+            ),
+            // Erro de Regra de Negócio de Domínio
+            Sgae.Domain.Exceptions.DomainException domainEx => (
+                StatusCodes.Status400BadRequest,
+                "Domain Rule Violation",
+                "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                domainEx.Message,
+                null
+            ),
+            // ArgumentException ou InvalidOperationException
             ArgumentException argEx => (
                 StatusCodes.Status400BadRequest,
                 "Invalid Parameter",
+                "https://tools.ietf.org/html/rfc7231#section-6.5.1",
                 argEx.Message,
+                null
+            ),
+            InvalidOperationException invOpEx => (
+                StatusCodes.Status400BadRequest,
+                "Invalid Operation",
+                "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+                invOpEx.Message,
                 null
             ),
             // BadHttpRequestException (ex: JSON parsing/binding inválido)
             BadHttpRequestException badReqEx => (
                 StatusCodes.Status400BadRequest,
                 "Bad Request",
+                "https://tools.ietf.org/html/rfc7231#section-6.5.1",
                 badReqEx.Message,
                 null
             ),
-            // Outros erros genéricos inexplicados
+            // Outros erros genéricos não tratados
             _ => (
                 StatusCodes.Status500InternalServerError,
                 "Internal Server Error",
-                exception.Message + " | " + exception.InnerException?.Message,
+                "https://tools.ietf.org/html/rfc7231#section-6.6.1",
+                "An unexpected server error occurred while processing the request.",
                 null
             )
         };
+
+        var traceId = Activity.Current?.Id ?? context.TraceIdentifier;
 
         if (statusCode >= StatusCodes.Status500InternalServerError)
         {
             _logger.LogError(
                 exception,
-                "[Server Error 500] Exceção crítica não tratada na requisição {Method} {Path}. Detalhes: {ErrorMessage}",
+                "[Server Error 500] [TraceId: {TraceId}] Unhandled exception on {Method} {Path}: {ErrorMessage}",
+                traceId,
                 context.Request.Method,
                 context.Request.Path,
                 exception.Message);
@@ -85,10 +131,12 @@ public class ExceptionHandlingMiddleware
         else
         {
             _logger.LogWarning(
-                "[Request Failure {StatusCode}] Requisição {Method} {Path} rejeitada. Motivo: {Detail}. Erros dos campos: {@Errors}",
+                "[Request Failure {StatusCode}] [TraceId: {TraceId}] {Method} {Path} rejected: {Title} - {Detail}. Errors: {@Errors}",
                 statusCode,
+                traceId,
                 context.Request.Method,
                 context.Request.Path,
+                title,
                 detail,
                 errors ?? (object)exception.Message);
         }
@@ -99,9 +147,17 @@ public class ExceptionHandlingMiddleware
         {
             Status = statusCode,
             Title = title,
+            Type = type,
             Detail = detail,
             Instance = context.Request.Path
         };
+
+        problemDetails.Extensions.Add("traceId", traceId);
+
+        if (context.Response.Headers.TryGetValue("X-Correlation-ID", out var correlationId) && !string.IsNullOrEmpty(correlationId))
+        {
+            problemDetails.Extensions.Add("correlationId", correlationId.ToString());
+        }
 
         if (errors != null)
         {
@@ -123,14 +179,15 @@ public class ExceptionHandlingMiddleware
         var errors = new Dictionary<string, string[]>();
         foreach (var error in exception.Errors)
         {
-            if (errors.ContainsKey(error.PropertyName))
+            var propertyName = string.IsNullOrEmpty(error.PropertyName) ? "general" : error.PropertyName;
+            if (errors.ContainsKey(propertyName))
             {
-                var list = new List<string>(errors[error.PropertyName]) { error.ErrorMessage };
-                errors[error.PropertyName] = list.ToArray();
+                var list = new List<string>(errors[propertyName]) { error.ErrorMessage };
+                errors[propertyName] = list.ToArray();
             }
             else
             {
-                errors[error.PropertyName] = new[] { error.ErrorMessage };
+                errors[propertyName] = new[] { error.ErrorMessage };
             }
         }
         return errors;

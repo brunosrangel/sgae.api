@@ -1,22 +1,25 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Sgae.Application.Abstractions;
 using Sgae.Domain.Entities;
 using Sgae.Domain.Enums;
 
 namespace Sgae.Infrastructure.Persistence;
 
 /// <summary>
-/// Provedor robusto e seguro para execução automática de migrações e seeding estruturado de dados pastorais iniciais e de configurações do sistema.
+/// Provedor robusto e seguro para execução automática de migrações e seeding estruturado de dados pastorais iniciais, usuários e de configurações do sistema.
 /// </summary>
 public class DatabaseSeeder
 {
     private readonly AppDbContext _context;
     private readonly ILogger<DatabaseSeeder> _logger;
+    private readonly IPasswordHasher _passwordHasher;
 
-    public DatabaseSeeder(AppDbContext context, ILogger<DatabaseSeeder> logger)
+    public DatabaseSeeder(AppDbContext context, ILogger<DatabaseSeeder> logger, IPasswordHasher passwordHasher)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _passwordHasher = passwordHasher ?? throw new ArgumentNullException(nameof(passwordHasher));
     }
 
     /// <summary>
@@ -172,6 +175,68 @@ public class DatabaseSeeder
                         ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL,
                         ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
                     );
+
+                    CREATE TABLE IF NOT EXISTS ""Usuarios"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""Nome"" VARCHAR(150) NOT NULL,
+                        ""Email"" VARCHAR(150) NOT NULL,
+                        ""PasswordHash"" VARCHAR(500) NOT NULL,
+                        ""Perfil"" VARCHAR(50) NOT NULL,
+                        ""StatusAtivo"" BOOLEAN NOT NULL DEFAULT TRUE,
+                        ""PrimeiroAcesso"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""UltimoAcesso"" TIMESTAMP WITH TIME ZONE NULL,
+                        ""SacerdoteId"" UUID NULL REFERENCES ""Sacerdotes""(""Id"") ON DELETE SET NULL,
+                        ""PastoralRoleId"" UUID NULL REFERENCES ""PastoralRoles""(""Id"") ON DELETE SET NULL,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE UNIQUE INDEX IF NOT EXISTS ""IX_Usuarios_Email"" ON ""Usuarios"" (""Email"");
+
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""Nome"" VARCHAR(150) NOT NULL DEFAULT '';
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""Email"" VARCHAR(150) NOT NULL DEFAULT '';
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""PasswordHash"" VARCHAR(500) NOT NULL DEFAULT '';
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""Perfil"" VARCHAR(50) NOT NULL DEFAULT 'Admin';
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""StatusAtivo"" BOOLEAN NOT NULL DEFAULT TRUE;
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""PrimeiroAcesso"" BOOLEAN NOT NULL DEFAULT FALSE;
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""UltimoAcesso"" TIMESTAMP WITH TIME ZONE NULL;
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""SacerdoteId"" UUID NULL;
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""PastoralRoleId"" UUID NULL;
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE;
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
+                    ALTER TABLE IF EXISTS ""Usuarios"" ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL;
+
+                    CREATE TABLE IF NOT EXISTS ""RefreshTokens"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""Token"" VARCHAR(250) NOT NULL,
+                        ""UsuarioId"" UUID NOT NULL REFERENCES ""Usuarios""(""Id"") ON DELETE CASCADE,
+                        ""ExpiresAt"" TIMESTAMP WITH TIME ZONE NOT NULL,
+                        ""IsRevoked"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""RevokedAt"" TIMESTAMP WITH TIME ZONE NULL,
+                        ""CreatedByIp"" VARCHAR(50) NULL,
+                        ""RevokedByIp"" VARCHAR(50) NULL,
+                        ""ReplacedByToken"" VARCHAR(250) NULL,
+                        ""ReasonRevoked"" VARCHAR(500) NULL,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE UNIQUE INDEX IF NOT EXISTS ""IX_RefreshTokens_Token"" ON ""RefreshTokens"" (""Token"");
+
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""Token"" VARCHAR(250) NOT NULL DEFAULT '';
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""UsuarioId"" UUID NOT NULL;
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""ExpiresAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""IsRevoked"" BOOLEAN NOT NULL DEFAULT FALSE;
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""RevokedAt"" TIMESTAMP WITH TIME ZONE NULL;
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""CreatedByIp"" VARCHAR(50) NULL;
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""RevokedByIp"" VARCHAR(50) NULL;
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""ReplacedByToken"" VARCHAR(250) NULL;
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""ReasonRevoked"" VARCHAR(500) NULL;
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE;
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
+                    ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL;
                 ", cancellationToken);
             }
             catch (Exception ex)
@@ -192,6 +257,9 @@ public class DatabaseSeeder
 
             // Semeia e sincroniza Sacerdotes, Serviços de Consulta e Agendamentos completos
             await SeedAgendamentosAndSacerdotesAsync(cancellationToken);
+
+            // Semeia os Usuários Iniciais do Sistema (Admin, Sacerdote, Secretaria, Consulente)
+            await SeedUsuariosAsync(cancellationToken);
 
             _logger.LogInformation("SGAE Seeder: Carga inicial de dados finalizada com pleno sucesso.");
         }
@@ -419,6 +487,100 @@ public class DatabaseSeeder
         else
         {
             _logger.LogInformation("SGAE Seeder: Dados de categorias de atendimento espiritual já presentes. Pulo executado de forma segura.");
+        }
+    }
+
+    private async Task SeedUsuariosAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("SGAE Seeder: Verificando tabela de usuários do sistema...");
+
+        try
+        {
+            // Busca o sacerdote padrão para vincular à conta do sacerdote se existir
+            var sacerdote = await _context.Sacerdotes.FirstOrDefaultAsync(s => s.Nome.Contains("Sidnei"), cancellationToken);
+
+            // Busca o perfil de admin e pastoral staff se existirem
+            var adminRole = await _context.PastoralRoles.FirstOrDefaultAsync(r => r.Nome == "Admin", cancellationToken);
+            var pastorRole = await _context.PastoralRoles.FirstOrDefaultAsync(r => r.Nome == "Pastor", cancellationToken);
+            var coordenadorRole = await _context.PastoralRoles.FirstOrDefaultAsync(r => r.Nome == "Coordenador", cancellationToken);
+
+            var defaultUsers = new[]
+            {
+                (
+                    Nome: "Administrador SGAE",
+                    Email: "admin@sgae.com",
+                    Senha: "SgaeAdmin2026!",
+                    Perfil: PerfilUsuario.Admin,
+                    SacerdoteId: (Guid?)null,
+                    RoleId: adminRole?.Id
+                ),
+                (
+                    Nome: "Babalorixá Sidnei",
+                    Email: "sacerdote@sgae.com",
+                    Senha: "SgaeSacerdote2026!",
+                    Perfil: PerfilUsuario.Sacerdote,
+                    SacerdoteId: sacerdote?.Id,
+                    RoleId: pastorRole?.Id
+                ),
+                (
+                    Nome: "Secretaria Pastoral",
+                    Email: "secretaria@sgae.com",
+                    Senha: "SgaeSecretaria2026!",
+                    Perfil: PerfilUsuario.Secretaria,
+                    SacerdoteId: (Guid?)null,
+                    RoleId: coordenadorRole?.Id
+                ),
+                (
+                    Nome: "Consulente Visitante",
+                    Email: "consulente@sgae.com",
+                    Senha: "SgaeConsulente2026!",
+                    Perfil: PerfilUsuario.Consulente,
+                    SacerdoteId: (Guid?)null,
+                    RoleId: (Guid?)null
+                )
+            };
+
+            var addedCount = 0;
+            foreach (var userDef in defaultUsers)
+            {
+                var existing = await _context.Usuarios
+                    .IgnoreQueryFilters()
+                    .FirstOrDefaultAsync(u => u.Email == userDef.Email, cancellationToken);
+
+                if (existing == null)
+                {
+                    var newUser = new Usuario(
+                        userDef.Nome,
+                        userDef.Email,
+                        _passwordHasher.HashPassword(userDef.Senha),
+                        userDef.Perfil,
+                        userDef.SacerdoteId,
+                        userDef.RoleId,
+                        primeiroAcesso: false
+                    );
+                    await _context.Usuarios.AddAsync(newUser, cancellationToken);
+                    addedCount++;
+                }
+                else
+                {
+                    var passwordMatches = _passwordHasher.VerifyPassword(userDef.Senha, existing.PasswordHash);
+                    if (!passwordMatches)
+                    {
+                        existing.UpdatePassword(_passwordHasher.HashPassword(userDef.Senha));
+                    }
+                    if (!existing.StatusAtivo)
+                    {
+                        existing.SetStatus(true);
+                    }
+                }
+            }
+
+            await _context.SaveChangesAsync(cancellationToken);
+            _logger.LogInformation("SGAE Seeder: Sincronização de usuários padrão concluída com sucesso. Novos inseridos: {Count}", addedCount);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "SGAE Seeder: Aviso ao semear usuários do sistema.");
         }
     }
 }

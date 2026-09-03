@@ -20,5 +20,8 @@ public interface IAppDbContext
     DbSet<CustoInsumo> CustosInsumos { get; }
     DbSet<Prescricao> Prescricoes { get; }
     DbSet<Conversao> Conversoes { get; }
+    DbSet<PastoralRole> PastoralRoles { get; }
+    DbSet<Usuario> Usuarios { get; }
+    DbSet<RefreshToken> RefreshTokens { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

@@ -15,7 +15,7 @@ namespace Sgae.API.Controllers;
 /// <summary>
 /// Controller responsável por expor os endpoints de Gestão de Atendimento Espiritual (Etapa 4) e Acompanhamento de evolução.
 /// </summary>
-[Authorize(Roles = "PastoralStaff,Admin")]
+[Authorize(Roles = "Admin,Sacerdote,PastoralStaff")]
 [ApiController]
 [Route("api/[controller]")]
 [EnableRateLimiting("AtendimentosPolicy")]
@@ -37,23 +37,13 @@ public class AtendimentosController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> CreateAtendimento(
         [FromBody] CreateAtendimentoCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            var id = await _sender.Send(command, cancellationToken);
-            return CreatedAtAction(nameof(GetAtendimentoById), new { id }, id);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
+        var id = await _sender.Send(command, cancellationToken);
+        return CreatedAtAction(nameof(GetAtendimentoById), new { id }, id);
     }
 
     /// <summary>
@@ -111,32 +101,26 @@ public class AtendimentosController : ControllerBase
     [HttpPost("{id:guid}/acompanhamentos")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> CreateAcompanhamento(
         Guid id,
         [FromBody] CreateAcompanhamentoInputModel input,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            var command = new CreateAcompanhamentoCommand(
-                id,
-                input.DataAcompanhamento,
-                input.SintomasMelhora,
-                input.Recomendacoes,
-                input.Observacoes
-            );
+        var command = new CreateAcompanhamentoCommand(
+            id,
+            input.DataAcompanhamento,
+            input.SintomasMelhora,
+            input.Recomendacoes,
+            input.Observacoes
+        );
 
-            var acompanhamentoId = await _sender.Send(command, cancellationToken);
-            return CreatedAtAction(
-                nameof(GetAcompanhamentosByAtendimentoId),
-                new { id },
-                acompanhamentoId
-            );
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
+        var acompanhamentoId = await _sender.Send(command, cancellationToken);
+        return CreatedAtAction(
+            nameof(GetAcompanhamentosByAtendimentoId),
+            new { id },
+            acompanhamentoId
+        );
     }
 
     /// <summary>

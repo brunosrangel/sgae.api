@@ -33,6 +33,8 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<CustoInsumo> CustosInsumos => Set<CustoInsumo>();
     public DbSet<Prescricao> Prescricoes => Set<Prescricao>();
     public DbSet<Conversao> Conversoes => Set<Conversao>();
+    public DbSet<Usuario> Usuarios => Set<Usuario>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -589,6 +591,63 @@ public class AppDbContext : DbContext, IAppDbContext
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasQueryFilter(c => !c.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade Usuario
+        modelBuilder.Entity<Usuario>(builder =>
+        {
+            builder.ToTable("Usuarios");
+            builder.HasKey(u => u.Id);
+            builder.Property(u => u.Nome).HasMaxLength(150).IsRequired();
+            builder.Property(u => u.Email).HasMaxLength(150).IsRequired();
+            builder.HasIndex(u => u.Email).IsUnique();
+            builder.Property(u => u.PasswordHash).HasMaxLength(500).IsRequired();
+            builder.Property(u => u.Perfil).HasConversion<string>().HasMaxLength(50).IsRequired();
+            builder.Property(u => u.StatusAtivo).IsRequired().HasDefaultValue(true);
+            builder.Property(u => u.PrimeiroAcesso).IsRequired().HasDefaultValue(false);
+            builder.Property(u => u.UltimoAcesso).IsRequired(false);
+
+            builder.HasOne(u => u.Sacerdote)
+                .WithMany()
+                .HasForeignKey(u => u.SacerdoteId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.HasOne(u => u.PastoralRole)
+                .WithMany()
+                .HasForeignKey(u => u.PastoralRoleId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.HasMany(u => u.RefreshTokens)
+                .WithOne(r => r.Usuario)
+                .HasForeignKey(r => r.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Navigation(u => u.RefreshTokens)
+                .UsePropertyAccessMode(PropertyAccessMode.Field);
+
+            builder.HasQueryFilter(u => !u.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade RefreshToken
+        modelBuilder.Entity<RefreshToken>(builder =>
+        {
+            builder.ToTable("RefreshTokens");
+            builder.HasKey(r => r.Id);
+            builder.Property(r => r.Token).HasMaxLength(250).IsRequired();
+            builder.HasIndex(r => r.Token).IsUnique();
+            builder.Property(r => r.ExpiresAt).IsRequired();
+            builder.Property(r => r.IsRevoked).IsRequired().HasDefaultValue(false);
+            builder.Property(r => r.CreatedByIp).HasMaxLength(50).IsRequired(false);
+            builder.Property(r => r.RevokedByIp).HasMaxLength(50).IsRequired(false);
+            builder.Property(r => r.ReplacedByToken).HasMaxLength(250).IsRequired(false);
+            builder.Property(r => r.ReasonRevoked).HasMaxLength(500).IsRequired(false);
+
+            builder.HasOne(r => r.Usuario)
+                .WithMany(u => u.RefreshTokens)
+                .HasForeignKey(r => r.UsuarioId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasQueryFilter(r => !r.IsDeleted);
         });
 
         // Conversor global de DateTime para UTC para evitar problemas de fuso horário / Unspecified com o PostgreSQL (Npgsql)

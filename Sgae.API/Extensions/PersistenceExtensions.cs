@@ -3,12 +3,13 @@ using Sgae.Application.Abstractions;
 using Sgae.Domain.Repositories;
 using Sgae.Infrastructure.Persistence;
 using Sgae.Infrastructure.Persistence.Repositories;
+using Sgae.Infrastructure.Services;
 
 namespace Sgae.API.Extensions;
 
 /// <summary>
 /// Extensões responsáveis pelo registro da camada de Infrastructure:
-/// DbContext, repositórios, Unit of Work e cache distribuído (Redis com fallback em memória).
+/// DbContext, repositórios, Unit of Work, segurança de senhas e tokens, e cache distribuído (Redis com fallback em memória).
 /// </summary>
 public static class PersistenceExtensions
 {
@@ -22,6 +23,8 @@ public static class PersistenceExtensions
         services.AddScoped<DatabaseSeeder>();
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<ILeadRepository, LeadRepository>();
         services.AddScoped<IPerfilConsulenteRepository, PerfilConsulenteRepository>();
         services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();

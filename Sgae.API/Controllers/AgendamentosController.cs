@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sgae.Application.Agendamentos.Commands.CreateAgendamento;
 using Sgae.Application.Agendamentos.Commands.DeleteAgendamento;
@@ -13,6 +14,7 @@ namespace Sgae.API.Controllers;
 /// <summary>
 /// Controller responsável pelos endpoints do Módulo 2 - Agendamentos.
 /// </summary>
+[Authorize(Roles = "Admin,Secretaria,Sacerdote")]
 [ApiController]
 [Route("api/[controller]")]
 public class AgendamentosController : ControllerBase

@@ -1,131 +1,187 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+using Sgae.Application.Usuarios.Commands.AlterarSenha;
+using Sgae.Application.Usuarios.Commands.Login;
+using Sgae.Application.Usuarios.Commands.PrimeiroAcesso;
+using Sgae.Application.Usuarios.Commands.RefreshToken;
+using Sgae.Application.Usuarios.Commands.RegisterUsuario;
+using Sgae.Application.Usuarios.Commands.RevokeToken;
+using Sgae.Application.Usuarios.DTOs;
+using Sgae.Application.Usuarios.Queries.GetCurrentUser;
 
 namespace Sgae.API.Controllers;
 
 /// <summary>
-/// Controller responsável pela emissão de tokens de autenticação JWT para acesso seguro pastoral ao sistema.
+/// Controller responsável pelos fluxos de autenticação, emissão e renovação de tokens JWT (Refresh Tokens),
+/// cadastro de usuários, primeiro acesso e alteração de senha no SGAE.
+/// Protegido contra ataques de força bruta através da política de Rate Limiting 'AuthPolicy'.
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
+[EnableRateLimiting("AuthPolicy")]
 public class AuthController : ControllerBase
 {
-    private readonly IConfiguration _configuration;
+    private readonly IMediator _mediator;
 
-    public AuthController(IConfiguration configuration)
+    public AuthController(IMediator mediator)
     {
-        _configuration = configuration;
+        _mediator = mediator;
     }
 
     /// <summary>
-    /// Realiza a autenticação das credenciais fornecidas pelo membro da equipe pastoral e gera o token JWT.
+    /// Realiza a autenticação com e-mail e senha, retornando o Access Token JWT e o Refresh Token.
     /// </summary>
-    /// <param name="request">As credenciais contendo usuário e senha.</param>
-    /// <returns>O token JWT de acesso seguro.</returns>
     [HttpPost("login")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public IActionResult Login([FromBody] LoginRequest request)
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<ActionResult<AuthResponseDto>> Login([FromBody] LoginRequestDto request, CancellationToken cancellationToken)
     {
-        // Validação básica e segura das credenciais da equipe pastoral (Design corporativo e seguro)
-        var isValidUser = (request.Username == "pastor@sgae.com" && request.Password == "SgaePastoral2026!") ||
-                          (request.Username == "coord@sgae.com" && request.Password == "SgaePastoral2026!") ||
-                          (request.Username == "admin@sgae.com" && request.Password == "SgaeAdmin2026!");
+        var ipAddress = GetClientIpAddress();
+        var command = new LoginCommand(request.Email, request.Senha, ipAddress);
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
 
-        if (!isValidUser)
+    /// <summary>
+    /// Renova o Access Token JWT utilizando um Refresh Token válido.
+    /// </summary>
+    [HttpPost("refresh-token")]
+    [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<AuthResponseDto>> RefreshToken([FromBody] RefreshTokenRequestDto request, CancellationToken cancellationToken)
+    {
+        var ipAddress = GetClientIpAddress();
+        var command = new RefreshTokenCommand(request.RefreshToken, ipAddress);
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Cadastra um novo usuário no sistema SGAE com perfil e vínculos pastorais.
+    /// </summary>
+    [HttpPost("register")]
+    [ProducesResponseType(typeof(UsuarioDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<ActionResult<UsuarioDto>> Register([FromBody] RegisterUsuarioCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return CreatedAtAction(nameof(GetMe), new { }, result);
+    }
+
+    /// <summary>
+    /// Realiza o fluxo de primeiro acesso / definição de senha definitiva para novos usuários.
+    /// </summary>
+    [HttpPost("primeiro-acesso")]
+    [ProducesResponseType(typeof(AuthResponseDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<AuthResponseDto>> PrimeiroAcesso([FromBody] PrimeiroAcessoRequestDto request, CancellationToken cancellationToken)
+    {
+        var ipAddress = GetClientIpAddress();
+        var command = new PrimeiroAcessoCommand(
+            request.Email,
+            request.SenhaAtualOuTemporaria,
+            request.NovaSenha,
+            request.ConfirmacaoNovaSenha,
+            ipAddress
+        );
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Altera a senha do usuário autenticado no sistema (troca de senha).
+    /// </summary>
+    [Authorize]
+    [HttpPost("alterar-senha")]
+    [HttpPost("troca-senha")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> AlterarSenha([FromBody] AlterarSenhaRequestDto request, CancellationToken cancellationToken)
+    {
+        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
         {
-            return Unauthorized(new { message = "Credenciais inválidas ou o usuário fornecido não possui acesso pastoral autorizado." });
+            return Unauthorized(new { message = "Identificador de usuário não encontrado no token." });
         }
 
-        var role = request.Username == "admin@sgae.com" ? "Admin" : "PastoralStaff";
+        var ipAddress = GetClientIpAddress();
+        var command = new AlterarSenhaCommand(userId, request.SenhaAtual, request.NovaSenha, ipAddress);
+        await _mediator.Send(command, cancellationToken);
+        return Ok(new { message = "Senha alterada com sucesso. As sessões ativas anteriores foram revogadas." });
+    }
 
-        // Obtenção dos parâmetros configurados para o JWT
-        var secretKey = _configuration["Jwt:Key"] ?? "SuperSecretRobustKeyForSgaeSystem2026ValidationAndSecuritySignatures!";
-        var issuer = _configuration["Jwt:Issuer"] ?? "SGAE.API";
-        var audience = _configuration["Jwt:Audience"] ?? "SGAE.API";
+    /// <summary>
+    /// Revoga o Refresh Token atual e encerra a sessão do usuário (Logout).
+    /// </summary>
+    [HttpPost("logout")]
+    [HttpPost("revoke-token")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> Logout([FromBody] RefreshTokenRequestDto request, CancellationToken cancellationToken)
+    {
+        var ipAddress = GetClientIpAddress();
+        var command = new RevokeTokenCommand(request.RefreshToken, ipAddress);
+        await _mediator.Send(command, cancellationToken);
+        return Ok(new { message = "Sessão encerrada com sucesso." });
+    }
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-        // Definição estruturada de Claims para a Equipe Pastoral
-        var claims = new[]
+    /// <summary>
+    /// Retorna os dados do perfil do usuário autenticado na sessão atual.
+    /// </summary>
+    [Authorize]
+    [HttpGet("me")]
+    [ProducesResponseType(typeof(UsuarioDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<UsuarioDto>> GetMe(CancellationToken cancellationToken)
+    {
+        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrEmpty(userIdClaim) || !Guid.TryParse(userIdClaim, out var userId))
         {
-            new Claim(ClaimTypes.Name, request.Username),
-            new Claim(ClaimTypes.Email, request.Username),
-            new Claim(ClaimTypes.Role, role),
-            new Claim("SystemAccess", "PastoralCore"),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
+            return Unauthorized(new { message = "Identificador de usuário não encontrado no token." });
+        }
 
-        var tokenExpirationMinutes = 120; // 2 horas de expedição
-        var token = new JwtSecurityToken(
-            issuer: issuer,
-            audience: audience,
-            claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(tokenExpirationMinutes),
-            signingCredentials: creds
-        );
+        var result = await _mediator.Send(new GetCurrentUserQuery(userId), cancellationToken);
+        return Ok(result);
+    }
 
-        var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-        var response = new LoginResponse
+    private string? GetClientIpAddress()
+    {
+        if (Request.Headers.TryGetValue("X-Forwarded-For", out var forwardedHeader))
         {
-            Token = tokenString,
-            ExpiresInSeconds = tokenExpirationMinutes * 60,
-            Username = request.Username,
-            Role = role
-        };
+            return forwardedHeader.FirstOrDefault()?.Split(',').FirstOrDefault()?.Trim();
+        }
 
-        return Ok(response);
+        return HttpContext.Connection.RemoteIpAddress?.ToString();
     }
 }
 
-/// <summary>
-/// Modelo contendo dados requeridos para autenticação na API.
-/// </summary>
-public class LoginRequest
+public class LoginRequestDto
 {
-    /// <summary>
-    /// Conta de e-mail / Identificador do Pastor ou Administrador (ex: pastor@sgae.com).
-    /// </summary>
-    public string Username { get; set; } = null!;
-
-    /// <summary>
-    /// Senha criptográfica cadastrada de acesso do membro pastoral.
-    /// </summary>
-    public string Password { get; set; } = null!;
+    public string Email { get; set; } = null!;
+    public string Senha { get; set; } = null!;
 }
 
-/// <summary>
-/// Payload contendo o token expedido para controle de sessões.
-/// </summary>
-public class LoginResponse
+public class RefreshTokenRequestDto
 {
-    /// <summary>
-    /// Token JWT Bearer gerado para uso nos cabeçalhos de requisição de endpoints protegidos.
-    /// </summary>
-    public string Token { get; set; } = null!;
+    public string RefreshToken { get; set; } = null!;
+}
 
-    /// <summary>
-    /// O tipo padrão de autenticação corporativa.
-    /// </summary>
-    public string TokenType { get; set; } = "Bearer";
+public class PrimeiroAcessoRequestDto
+{
+    public string Email { get; set; } = null!;
+    public string SenhaAtualOuTemporaria { get; set; } = null!;
+    public string NovaSenha { get; set; } = null!;
+    public string ConfirmacaoNovaSenha { get; set; } = null!;
+}
 
-    /// <summary>
-    /// Tempo de expiração do token em segundos.
-    /// </summary>
-    public int ExpiresInSeconds { get; set; }
-
-    /// <summary>
-    /// Identificador do usuário que realizou a sessão de autenticação.
-    /// </summary>
-    public string Username { get; set; } = null!;
-
-    /// <summary>
-    /// Nível de privilégio concedido (ex: PastoralStaff, Admin).
-    /// </summary>
-    public string Role { get; set; } = null!;
+public class AlterarSenhaRequestDto
+{
+    public string SenhaAtual { get; set; } = null!;
+    public string NovaSenha { get; set; } = null!;
 }

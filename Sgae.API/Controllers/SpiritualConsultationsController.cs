@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sgae.Application.Atendimentos.Commands.CreateAtendimento;
 using Sgae.Application.Atendimentos.Commands.DeleteAtendimento;
@@ -14,6 +15,7 @@ namespace Sgae.API.Controllers;
 /// <summary>
 /// Controller responsável pela gestão e operações CRUD de Consultas Espirituais (Atendimentos Espirituais).
 /// </summary>
+[Authorize(Roles = "Admin,Sacerdote,PastoralStaff")]
 [ApiController]
 [Route("api/[controller]")]
 public class SpiritualConsultationsController : ControllerBase
@@ -34,23 +36,13 @@ public class SpiritualConsultationsController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Create(
         [FromBody] CreateAtendimentoCommand command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            var id = await _sender.Send(command, cancellationToken);
-            return CreatedAtAction(nameof(GetById), new { id }, id);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
-        catch (InvalidOperationException ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
+        var id = await _sender.Send(command, cancellationToken);
+        return CreatedAtAction(nameof(GetById), new { id }, id);
     }
 
     /// <summary>
@@ -109,32 +101,22 @@ public class SpiritualConsultationsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Update(
         Guid id,
         [FromBody] UpdateAtendimentoInputModel command,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            var updateCommand = new UpdateAtendimentoCommand(
-                id,
-                command.Tipo,
-                command.TempoDuracaoMinutos,
-                command.TemasAbordados,
-                command.Observacoes
-            );
+        var updateCommand = new UpdateAtendimentoCommand(
+            id,
+            command.Tipo,
+            command.TempoDuracaoMinutos,
+            command.TemasAbordados,
+            command.Observacoes
+        );
 
-            await _sender.Send(updateCommand, cancellationToken);
-            return NoContent();
-        }
-        catch (ArgumentException ex)
-        {
-            if (ex.Message.Contains("não localizado"))
-            {
-                return NotFound(new { error = ex.Message });
-            }
-            return BadRequest(new { error = ex.Message });
-        }
+        await _sender.Send(updateCommand, cancellationToken);
+        return NoContent();
     }
 
     /// <summary>
@@ -151,15 +133,8 @@ public class SpiritualConsultationsController : ControllerBase
         Guid id,
         CancellationToken cancellationToken)
     {
-        try
-        {
-            await _sender.Send(new DeleteAtendimentoCommand(id), cancellationToken);
-            return NoContent();
-        }
-        catch (ArgumentException ex)
-        {
-            return NotFound(new { error = ex.Message });
-        }
+        await _sender.Send(new DeleteAtendimentoCommand(id), cancellationToken);
+        return NoContent();
     }
 }
 

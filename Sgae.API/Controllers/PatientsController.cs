@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sgae.Application.Common.Models;
 using Sgae.Application.Leads.Commands.CreateLead;
@@ -13,6 +14,7 @@ namespace Sgae.API.Controllers;
 /// <summary>
 /// Controller responsável pela gestão e operações CRUD de Pacientes (Consulentes/Leads).
 /// </summary>
+[Authorize(Roles = "Admin,Secretaria,Sacerdote")]
 [ApiController]
 [Route("api/[controller]")]
 public class PatientsController : ControllerBase

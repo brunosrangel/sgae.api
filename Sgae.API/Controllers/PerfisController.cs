@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sgae.Application.Perfis.Commands.CreatePerfilConsulente;
 using Sgae.Application.Perfis.DTOs;
@@ -9,6 +10,7 @@ namespace Sgae.API.Controllers;
 /// <summary>
 /// Controller responsável por expor os endpoints do Módulo 3 - Perfil do Consulente.
 /// </summary>
+[Authorize(Roles = "Admin,Secretaria,Sacerdote")]
 [ApiController]
 [Route("api/[controller]")]
 public class PerfisController : ControllerBase

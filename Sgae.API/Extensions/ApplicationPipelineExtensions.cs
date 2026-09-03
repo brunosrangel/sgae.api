@@ -46,20 +46,27 @@ public static class ApplicationPipelineExtensions
         // Tratamento global de exceções (RFC 7807)
         app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-        // Swagger / OpenAPI na raiz da WebAPI
+        // Swagger / OpenAPI na raiz da WebAPI com suporte a persistência de Bearer Token
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "SGAE API v1");
             c.DocumentTitle = "SGAE API - Sistema de Gestão de Atendimento Especializado";
             c.RoutePrefix = string.Empty;
+            c.EnablePersistAuthorization(); // Mantém o Bearer Token salvo na sessão do Swagger UI
+            c.DisplayRequestDuration();
         });
 
         // Rate limiting com políticas de segurança por IP do cliente
         app.UseRateLimiter();
 
-        // Autenticação JWT Bearer e autorização corporativa nas rotas
+        // Autenticação JWT Bearer
         app.UseAuthentication();
+
+        // Validação centralizada de status ativo do usuário autenticado em todas as requisições
+        app.UseMiddleware<UserActiveValidationMiddleware>();
+
+        // Autorização corporativa e RBAC nas rotas
         app.UseAuthorization();
 
         return app;
