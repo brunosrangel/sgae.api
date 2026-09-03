@@ -19,6 +19,9 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Agendamento> Agendamentos => Set<Agendamento>();
     public DbSet<PerfilConsulente> PerfisConsulentes => Set<PerfilConsulente>();
     public DbSet<AtendimentoEspiritual> AtendimentosEspirituais => Set<AtendimentoEspiritual>();
+    public DbSet<Atendimento> Atendimentos => Set<Atendimento>();
+    public DbSet<AnexoAtendimento> AnexosAtendimento => Set<AnexoAtendimento>();
+    public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
     public DbSet<Acompanhamento> Acompanhamentos => Set<Acompanhamento>();
     public DbSet<PastoralRole> PastoralRoles => Set<PastoralRole>();
     public DbSet<SystemConfiguration> SystemConfigurations => Set<SystemConfiguration>();
@@ -350,6 +353,157 @@ public class AppDbContext : DbContext, IAppDbContext
                 .OnDelete(DeleteBehavior.Cascade); // Se o agendamento for cancelado/expurgado de forma física
 
             builder.HasQueryFilter(a => !a.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade Atendimento (Oracular / Jogo de Búzios)
+        modelBuilder.Entity<Atendimento>(builder =>
+        {
+            builder.ToTable("Atendimentos");
+
+            builder.HasKey(a => a.Id);
+
+            builder.Property(a => a.DataConsulta)
+                .IsRequired();
+
+            builder.Property(a => a.TipoOraculo)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.Property(a => a.PerguntaCentral)
+                .HasMaxLength(2000)
+                .IsRequired();
+
+            builder.Property(a => a.VeredictoEspiritual)
+                .HasMaxLength(4000)
+                .IsRequired();
+
+            builder.Property(a => a.Status)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(a => a.Observacoes)
+                .HasMaxLength(4000)
+                .IsRequired(false);
+
+            builder.HasOne(a => a.Sacerdote)
+                .WithMany()
+                .HasForeignKey(a => a.SacerdoteId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(a => a.Consulente)
+                .WithMany()
+                .HasForeignKey(a => a.ConsulenteId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(a => a.Agendamento)
+                .WithMany()
+                .HasForeignKey(a => a.AgendamentoId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            builder.HasMany(a => a.Anexos)
+                .WithOne(an => an.Atendimento)
+                .HasForeignKey(an => an.AtendimentoId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Índices de alta performance para listagens e filtros
+            builder.HasIndex(a => a.SacerdoteId).HasDatabaseName("IX_Atendimentos_SacerdoteId");
+            builder.HasIndex(a => a.ConsulenteId).HasDatabaseName("IX_Atendimentos_ConsulenteId");
+            builder.HasIndex(a => a.DataConsulta).HasDatabaseName("IX_Atendimentos_DataConsulta");
+            builder.HasIndex(a => a.Status).HasDatabaseName("IX_Atendimentos_Status");
+            builder.HasIndex(a => new { a.DataConsulta, a.Status }).HasDatabaseName("IX_Atendimentos_DataConsulta_Status");
+            builder.HasIndex(a => new { a.SacerdoteId, a.DataConsulta }).HasDatabaseName("IX_Atendimentos_SacerdoteId_DataConsulta");
+            builder.HasIndex(a => new { a.ConsulenteId, a.DataConsulta }).HasDatabaseName("IX_Atendimentos_ConsulenteId_DataConsulta");
+
+            builder.HasQueryFilter(a => !a.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade AuditLog (Auditoria e Rastreabilidade)
+        modelBuilder.Entity<AuditLog>(builder =>
+        {
+            builder.ToTable("AuditLogs");
+
+            builder.HasKey(al => al.Id);
+
+            builder.Property(al => al.EntityName)
+                .HasMaxLength(150)
+                .IsRequired();
+
+            builder.Property(al => al.EntityId)
+                .HasMaxLength(150)
+                .IsRequired();
+
+            builder.Property(al => al.Action)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(al => al.UserIdentity)
+                .HasMaxLength(255)
+                .IsRequired();
+
+            builder.Property(al => al.Timestamp)
+                .IsRequired();
+
+            builder.Property(al => al.ChangedColumns)
+                .IsRequired(false);
+
+            builder.Property(al => al.OldValues)
+                .IsRequired(false);
+
+            builder.Property(al => al.NewValues)
+                .IsRequired(false);
+
+            builder.Property(al => al.IpAddress)
+                .HasMaxLength(100)
+                .IsRequired(false);
+
+            builder.HasIndex(al => al.EntityName).HasDatabaseName("IX_AuditLogs_EntityName");
+            builder.HasIndex(al => al.EntityId).HasDatabaseName("IX_AuditLogs_EntityId");
+            builder.HasIndex(al => al.UserIdentity).HasDatabaseName("IX_AuditLogs_UserIdentity");
+            builder.HasIndex(al => al.Timestamp).HasDatabaseName("IX_AuditLogs_Timestamp");
+            builder.HasIndex(al => new { al.EntityName, al.Timestamp }).HasDatabaseName("IX_AuditLogs_EntityName_Timestamp");
+
+            builder.HasQueryFilter(al => !al.IsDeleted);
+        });
+
+        // Configuração Estrita da Entidade AnexoAtendimento (Fotos de Búzios, Anotações)
+        modelBuilder.Entity<AnexoAtendimento>(builder =>
+        {
+            builder.ToTable("AnexosAtendimento");
+
+            builder.HasKey(an => an.Id);
+
+            builder.Property(an => an.NomeArquivo)
+                .HasMaxLength(255)
+                .IsRequired();
+
+            builder.Property(an => an.TipoArquivo)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.Property(an => an.TamanhoBytes)
+                .IsRequired();
+
+            builder.Property(an => an.Base64Data)
+                .IsRequired(false);
+
+            builder.Property(an => an.Legenda)
+                .HasMaxLength(1000)
+                .IsRequired(false);
+
+            builder.Property(an => an.RotacaoGraus)
+                .IsRequired();
+
+            builder.Property(an => an.Categoria)
+                .HasMaxLength(50)
+                .IsRequired(false);
+
+            builder.HasOne(an => an.Atendimento)
+                .WithMany(a => a.Anexos)
+                .HasForeignKey(an => an.AtendimentoId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasQueryFilter(an => !an.IsDeleted);
         });
 
         // Configuração Estrita da Entidade Acompanhamento

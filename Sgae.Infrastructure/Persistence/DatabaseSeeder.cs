@@ -223,6 +223,70 @@ public class DatabaseSeeder
                         ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
                     );
 
+                    CREATE TABLE IF NOT EXISTS ""Atendimentos"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""SacerdoteId"" UUID NOT NULL REFERENCES ""Sacerdotes""(""Id"") ON DELETE RESTRICT,
+                        ""ConsulenteId"" UUID NOT NULL REFERENCES ""Leads""(""Id"") ON DELETE RESTRICT,
+                        ""AgendamentoId"" UUID NULL REFERENCES ""Agendamentos""(""Id"") ON DELETE SET NULL,
+                        ""DataConsulta"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""TipoOraculo"" VARCHAR(100) NOT NULL DEFAULT 'Jogo de Búzios',
+                        ""PerguntaCentral"" VARCHAR(2000) NOT NULL DEFAULT '',
+                        ""VeredictoEspiritual"" VARCHAR(4000) NOT NULL DEFAULT '',
+                        ""Status"" VARCHAR(50) NOT NULL DEFAULT 'Realizado',
+                        ""Observacoes"" VARCHAR(4000) NULL,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE TABLE IF NOT EXISTS ""AnexosAtendimento"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""AtendimentoId"" UUID NOT NULL REFERENCES ""Atendimentos""(""Id"") ON DELETE CASCADE,
+                        ""NomeArquivo"" VARCHAR(255) NOT NULL,
+                        ""TipoArquivo"" VARCHAR(100) NOT NULL DEFAULT 'image/jpeg',
+                        ""TamanhoBytes"" BIGINT NOT NULL DEFAULT 0,
+                        ""Base64Data"" TEXT NULL,
+                        ""Legenda"" VARCHAR(1000) NULL,
+                        ""RotacaoGraus"" INT NOT NULL DEFAULT 0,
+                        ""Categoria"" VARCHAR(50) NULL DEFAULT 'FotoBuzios',
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_SacerdoteId"" ON ""Atendimentos"" (""SacerdoteId"");
+                    CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_ConsulenteId"" ON ""Atendimentos"" (""ConsulenteId"");
+                    CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_DataConsulta"" ON ""Atendimentos"" (""DataConsulta"");
+                    CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_AgendamentoId"" ON ""Atendimentos"" (""AgendamentoId"");
+                    CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_Status"" ON ""Atendimentos"" (""Status"");
+                    CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_DataConsulta_Status"" ON ""Atendimentos"" (""DataConsulta"", ""Status"");
+                    CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_SacerdoteId_DataConsulta"" ON ""Atendimentos"" (""SacerdoteId"", ""DataConsulta"");
+                    CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_ConsulenteId_DataConsulta"" ON ""Atendimentos"" (""ConsulenteId"", ""DataConsulta"");
+                    CREATE INDEX IF NOT EXISTS ""IX_AnexosAtendimento_AtendimentoId"" ON ""AnexosAtendimento"" (""AtendimentoId"");
+
+                    CREATE TABLE IF NOT EXISTS ""AuditLogs"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""EntityName"" VARCHAR(150) NOT NULL,
+                        ""EntityId"" VARCHAR(150) NOT NULL,
+                        ""Action"" VARCHAR(50) NOT NULL,
+                        ""UserIdentity"" VARCHAR(255) NOT NULL,
+                        ""Timestamp"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""ChangedColumns"" TEXT NULL,
+                        ""OldValues"" TEXT NULL,
+                        ""NewValues"" TEXT NULL,
+                        ""IpAddress"" VARCHAR(100) NULL,
+                        ""CorrelationId"" UUID NULL,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE INDEX IF NOT EXISTS ""IX_AuditLogs_EntityName"" ON ""AuditLogs"" (""EntityName"");
+                    CREATE INDEX IF NOT EXISTS ""IX_AuditLogs_EntityId"" ON ""AuditLogs"" (""EntityId"");
+                    CREATE INDEX IF NOT EXISTS ""IX_AuditLogs_UserIdentity"" ON ""AuditLogs"" (""UserIdentity"");
+                    CREATE INDEX IF NOT EXISTS ""IX_AuditLogs_Timestamp"" ON ""AuditLogs"" (""Timestamp"");
+                    CREATE INDEX IF NOT EXISTS ""IX_AuditLogs_EntityName_Timestamp"" ON ""AuditLogs"" (""EntityName"", ""Timestamp"");
+
                     CREATE UNIQUE INDEX IF NOT EXISTS ""IX_RefreshTokens_Token"" ON ""RefreshTokens"" (""Token"");
 
                     ALTER TABLE IF EXISTS ""RefreshTokens"" ADD COLUMN IF NOT EXISTS ""Token"" VARCHAR(250) NOT NULL DEFAULT '';

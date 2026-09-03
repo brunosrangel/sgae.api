@@ -4,6 +4,7 @@ using Sgae.Domain.Repositories;
 using Sgae.Infrastructure.Persistence;
 using Sgae.Infrastructure.Persistence.Repositories;
 using Sgae.Infrastructure.Services;
+using Sgae.API.Services;
 
 namespace Sgae.API.Extensions;
 
@@ -15,9 +16,14 @@ public static class PersistenceExtensions
 {
     public static IServiceCollection AddSgaePersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<AppDbContext>(options =>
+        services.AddHttpContextAccessor();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
+        services.AddSingleton<IFileSecurityService, FileSecurityService>();
+        services.AddScoped<AuditSaveChangesInterceptor>();
+
+        services.AddDbContext<AppDbContext>((sp, options) =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
-                   .AddInterceptors(new DateTimeUtcInterceptor()));
+                   .AddInterceptors(new DateTimeUtcInterceptor(), sp.GetRequiredService<AuditSaveChangesInterceptor>()));
 
         services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
         services.AddScoped<DatabaseSeeder>();
@@ -29,6 +35,7 @@ public static class PersistenceExtensions
         services.AddScoped<IPerfilConsulenteRepository, PerfilConsulenteRepository>();
         services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
         services.AddScoped<IAtendimentoEspiritualRepository, AtendimentoEspiritualRepository>();
+        services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
         services.AddScoped<IAcompanhamentoRepository, AcompanhamentoRepository>();
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
 

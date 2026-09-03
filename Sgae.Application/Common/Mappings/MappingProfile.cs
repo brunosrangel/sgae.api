@@ -3,6 +3,7 @@ using Sgae.Application.Agendamentos.DTOs;
 using Sgae.Application.Atendimentos.DTOs;
 using Sgae.Application.Leads.DTOs;
 using Sgae.Application.Perfis.DTOs;
+using Sgae.Application.Sacerdotes.DTOs;
 using Sgae.Domain.Entities;
 
 namespace Sgae.Application.Common.Mappings;
@@ -11,6 +12,23 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        // Mapeamento de Sacerdote para SacerdoteDto
+        CreateMap<Sacerdote, SacerdoteDto>();
+
+        // Mapeamento de AnexoAtendimento para AnexoAtendimentoResponseDto
+        CreateMap<AnexoAtendimento, AnexoAtendimentoResponseDto>()
+            .ForMember(dest => dest.TemConteudoBinario, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Base64Data)))
+            .ForMember(dest => dest.UrlDownload, opt => opt.MapFrom(src => $"/api/Atendimentos/{src.AtendimentoId}/anexos/{src.Id}/download"));
+
+        // Mapeamento de Atendimento para AtendimentoResponseDto
+        CreateMap<Atendimento, AtendimentoResponseDto>()
+            .ForMember(dest => dest.SacerdoteNome, opt => opt.MapFrom(src => src.Sacerdote != null ? src.Sacerdote.Nome : string.Empty))
+            .ForMember(dest => dest.ConsulenteNome, opt => opt.MapFrom(src => src.Consulente != null ? src.Consulente.Nome : string.Empty))
+            .ForMember(dest => dest.ConsulenteTelefone, opt => opt.MapFrom(src => src.Consulente != null ? src.Consulente.Telefone : null))
+            .ForMember(dest => dest.ConsulenteEmail, opt => opt.MapFrom(src => src.Consulente != null ? src.Consulente.Email : null))
+            .ForMember(dest => dest.QuantidadeAnexos, opt => opt.MapFrom(src => src.Anexos != null ? src.Anexos.Count : 0))
+            .ForMember(dest => dest.Anexos, opt => opt.MapFrom(src => src.Anexos));
+
         // Mapeamento de PerfilConsulente para PerfilConsulenteDto
         CreateMap<PerfilConsulente, PerfilConsulenteDto>();
 
@@ -25,6 +43,9 @@ public class MappingProfile : Profile
 
         // Mapeamento de Acompanhamento para AcompanhamentoDto
         CreateMap<Acompanhamento, AcompanhamentoDto>();
+
+        // Mapeamento de AuditLog para AuditLogDto
+        CreateMap<AuditLog, AuditLogDto>();
 
         // Mapeamento de LeadHistorico para LeadHistoricoDto
         CreateMap<LeadHistorico, LeadHistoricoDto>();

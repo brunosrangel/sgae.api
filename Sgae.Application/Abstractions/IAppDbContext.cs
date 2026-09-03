@@ -10,6 +10,9 @@ public interface IAppDbContext
     DbSet<Agendamento> Agendamentos { get; }
     DbSet<PerfilConsulente> PerfisConsulentes { get; }
     DbSet<AtendimentoEspiritual> AtendimentosEspirituais { get; }
+    DbSet<Atendimento> Atendimentos { get; }
+    DbSet<AnexoAtendimento> AnexosAtendimento { get; }
+    DbSet<AuditLog> AuditLogs { get; }
     DbSet<CanalCaptacao> CanaisCaptacao { get; }
     DbSet<Sacerdote> Sacerdotes { get; }
     DbSet<ServicoConsulta> ServicosConsulta { get; }
