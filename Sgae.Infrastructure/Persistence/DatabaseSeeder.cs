@@ -572,11 +572,27 @@ public class DatabaseSeeder
             {
                 (
                     Nome: "Administrador SGAE",
+                    Email: "admin@sgae.com.br",
+                    Senha: "Mudar@123",
+                    Perfil: PerfilUsuario.Admin,
+                    SacerdoteId: (Guid?)null,
+                    RoleId: adminRole?.Id
+                ),
+                (
+                    Nome: "Administrador SGAE",
                     Email: "admin@sgae.com",
                     Senha: "SgaeAdmin2026!",
                     Perfil: PerfilUsuario.Admin,
                     SacerdoteId: (Guid?)null,
                     RoleId: adminRole?.Id
+                ),
+                (
+                    Nome: "Babalorixá Sidnei",
+                    Email: "sacerdote@sgae.com.br",
+                    Senha: "Mudar@123",
+                    Perfil: PerfilUsuario.Sacerdote,
+                    SacerdoteId: sacerdote?.Id,
+                    RoleId: pastorRole?.Id
                 ),
                 (
                     Nome: "Babalorixá Sidnei",
@@ -588,11 +604,27 @@ public class DatabaseSeeder
                 ),
                 (
                     Nome: "Secretaria Pastoral",
+                    Email: "secretaria@sgae.com.br",
+                    Senha: "Mudar@123",
+                    Perfil: PerfilUsuario.Secretaria,
+                    SacerdoteId: (Guid?)null,
+                    RoleId: coordenadorRole?.Id
+                ),
+                (
+                    Nome: "Secretaria Pastoral",
                     Email: "secretaria@sgae.com",
                     Senha: "SgaeSecretaria2026!",
                     Perfil: PerfilUsuario.Secretaria,
                     SacerdoteId: (Guid?)null,
                     RoleId: coordenadorRole?.Id
+                ),
+                (
+                    Nome: "Consulente Visitante",
+                    Email: "consulente@sgae.com.br",
+                    Senha: "Mudar@123",
+                    Perfil: PerfilUsuario.Consulente,
+                    SacerdoteId: (Guid?)null,
+                    RoleId: (Guid?)null
                 ),
                 (
                     Nome: "Consulente Visitante",
