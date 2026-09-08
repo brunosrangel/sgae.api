@@ -26,5 +26,6 @@ public interface IAppDbContext
     DbSet<PastoralRole> PastoralRoles { get; }
     DbSet<Usuario> Usuarios { get; }
     DbSet<RefreshToken> RefreshTokens { get; }
+    DbSet<ArquivoBlob> ArquivosBlob { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

@@ -26,6 +26,7 @@ public static class PersistenceExtensions
                    .AddInterceptors(new DateTimeUtcInterceptor(), sp.GetRequiredService<AuditSaveChangesInterceptor>()));
 
         services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
+        services.AddScoped<IIdentitySeeder, IdentitySeeder>();
         services.AddScoped<DatabaseSeeder>();
         services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -37,7 +38,16 @@ public static class PersistenceExtensions
         services.AddScoped<IAtendimentoEspiritualRepository, AtendimentoEspiritualRepository>();
         services.AddScoped<IAtendimentoRepository, AtendimentoRepository>();
         services.AddScoped<IAcompanhamentoRepository, AcompanhamentoRepository>();
+        services.AddScoped<IArquivoBlobRepository, ArquivoBlobRepository>();
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
+
+        // Configuração do Vercel Blob Storage Client
+        services.Configure<VercelBlobOptions>(configuration.GetSection(VercelBlobOptions.SectionName));
+        services.AddHttpClient<IVercelBlobService, VercelBlobService>(client =>
+        {
+            client.BaseAddress = new Uri("https://blob.vercel-storage.com/");
+            client.Timeout = TimeSpan.FromSeconds(60);
+        });
 
         return services;
     }

@@ -38,6 +38,7 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<Conversao> Conversoes => Set<Conversao>();
     public DbSet<Usuario> Usuarios => Set<Usuario>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+    public DbSet<ArquivoBlob> ArquivosBlob => Set<ArquivoBlob>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -802,6 +803,29 @@ public class AppDbContext : DbContext, IAppDbContext
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasQueryFilter(r => !r.IsDeleted);
+        });
+
+        // Configuração da Entidade ArquivoBlob (Armazenamento Vercel Blob)
+        modelBuilder.Entity<ArquivoBlob>(builder =>
+        {
+            builder.ToTable("ArquivosBlob");
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.NomeOriginal).HasMaxLength(250).IsRequired();
+            builder.Property(a => a.NomeBlob).HasMaxLength(500).IsRequired();
+            builder.Property(a => a.BlobUrl).HasMaxLength(1000).IsRequired();
+            builder.Property(a => a.DownloadUrl).HasMaxLength(1000).IsRequired(false);
+            builder.Property(a => a.ContentType).HasMaxLength(100).IsRequired();
+            builder.Property(a => a.TamanhoBytes).IsRequired();
+            builder.Property(a => a.Categoria).HasMaxLength(100).IsRequired(false);
+            builder.Property(a => a.Descricao).HasMaxLength(500).IsRequired(false);
+            builder.Property(a => a.UsuarioUploadId).IsRequired(false);
+            builder.Property(a => a.EntidadeRelacionadaId).IsRequired(false);
+
+            builder.HasIndex(a => a.BlobUrl);
+            builder.HasIndex(a => a.Categoria);
+            builder.HasIndex(a => a.EntidadeRelacionadaId);
+
+            builder.HasQueryFilter(a => !a.IsDeleted);
         });
 
         // Conversor global de DateTime para UTC para evitar problemas de fuso horário / Unspecified com o PostgreSQL (Npgsql)

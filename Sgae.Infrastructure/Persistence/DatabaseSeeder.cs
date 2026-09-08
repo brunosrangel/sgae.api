@@ -264,6 +264,27 @@ public class DatabaseSeeder
                     CREATE INDEX IF NOT EXISTS ""IX_Atendimentos_ConsulenteId_DataConsulta"" ON ""Atendimentos"" (""ConsulenteId"", ""DataConsulta"");
                     CREATE INDEX IF NOT EXISTS ""IX_AnexosAtendimento_AtendimentoId"" ON ""AnexosAtendimento"" (""AtendimentoId"");
 
+                    CREATE TABLE IF NOT EXISTS ""ArquivosBlob"" (
+                        ""Id"" UUID PRIMARY KEY,
+                        ""NomeOriginal"" VARCHAR(250) NOT NULL,
+                        ""NomeBlob"" VARCHAR(500) NOT NULL,
+                        ""BlobUrl"" VARCHAR(1000) NOT NULL,
+                        ""DownloadUrl"" VARCHAR(1000) NULL,
+                        ""ContentType"" VARCHAR(100) NOT NULL,
+                        ""TamanhoBytes"" BIGINT NOT NULL DEFAULT 0,
+                        ""Categoria"" VARCHAR(100) NULL,
+                        ""Descricao"" VARCHAR(500) NULL,
+                        ""UsuarioUploadId"" UUID NULL,
+                        ""EntidadeRelacionadaId"" UUID NULL,
+                        ""IsDeleted"" BOOLEAN NOT NULL DEFAULT FALSE,
+                        ""CreatedAt"" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+                        ""UpdatedAt"" TIMESTAMP WITH TIME ZONE NULL
+                    );
+
+                    CREATE INDEX IF NOT EXISTS ""IX_ArquivosBlob_BlobUrl"" ON ""ArquivosBlob"" (""BlobUrl"");
+                    CREATE INDEX IF NOT EXISTS ""IX_ArquivosBlob_Categoria"" ON ""ArquivosBlob"" (""Categoria"");
+                    CREATE INDEX IF NOT EXISTS ""IX_ArquivosBlob_EntidadeRelacionadaId"" ON ""ArquivosBlob"" (""EntidadeRelacionadaId"");
+
                     CREATE TABLE IF NOT EXISTS ""AuditLogs"" (
                         ""Id"" UUID PRIMARY KEY,
                         ""EntityName"" VARCHAR(150) NOT NULL,

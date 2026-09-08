@@ -1,9 +1,10 @@
+using Sgae.Application.Abstractions;
 using Sgae.Infrastructure.Persistence;
 
 namespace Sgae.API.Extensions;
 
 /// <summary>
-/// Extensão responsável pela inicialização e seeding automático do banco de dados relacional.
+/// Extensão responsável pela inicialização e seeding automático do banco de dados relacional e serviços de identidade.
 /// </summary>
 public static class DatabaseSeedingExtensions
 {
@@ -16,6 +17,9 @@ public static class DatabaseSeedingExtensions
         {
             var seeder = services.GetRequiredService<DatabaseSeeder>();
             await seeder.InitializeAndSeedAsync();
+
+            var identitySeeder = services.GetRequiredService<IIdentitySeeder>();
+            await identitySeeder.SeedIdentityAsync();
         }
         catch (Exception ex)
         {
